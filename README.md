@@ -1,5 +1,5 @@
 # NIGHTMARE
-minecraftPEバージョン0.13.0用のPocketmine-MPのsrcです
+minecraftPEバージョン0.13.0用のPocketMine-MPのsrcです
 
 PocketMine-MPから引用しました
 
