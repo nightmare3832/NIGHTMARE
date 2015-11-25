@@ -19,4 +19,6 @@ PocketMine-MPから引用しました
 
 ・setCustomNameのコードの機能
 
+・Enchantの種類を追加
+
 setCustomNameコード提供 : kurarin様
