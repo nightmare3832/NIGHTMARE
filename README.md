@@ -21,4 +21,4 @@ PocketMine-MPから引用しました
 
 ・Enchantの種類を追加
 
-setCustomNameコード提供 : kurarin様
+コード提供 : kurarin様
