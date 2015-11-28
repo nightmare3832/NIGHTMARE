@@ -1569,11 +1569,6 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 					++$this->inAirTicks;
 				}
 			}
-
-		if($this->starvationTick >= 20) {
-			$ev = new EntityDamageEvent($this, EntityDamageEvent::CAUSE_CUSTOM, 1);
-			$this->attack(1, $ev);
-			$this->starvationTick = 0;
 		}
 
 		$this->checkTeleportPosition();
