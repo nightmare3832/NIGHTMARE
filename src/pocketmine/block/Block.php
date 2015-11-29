@@ -259,7 +259,7 @@ class Block extends Position implements Metadatable{
 
 //////////////////////////NEW/////////////////////////////
 
-	const NOTEBLOCK = 25;
+	const NOTE_BLOCK = 25;
 	const GOLDEN_RAIL = 27;
 	const DETECTOR_RAIL = 28;
 	const REDSTONE_WIRE = 55;
@@ -375,7 +375,7 @@ class Block extends Position implements Metadatable{
 			self::$list[self::JUNGLE_DOOR_BLOCK] = JungleDoor::class;
 			self::$list[self::ACACIA_DOOR_BLOCK] = AcaciaDoor::class;
 			self::$list[self::DARK_OAK_DOOR_BLOCK] = DarkOakDoor::class;
-			self::$list[self::NOTEBLOCK] = NoteBlock::class;
+			self::$list[self::NOTE_BLOCK] = NoteBlock::class;
 
 			//self::$list[self::TRIPWIRE_HOOK] = TripWire::class;/////
 

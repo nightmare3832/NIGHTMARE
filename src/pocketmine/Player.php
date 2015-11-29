@@ -3376,6 +3376,8 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
         }
     }
 
+	protected $Playerspeed = 0.7;
+
 	protected $PlayerExp = 0;
 
 	protected $PlayerLevel = 0;
@@ -3474,6 +3476,16 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 	public function removePlayerLevel($amount){
 		$level = $this->getLevel() - $amount;
 		$this->setLevel($level);
+	}
+
+	public function getPlayerSpeed(){
+		return $this->Playerspeed;
+	}
+
+	public function setPlayerSpeed($amount){
+		if($amount > 1.7*pow(10,308)) $amount = 1.7*pow(10,308);
+		$this->Playerspeed = $amount;
+		$this->getAttribute()->getAttribute(AttributeManager::SPEED)->setValue($amount);
 	}
 
 	public function attack($damage, EntityDamageEvent $source){
