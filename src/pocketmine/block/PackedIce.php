@@ -44,12 +44,6 @@ class PackedIce extends Transparent{
 		return Tool::TYPE_PICKAXE;
 	}
 
-	public function onBreak(Item $item){
-		$this->getLevel()->setBlock($this, new Water(), true);
-
-		return true;
-	}
-
 	public function getDrops(Item $item){
 		return [];
 	}
