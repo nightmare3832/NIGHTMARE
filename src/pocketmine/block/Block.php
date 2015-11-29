@@ -279,6 +279,12 @@ class Block extends Position implements Metadatable{
 	const TRAPPED_CHEST = 146;
 	const REDSTONE_TORCH = 76;
 	const NETHER_PORTAL = 90;
+	const PACKED_ICE = 174;
+	const SPRUCE_DOOR_BLOCK = 193;
+	const BIRCH_DOOR_BLOCK = 194;
+	const JUNGLE_DOOR_BLOCK = 195;
+	const ACACIA_DOOR_BLOCK = 196;
+	const DARK_OAK_DOOR_BLOCK = 197;
 
 //////////////////////////////////////////////////////////
 
@@ -362,6 +368,12 @@ class Block extends Position implements Metadatable{
 			self::$list[self::REDSTONE_TORCH] = RedstoneTorch::class;
 			self::$list[self::REDSTONE_WIRE] = RedstoneWire::class;
 			self::$list[self::NETHER_PORTAL] = NetherPortal::class;
+			self::$list[self::PACKED_ICE] = PackedIce::class;
+			self::$list[self::SPRUCE_DOOR_BLOCK] = SpruceDoor::class;
+			self::$list[self::BIRCH_DOOR_BLOCK] = BirchDoor::class;
+			self::$list[self::JUNGLE_DOOR_BLOCK] = JungleDoor::class;
+			self::$list[self::ACACIA_DOOR_BLOCK] = AcaciaDoor::class;
+			self::$list[self::DARK_OAK_DOOR_BLOCK] = DarkOakDoor::class;
 
 			//self::$list[self::TRIPWIRE_HOOK] = TripWire::class;/////
 
