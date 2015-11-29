@@ -21,23 +21,40 @@
 
 namespace pocketmine\item;
 
-use pocketmine\block\Block;
-use pocketmine\block\RedstoneWire;
-
 class Redstone extends Item{
 	public function __construct($meta = 0, $count = 1){
 		parent::__construct(self::REDSTONE, $meta, $count, "Redstone");
 	}
 
 	public function onActivate(Level $level, Player $player, Block $block, Block $target, $face, $fx, $fy, $fz){
-		if(!$ev->isCancelled()){
-			$player->getLevel()->setBlock($target, new RedstoneWire(), \true, \true);
+		$targetBlock = Block::get($this->meta);
+
+		if($targetBlock instanceof Air){
+			if($target instanceof Liquid and $target->getDamage() === 0){
+				$result = clone $this;
+				$result->setDamage(0);
+				if(!$ev->isCancelled()){
+					$player->getLevel()->setBlock($target, new Air(), \true, \true);
+					if($player->isSurvival()){
+						$player->getInventory()->setItemInHand($ev->getItem(), $player);
+					}
+					return \true;
+				}else{
+					$player->getInventory()->sendContents($player);
+				}
+			}
+		}elseif($targetBlock instanceof Liquid){
+			$result = clone $this;
+			$result->setDamage(0);
+			if(!$ev->isCancelled()){
+				$player->getLevel()->setBlock(55, $targetBlock, \true, \true);
 				if($player->isSurvival()){
 					$player->getInventory()->setItemInHand($ev->getItem(), $player);
 				}
-			return \true;
-		}else{
-			$player->getInventory()->sendContents($player);
+				return \true;
+			}else{
+				$player->getInventory()->sendContents($player);
+			}
 		}
 	}
 }
