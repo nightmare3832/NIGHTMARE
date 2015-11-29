@@ -465,6 +465,13 @@ class Item{
 	const JUNGLE_DOOR = 429;
 	const ACACIA_DOOR = 430;
 	const DARK_OAK_DOOR = 431;
+
+	const SPRUCE_DOOR_BLOCK = 193;
+	const BIRCH_DOOR_BLOCK = 194;
+	const JUNGLE_DOOR_BLOCK = 195;
+	const ACACIA_DOOR_BLOCK = 196;
+	const DARK_OAK_DOOR_BLOCK = 197;
+
 	const SPLASH_POTION = 438;
 	const CAMERA = 456;
 	const BEETROOT = 457;
@@ -567,6 +574,11 @@ class Item{
 			self::$list[self::BUCKET] = Bucket::class;
 			self::$list[self::MINECART] = Minecart::class;
 			self::$list[self::IRON_DOOR] = IronDoor::class;
+			self::$list[self::SPRUCE_DOOR] = SpruceDoor::class;
+			self::$list[self::BIRCH_DOOR] = BirchDoor::class;
+			self::$list[self::JUNGLE_DOOR] = JungleDoor::class;
+			self::$list[self::ACACIA_DOOR] = AcaciaDoor::class;
+			self::$list[self::DARK_OAK_DOOR] = DarkOakDoor::class;
 			self::$list[self::REDSTONE] = Redstone::class;
 			self::$list[self::SNOWBALL] = Snowball::class;
 			self::$list[self::LEATHER] = Leather::class;
