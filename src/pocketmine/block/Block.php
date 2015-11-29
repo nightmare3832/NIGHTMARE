@@ -259,26 +259,27 @@ class Block extends Position implements Metadatable{
 
 //////////////////////////NEW/////////////////////////////
 
-	const RAIL = 66;
+	const NOTEBLOCK = 25;
 	const GOLDEN_RAIL = 27;
 	const DETECTOR_RAIL = 28;
-	const ACTIVATOR_RAIL = 157;
-	const BROWN_MUSHROOM_BLOCK = 99;
-	const RED_MUSHROOM_BLOCK = 100;
 	const REDSTONE_WIRE = 55;
-	const STONE_BUTTON = 77;
-	const WOODEN_BUTTON = 143;
+	const RAIL = 66;
+	const LEVER = 69;
 	const STONE_PRESSURE_PLATE = 70;
 	const WOODEN_PRESSURE_PLATE = 72;
+	const REDSTONE_TORCH = 76;
+	const STONE_BUTTON = 77;
+	const NETHER_PORTAL = 90;
+	const BROWN_MUSHROOM_BLOCK = 99;
+	const RED_MUSHROOM_BLOCK = 100;
 	const REDSTONE_LAMP = 123;
 	const LIT_REDSTONE_LAMP = 124;
-	const DAYLIGHT_DETECTOR = 151;
+	const WOODEN_BUTTON = 143;
+	const TRAPPED_CHEST = 146;
 	const LIGHT_WEIGHTED_PRESSURE_PLATE = 147;
 	const HEAVY_WEIGHTED_PRESSURE_PLATE = 148;
-	const LEVER = 69;
-	const TRAPPED_CHEST = 146;
-	const REDSTONE_TORCH = 76;
-	const NETHER_PORTAL = 90;
+	const DAYLIGHT_DETECTOR = 151;
+	const ACTIVATOR_RAIL = 157;
 	const PACKED_ICE = 174;
 	const SPRUCE_DOOR_BLOCK = 193;
 	const BIRCH_DOOR_BLOCK = 194;
@@ -374,6 +375,7 @@ class Block extends Position implements Metadatable{
 			self::$list[self::JUNGLE_DOOR_BLOCK] = JungleDoor::class;
 			self::$list[self::ACACIA_DOOR_BLOCK] = AcaciaDoor::class;
 			self::$list[self::DARK_OAK_DOOR_BLOCK] = DarkOakDoor::class;
+			self::$list[self::NOTEBLOCK] = NoteBlock::class;
 
 			//self::$list[self::TRIPWIRE_HOOK] = TripWire::class;/////
 
