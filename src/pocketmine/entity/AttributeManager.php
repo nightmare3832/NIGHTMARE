@@ -32,7 +32,6 @@ class AttributeManager{
 	const EXPERIENCE = 2;
 	const EXPERIENCE_LEVEL = 3;
 	const SPEED = 4;
-
 	/** @var Attribute[] */
 	protected $attributes = [];
 	/** @var Player */
