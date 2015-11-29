@@ -105,10 +105,10 @@ class Item{
 	const LAPIS_BLOCK = 22;
 
 	const SANDSTONE = 24;
-    const NOTEBLOCK = 25;
+	const NOTEBLOCK = 25;
 	const BED_BLOCK = 26;
-    const GOLDEN_RAIL = 27;
-    const DETECTOR_RAIL = 28;
+	const GOLDEN_RAIL = 27;
+	const DETECTOR_RAIL = 28;
 	const COBWEB = 30;
 	const TALL_GRASS = 31;
 	const BUSH = 32;
@@ -156,19 +156,19 @@ class Item{
 	const WOODEN_DOOR_BLOCK = 64;
 	const WOOD_DOOR_BLOCK = 64;
 	const LADDER = 65;
-    const RAIL = 66;
+	const RAIL = 66;
 	const COBBLE_STAIRS = 67;
 	const COBBLESTONE_STAIRS = 67;
 	const WALL_SIGN = 68;
-    const LEVER = 69;
-    const STONE_PRESSURE_PLATE = 70;
+	const LEVER = 69;
+	const STONE_PRESSURE_PLATE = 70;
 	const IRON_DOOR_BLOCK = 71;
 	const WOODEN_PRESSURE_PLATE = 72;
 	const REDSTONE_ORE = 73;
 	const GLOWING_REDSTONE_ORE = 74;
 	const LIT_REDSTONE_ORE = 74;
-    const REDSTONE_TORCH = 76;
-    const STONE_BUTTON = 77;
+	const REDSTONE_TORCH = 76;
+	const STONE_BUTTON = 77;
 	const SNOW = 78;
 	const SNOW_LAYER = 78;
 	const ICE = 79;
@@ -185,7 +185,7 @@ class Item{
 	const GLOWSTONE = 89;
 	const GLOWSTONE_BLOCK = 89;
 
-    const  NETHER_PORTAL = 90;
+	const  NETHER_PORTAL = 90;
 	const LIT_PUMPKIN = 91;
 	const JACK_O_LANTERN = 91;
 	const CAKE_BLOCK = 92;
@@ -194,7 +194,7 @@ class Item{
 
 	const STONE_BRICKS = 98;
 	const STONE_BRICK = 98;
-    const MUSHROOM_BROWN = 99;
+	const MUSHROOM_BROWN = 99;
 	const MUSHROOM_RED = 100;
 	const IRON_BAR = 101;
 	const IRON_BARS = 101;
@@ -219,14 +219,15 @@ class Item{
 	const ENCHANTING_TABLE = 116;
 	const ENCHANT_TABLE = 116;
 	const ENCHANTMENT_TABLE = 116;
-    const BREWING_STAND = 117;
+	const BREWING_STAND = 117;
 	const END_PORTAL = 120;
 	const END_STONE = 121;
 	const REDSTONE_LAMP = 123;
-    const ACTIVATOR_RAIL = 126;
+	const LIT_REDSTONE_LAMP = 124;
+	const ACTIVATOR_RAIL = 126;
 	const SANDSTONE_STAIRS = 128;
 	const EMERALD_ORE = 129;
-    const TRIPWIRE_HOOK = 131;
+	const TRIPWIRE_HOOK = 131;
 	const EMERALD_BLOCK = 133;
 	const SPRUCE_WOOD_STAIRS = 134;
 	const SPRUCE_WOODEN_STAIRS = 134;
@@ -243,12 +244,12 @@ class Item{
 	const WOOD_BUTTON = 143;
 
 	const ANVIL = 145;
-    const TRAPPED_CHEST = 146;
-    const GOLD_PRESSURE_PLATE = 147;
-    const IRON_PRESSURE_PLATE = 148;
-    const DAYLIGHT_SENSOR = 151;
+	const TRAPPED_CHEST = 146;
+	const GOLD_PRESSURE_PLATE = 147;
+	const IRON_PRESSURE_PLATE = 148;
+	const DAYLIGHT_SENSOR = 151;
 	const REDSTONE_BLOCK = 152;
-    const QUARTZ_ORE = 153;
+	const QUARTZ_ORE = 153;
 	const QUARTZ_BLOCK = 155;
 	const QUARTZ_STAIRS = 156;
 	const DOUBLE_WOOD_SLAB = 157;
@@ -271,12 +272,12 @@ class Item{
 	const ACACIA_WOODEN_STAIRS = 163;
 	const DARK_OAK_WOOD_STAIRS = 164;
 	const DARK_OAK_WOODEN_STAIRS = 164;
-    const IRON_TRAPDOOR = 167;
+	const IRON_TRAPDOOR = 167;
 	const HAY_BALE = 170;
 	const CARPET = 171;
 	const HARDENED_CLAY = 172;
 	const COAL_BLOCK = 173;
-    const PACKED_ICE = 174;
+	const PACKED_ICE = 174;
 	const DOUBLE_PLANT = 175;
 
 	const FENCE_GATE_SPRUCE = 183;
@@ -381,7 +382,7 @@ class Item{
 	const REDSTONE = 331;
 	const REDSTONE_DUST = 331;
 	const SNOWBALL = 332;
-    const BOAT = 333;
+	const BOAT = 333;
 	const LEATHER = 334;
 
 	const BRICK = 336;
@@ -395,7 +396,7 @@ class Item{
 
 	const EGG = 344;
 	const COMPASS = 345;
-    const FISHING_ROD = 346;
+	const FISHING_ROD = 346;
 	const CLOCK = 347;
 	const GLOWSTONE_DUST = 348;
 	const RAW_FISH = 349;
@@ -421,12 +422,12 @@ class Item{
 
 	const RAW_CHICKEN = 365;
 	const COOKED_CHICKEN = 366;
-    const GHAST_TEAR = 370;
+	const GHAST_TEAR = 370;
 	const GOLD_NUGGET = 371;
 	const GOLDEN_NUGGET = 371;
 	const NETHER_WART = 372;
 	const BOTTLE = 374;
-    const ROTTEN_FLESH = 367;
+	const ROTTEN_FLESH = 367;
 	const BLAZE_ROD = 369;
 	const POTION = 373;
 	const SPIDER_EYE = 375;
@@ -439,16 +440,16 @@ class Item{
 	const BOTTLE_OF_ENCHANTING = 384;
 
 	const EMERALD = 388;
-    const FLOWER_POT = 390;
+	const FLOWER_POT = 390;
 	const CARROT = 391;
 	const CARROTS = 391;
 	const POTATO = 392;
 	const POTATOES = 392;
 	const BAKED_POTATO = 393;
 	const BAKED_POTATOES = 393;
-    const POISONOUS_POTATO = 394;
+	const POISONOUS_POTATO = 394;
 	const GOLDEN_CARROT = 396;
-    const HEAD = 397;
+	const HEAD = 397;
 	const PUMPKIN_PIE = 400;
 
 	const NETHER_BRICK = 405;
@@ -459,7 +460,7 @@ class Item{
 	const RABBIT_STEW = 413;
 	const RABBIT_FOOT = 414;
 	const RABBIT_HIDE = 415;
-    const SPRUCE_DOOR = 427;
+	const SPRUCE_DOOR = 427;
 	const BIRCH_DOOR = 428;
 	const JUNGLE_DOOR = 429;
 	const ACACIA_DOOR = 430;
@@ -470,6 +471,10 @@ class Item{
 	const BEETROOT_SEEDS = 458;
 	const BEETROOT_SEED = 458;
 	const BEETROOT_SOUP = 459;
+	const RAW_SALMON = 460;
+	const CLOWN_FISH = 461;
+	const PUFFER_FISH = 462;
+	const COOKED_SALMON = 463;
 
 
 	/** @var \SplFixedArray */
@@ -577,6 +582,10 @@ class Item{
 			self::$list[self::GLOWSTONE_DUST] = GlowstoneDust::class;
 			self::$list[self::RAW_FISH] = Fish::class;
 			self::$list[self::COOKED_FISH] = CookedFish::class;
+			self::$list[self::RAW_SALMON] = RawSalmon::class;
+			self::$list[self::CLOWN_FISH] = ClownFish::class;
+			self::$list[self::PUFFER_FISH] = PufferFish::class;
+			self::$list[self::COOKED_SALMON] = CookedSalmon::class;
 			self::$list[self::DYE] = Dye::class;
 			self::$list[self::BONE] = Bone::class;
 			self::$list[self::SUGAR] = Sugar::class;
@@ -696,7 +705,7 @@ class Item{
 		self::addCreativeItem(Item::get(Item::SLAB, 0));
 		self::addCreativeItem(Item::get(Item::SLAB, 1));
 		self::addCreativeItem(Item::get(Item::WOODEN_SLAB, 0));
-		self::addCreativeItem(Item::get(Item::WOODEN_SLAB, 3));
+		self::addCreativeItem(Item::get(Item::WOODEN_SLAB, 1));
 		self::addCreativeItem(Item::get(Item::WOODEN_SLAB, 2));
 		self::addCreativeItem(Item::get(Item::WOODEN_SLAB, 3));
 		self::addCreativeItem(Item::get(Item::WOODEN_SLAB, 4));
@@ -772,6 +781,7 @@ class Item{
 		self::addCreativeItem(Item::get(Item::CHEST, 0));
 		self::addCreativeItem(Item::get(Item::TRAPPED_CHEST, 0));
 		self::addCreativeItem(Item::get(Item::FURNACE, 0));
+		self::addCreativeItem(Item::get(Item::BURNING_FURNACE, 0));
 		self::addCreativeItem(Item::get(Item::BREWING_STAND_FULL, 0));
 		self::addCreativeItem(Item::get(Item::NOTEBLOCK, 0));
 		self::addCreativeItem(Item::get(Item::END_PORTAL, 0));
@@ -884,65 +894,64 @@ class Item{
 		self::addCreativeItem(Item::get(Item::CLOCK, 0));
 		self::addCreativeItem(Item::get(Item::COMPASS, 0));
 		self::addCreativeItem(Item::get(Item::MINECART, 0));;
-		for ($i = 0; $i <= 5; $i++)
-		  {
-	       self::addCreativeItem(Item::get(Item::BOAT, $i));
-	      }
+		for ($i = 0; $i <= 5; $i++){
+			self::addCreativeItem(Item::get(Item::BOAT, $i));
+		}
 		self::addCreativeItem(Item::get(Item::SPAWN_EGG, 15));
 		self::addCreativeItem(Item::get(Item::SPAWN_EGG, 10));
 		self::addCreativeItem(Item::get(Item::SPAWN_EGG, 11));
-        self::addCreativeItem(Item::get(Item::SPAWN_EGG, 12));
-        self::addCreativeItem(Item::get(Item::SPAWN_EGG, 13));
-        self::addCreativeItem(Item::get(Item::SPAWN_EGG, 14));
-        self::addCreativeItem(Item::get(Item::SPAWN_EGG, 22));
-        self::addCreativeItem(Item::get(Item::SPAWN_EGG, 16));
-        self::addCreativeItem(Item::get(Item::SPAWN_EGG, 19));
-        self::addCreativeItem(Item::get(Item::SPAWN_EGG, 18));
-        self::addCreativeItem(Item::get(Item::SPAWN_EGG, 33));
-        self::addCreativeItem(Item::get(Item::SPAWN_EGG, 38));
-        self::addCreativeItem(Item::get(Item::SPAWN_EGG, 39));
-        self::addCreativeItem(Item::get(Item::SPAWN_EGG, 34));
-        self::addCreativeItem(Item::get(Item::SPAWN_EGG, 37));
-        self::addCreativeItem(Item::get(Item::SPAWN_EGG, 35));
-        self::addCreativeItem(Item::get(Item::SPAWN_EGG, 32));
-        self::addCreativeItem(Item::get(Item::SPAWN_EGG, 36));
-        self::addCreativeItem(Item::get(Item::SPAWN_EGG, 17));
-        self::addCreativeItem(Item::get(Item::SPAWN_EGG, 40));
-        self::addCreativeItem(Item::get(Item::SPAWN_EGG, 42));
+		self::addCreativeItem(Item::get(Item::SPAWN_EGG, 12));
+		self::addCreativeItem(Item::get(Item::SPAWN_EGG, 13));
+		self::addCreativeItem(Item::get(Item::SPAWN_EGG, 14));
+		self::addCreativeItem(Item::get(Item::SPAWN_EGG, 22));
+		self::addCreativeItem(Item::get(Item::SPAWN_EGG, 16));
+		self::addCreativeItem(Item::get(Item::SPAWN_EGG, 19));
+		self::addCreativeItem(Item::get(Item::SPAWN_EGG, 18));
+		self::addCreativeItem(Item::get(Item::SPAWN_EGG, 33));
+		self::addCreativeItem(Item::get(Item::SPAWN_EGG, 38));
+		self::addCreativeItem(Item::get(Item::SPAWN_EGG, 39));
+		self::addCreativeItem(Item::get(Item::SPAWN_EGG, 34));
+		self::addCreativeItem(Item::get(Item::SPAWN_EGG, 37));
+		self::addCreativeItem(Item::get(Item::SPAWN_EGG, 35));
+		self::addCreativeItem(Item::get(Item::SPAWN_EGG, 32));
+		self::addCreativeItem(Item::get(Item::SPAWN_EGG, 36));
+		self::addCreativeItem(Item::get(Item::SPAWN_EGG, 17));
+		self::addCreativeItem(Item::get(Item::SPAWN_EGG, 40));
+		self::addCreativeItem(Item::get(Item::SPAWN_EGG, 42));
 		self::addCreativeItem(Item::get(Item::SPAWN_EGG, 41));
-        self::addCreativeItem(Item::get(Item::SPAWN_EGG, 43));
-        self::addCreativeItem(Item::get(Item::WOODEN_SWORD, 0));
-        self::addCreativeItem(Item::get(Item::WOODEN_HOE, 0));
-        self::addCreativeItem(Item::get(Item::WOODEN_SHOVEL, 0));
-        self::addCreativeItem(Item::get(Item::WOODEN_PICKAXE, 0));
-        self::addCreativeItem(Item::get(Item::WOODEN_AXE, 0));
-        self::addCreativeItem(Item::get(Item::STONE_SWORD, 0));
-        self::addCreativeItem(Item::get(Item::STONE_HOE, 0));
-        self::addCreativeItem(Item::get(Item::STONE_SHOVEL, 0));
-        self::addCreativeItem(Item::get(Item::STONE_PICKAXE, 0));
-        self::addCreativeItem(Item::get(Item::STONE_AXE, 0));
-        self::addCreativeItem(Item::get(Item::IRON_SWORD, 0));
-        self::addCreativeItem(Item::get(Item::IRON_HOE, 0));
-        self::addCreativeItem(Item::get(Item::IRON_SHOVEL, 0));
-        self::addCreativeItem(Item::get(Item::IRON_PICKAXE, 0));
-        self::addCreativeItem(Item::get(Item::IRON_AXE, 0));
-	    self::addCreativeItem(Item::get(Item::DIAMOND_SWORD, 0));
-        self::addCreativeItem(Item::get(Item::DIAMOND_HOE, 0));
-        self::addCreativeItem(Item::get(Item::DIAMOND_SHOVEL, 0));
-        self::addCreativeItem(Item::get(Item::DIAMOND_PICKAXE, 0));
-        self::addCreativeItem(Item::get(Item::DIAMOND_AXE, 0));
-        self::addCreativeItem(Item::get(Item::GOLD_SWORD, 0));
-        self::addCreativeItem(Item::get(Item::GOLD_HOE, 0));
-        self::addCreativeItem(Item::get(Item::GOLD_SHOVEL, 0));
-        self::addCreativeItem(Item::get(Item::GOLD_PICKAXE, 0));
-        self::addCreativeItem(Item::get(Item::GOLD_AXE, 0));
-		for ($i = 298; $i < 318; $i++)
-		  {
-	       self::addCreativeItem(Item::get($i, 0));
-	      }
+		self::addCreativeItem(Item::get(Item::SPAWN_EGG, 43));
+		self::addCreativeItem(Item::get(Item::WOODEN_SWORD, 0));
+		self::addCreativeItem(Item::get(Item::WOODEN_HOE, 0));
+		self::addCreativeItem(Item::get(Item::WOODEN_SHOVEL, 0));
+		self::addCreativeItem(Item::get(Item::WOODEN_PICKAXE, 0));
+		self::addCreativeItem(Item::get(Item::WOODEN_AXE, 0));
+		self::addCreativeItem(Item::get(Item::STONE_SWORD, 0));
+		self::addCreativeItem(Item::get(Item::STONE_HOE, 0));
+		self::addCreativeItem(Item::get(Item::STONE_SHOVEL, 0));
+		self::addCreativeItem(Item::get(Item::STONE_PICKAXE, 0));
+		self::addCreativeItem(Item::get(Item::STONE_AXE, 0));
+		self::addCreativeItem(Item::get(Item::IRON_SWORD, 0));
+		self::addCreativeItem(Item::get(Item::IRON_HOE, 0));
+		self::addCreativeItem(Item::get(Item::IRON_SHOVEL, 0));
+		self::addCreativeItem(Item::get(Item::IRON_PICKAXE, 0));
+		self::addCreativeItem(Item::get(Item::IRON_AXE, 0));
+		self::addCreativeItem(Item::get(Item::DIAMOND_SWORD, 0));
+		self::addCreativeItem(Item::get(Item::DIAMOND_HOE, 0));
+		self::addCreativeItem(Item::get(Item::DIAMOND_SHOVEL, 0));
+		self::addCreativeItem(Item::get(Item::DIAMOND_PICKAXE, 0));
+		self::addCreativeItem(Item::get(Item::DIAMOND_AXE, 0));
+		self::addCreativeItem(Item::get(Item::GOLD_SWORD, 0));
+		self::addCreativeItem(Item::get(Item::GOLD_HOE, 0));
+		self::addCreativeItem(Item::get(Item::GOLD_SHOVEL, 0));
+		self::addCreativeItem(Item::get(Item::GOLD_PICKAXE, 0));
+		self::addCreativeItem(Item::get(Item::GOLD_AXE, 0));
+		for ($i = 298; $i < 318; $i++){
+			self::addCreativeItem(Item::get($i, 0));
+		}
 		self::addCreativeItem(Item::get(Item::NETHER_PORTAL, 0));
 		self::addCreativeItem(Item::get(Item::LEVER, 0));
 		self::addCreativeItem(Item::get(Item::REDSTONE_LAMP, 0));
+		self::addCreativeItem(Item::get(Item::LIT_REDSTONE_LAMP, 0));
 		self::addCreativeItem(Item::get(Item::REDSTONE_TORCH, 0));
 		self::addCreativeItem(Item::get(Item::WOODEN_PRESSURE_PLATE, 0));
 		self::addCreativeItem(Item::get(Item::STONE_PRESSURE_PLATE, 0));
@@ -985,12 +994,12 @@ class Item{
 		self::addCreativeItem(Item::get(Item::APPLE, 0));
 		self::addCreativeItem(Item::get(Item::GOLDEN_APPLE, 0));
 		self::addCreativeItem(Item::get(Item::GOLDEN_APPLE, 1)); 
-		for ($i = 0; $i <= 3; $i++)
-		  {
-		   self::addCreativeItem(Item::get(Item::RAW_FISH, $i));
-		  }
+		self::addCreativeItem(Item::get(Item::RAW_FISH, 0));
+		self::addCreativeItem(Item::get(Item::RAW_SALMON, 0));
+		self::addCreativeItem(Item::get(Item::CLOWN_FISH, 0));
+		self::addCreativeItem(Item::get(Item::PUFFER_FISH, 0));
 		self::addCreativeItem(Item::get(Item::COOKED_FISH, 0));
-		self::addCreativeItem(Item::get(Item::COOKED_FISH, 1));
+		self::addCreativeItem(Item::get(Item::COOKED_SALMON, 0));
 		self::addCreativeItem(Item::get(Item::ROTTEN_FLESH, 0));
 		self::addCreativeItem(Item::get(Item::MUSHROOM_STEW, 0));
 		self::addCreativeItem(Item::get(Item::BREAD, 0));
@@ -1042,14 +1051,12 @@ class Item{
 		self::addCreativeItem(Item::get(Item::DYE, 2));
 		self::addCreativeItem(Item::get(Item::DYE, 6));
 		self::addCreativeItem(Item::get(Item::BOTTLE, 0));
-		for ($i = 0; $i <= 35; $i++)
-		  {
-	       self::addCreativeItem(Item::get(Item::POTION, $i));
-	      }
-	 	for ($i = 0; $i <= 35; $i++)
-		  {
-	       self::addCreativeItem(Item::get(Item::SPLASH_POTION, $i));
-	      }
+		for ($i = 0; $i <= 35; $i++){
+			self::addCreativeItem(Item::get(Item::POTION, $i));
+		}
+	 	for ($i = 0; $i <= 35; $i++){
+			self::addCreativeItem(Item::get(Item::SPLASH_POTION, $i));
+		}
 	}
 
 	public static function clearCreativeItems(){
