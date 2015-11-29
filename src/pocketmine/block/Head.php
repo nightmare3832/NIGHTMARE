@@ -19,26 +19,33 @@
  *
 */
 
-namespace pocketmine\item;
+namespace pocketmine\block;
 
-use pocketmine\block\Block;
-use pocketmine\block\RedstoneWire;
+use pocketmine\item\Item;
+use pocketmine\item\Tool;
+use pocketmine\Player;
 
-class Redstone extends Item{
-	public function __construct($meta = 0, $count = 1){
-		parent::__construct(self::REDSTONE, $meta, $count, "Redstone");
+class Head extends Solid{
+	protected $id = self::HEAD;
+
+	public function __construct($meta = 0){
+		$this->meta = $meta;
 	}
 
-	public function onActivate(Level $level, Player $player, Block $block, Block $target, $face, $fx, $fy, $fz){
-		if(!$ev->isCancelled()){
-			$player->getLevel()->setBlock($target, new RedstoneWire(), \true, \true);
-				if($player->isSurvival()){
-					$player->getInventory()->setItemInHand($ev->getItem(), $player);
-				}
-			return \true;
-		}else{
-			$player->getInventory()->sendContents($player);
-		}
+	public function getName(){
+		return "Mob Head";
+	}
+
+	public function place(Item $item, Block $block, Block $target, $face, $fx, $fy, $fz, Player $player = \null){
+		$faces = [
+			0 => 1,
+			1 => 0,
+			2 => 1,
+			3 => 0,
+		];
+		$this->meta = $faces[$player instanceof Player ? $player->getDirection() : 0];
+		//for($side = 2; $side <= 5; ++$side){}
+		$this->getLevel()->setBlock($block, $this, \true, \true);
+		return \true;
 	}
 }
-
