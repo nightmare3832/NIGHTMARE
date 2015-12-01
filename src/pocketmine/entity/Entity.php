@@ -57,6 +57,8 @@ use pocketmine\network\Network;
 use pocketmine\network\protocol\MobEffectPacket;
 use pocketmine\network\protocol\RemoveEntityPacket;
 use pocketmine\network\protocol\SetEntityDataPacket;
+use pocketmine\entity\Attribute;
+use pocketmine\entity\AttributeManager;
 
 use pocketmine\Player;
 use pocketmine\plugin\Plugin;
@@ -227,6 +229,7 @@ abstract class Entity extends Location implements Metadatable{
 		$this->chunk = $chunk;
 		$this->setLevel($chunk->getProvider()->getLevel());
 		$this->server = $chunk->getProvider()->getLevel()->getServer();
+		$this->attribute = new AttributeManager($this);
 
 		$this->boundingBox = new AxisAlignedBB(0, 0, 0, 0, 0, 0);
 		$this->setPositionAndRotation(
@@ -273,6 +276,10 @@ abstract class Entity extends Location implements Metadatable{
 
 		$this->scheduleUpdate();
 
+	}
+
+	public function getAttribute() {
+		return $this->attribute;
 	}
 
 	/**
@@ -650,14 +657,16 @@ abstract class Entity extends Location implements Metadatable{
 		}
 
 		if($amount <= 0){
-            $amount = 0;
+			$amount = 0;
 			if($this->isAlive()){
 				$this->kill();
 			}
 		}elseif($amount <= $this->getMaxHealth() or $amount < $this->health){
 			$this->health = (int) $amount;
+			$this->getAttribute()->getAttribute(AttributeManager::MAX_HEALTH)->setValue($amount);
 		}else{
 			$this->health = $this->getMaxHealth();
+			$this->getAttribute()->getAttribute(AttributeManager::MAX_HEALTH)->setValue($this->getMaxHealth());
 		}
 	}
 
@@ -687,6 +696,7 @@ abstract class Entity extends Location implements Metadatable{
 	 */
 	public function setMaxHealth($amount){
 		$this->maxHealth = (int) $amount;
+		$this->getAttribute()->getAttribute(AttributeManager::MAX_HEALTH)->setMaxValue($amount);
 	}
 
 	public function canCollideWith(Entity $entity){
