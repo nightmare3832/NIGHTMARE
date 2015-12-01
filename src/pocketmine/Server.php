@@ -354,6 +354,13 @@ class Server{
 	}
 
 	/**
+	 * @return int
+	 */
+	public function getHunger(){
+		return $this->getConfigInt("hunger", \false);
+	}
+
+	/**
 	 * @return string
 	 */
 	public function getIp(){
@@ -1508,6 +1515,7 @@ class Server{
 			"enable-rcon" => \false,
 			"rcon.password" => \substr(\base64_encode(@Utils::getRandomBytes(20, \false)), 3, 10),
 			"auto-save" => \true,
+			"hunger" => \false,
 		]);
 
 		$this->forceLanguage = $this->getProperty("settings.force-language", \false);

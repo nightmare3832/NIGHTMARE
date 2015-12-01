@@ -1570,6 +1570,47 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 			}
 		}
 
+		if($this->server->getHunger()){
+			if($this->starvationTick >= 20) {
+				$ev = new EntityDamageEvent($this, EntityDamageEvent::CAUSE_CUSTOM, 1);
+				$this->attack(1, $ev);
+				$this->starvationTick = 0;
+			}
+			if($this->getFood() <= 0) {
+				$this->starvationTick++;
+			}
+
+			if($this->isMoving() && $this->isSurvival()) {
+	                	if($this->isSprinting()) {
+					$this->foodUsageTime += 500;
+				}else{
+					$this->foodUsageTime += 250;
+				}
+			}
+
+			if($this->foodUsageTime >= 100000 && $this->foodEnabled) {
+				$this->foodUsageTime -= 100000;
+				$this->subtractFood(1);
+			}
+
+			if($this->foodTick >= 80) {
+				if($this->getHealth() < $this->getMaxHealth() && $this->getFood() >= 18) {
+					$ev = new EntityRegainHealthEvent($this, 1, EntityRegainHealthEvent::CAUSE_EATING);
+					$this->heal(1, $ev);
+						if($this->foodDepletion >=2) {
+							$this->subtractFood(1);
+							$this->foodDepletion = 0;
+						}else{
+							$this->foodDepletion++;
+						}
+				}
+				$this->foodTick = 0;
+			}
+			if($this->getHealth() < $this->getMaxHealth()) {
+				$this->foodTick++;
+			}
+		}
+
 		$this->checkTeleportPosition();
 
 		$this->timings->stopTiming();
