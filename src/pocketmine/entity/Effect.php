@@ -36,8 +36,8 @@ class Effect{
 	const FATIGUE = 4;
 	const MINING_FATIGUE = 4;
 	const STRENGTH = 5;
-	//TODO: const HEALING = 6;
-	//TODO: const HARMING = 7;
+	//const HEALING = 6;
+	//const HARMING = 7;
 	const JUMP = 8;
 	const NAUSEA = 9;
 	const CONFUSION = 9;
@@ -46,9 +46,9 @@ class Effect{
 	const FIRE_RESISTANCE = 12;
 	const WATER_BREATHING = 13;
 	const INVISIBILITY = 14;
-	//const BLINDNESS = 15;
-	//const NIGHT_VISION = 16;
-	//const HUNGER = 17;
+	const BLINDNESS = 15;
+	const NIGHT_VISION = 16;
+	const HUNGER = 17;
 	const WEAKNESS = 18;
 	const POISON = 19;
 	const WITHER = 20;
@@ -76,7 +76,8 @@ class Effect{
 		self::$effects[Effect::FIRE_RESISTANCE] = new Effect(Effect::FIRE_RESISTANCE, "%potion.fireResistance", 228, 154, 58);
 		self::$effects[Effect::WATER_BREATHING] = new Effect(Effect::WATER_BREATHING, "%potion.waterBreathing", 46, 82, 153);
 		self::$effects[Effect::INVISIBILITY] = new Effect(Effect::INVISIBILITY, "%potion.invisibility", 127, 131, 146);
-		//Hunger
+		self::$effects[Effect::NIGHT_VISION] = new Effect(Effect::INVISIBILITY, "%potion.nightvision", 52, 38, 89);
+		self::$effects[Effect::HUNGER] = new Effect(Effect::INVISIBILITY, "%potion.hunger", 184, 242, 140);
 		self::$effects[Effect::WEAKNESS] = new Effect(Effect::WEAKNESS, "%potion.weakness", 72, 77, 72 , \true);
 		self::$effects[Effect::POISON] = new Effect(Effect::POISON, "%potion.poison", 78, 147, 49, \true);
 		self::$effects[Effect::WITHER] = new Effect(Effect::WITHER, "%potion.wither", 53, 42, 39, \true);
@@ -200,6 +201,11 @@ class Effect{
 					return ($this->duration % $interval) === 0;
 				}
 				return \true;
+			case Effect::HUNGER:
+				if(($interval = (40 >> $this->amplifier)) > 0){
+					return ($this->duration % $interval) === 0;
+				}
+				return \true;
 		}
 		return \false;
 	}
@@ -222,6 +228,12 @@ class Effect{
 				if($entity->getHealth() < $entity->getMaxHealth()){
 					$ev = new EntityRegainHealthEvent($entity, 1, EntityRegainHealthEvent::CAUSE_MAGIC);
 					$entity->heal($ev->getAmount(), $ev);
+				}
+				break;
+
+			case Effect::HUNGER:
+				if($entity instanceof Player){
+					$entity->subtractFood(1);
 				}
 				break;
 		}
