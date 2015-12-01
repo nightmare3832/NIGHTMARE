@@ -663,10 +663,10 @@ abstract class Entity extends Location implements Metadatable{
 			}
 		}elseif($amount <= $this->getMaxHealth() or $amount < $this->health){
 			$this->health = (int) $amount;
-			$this->getAttribute()->getAttribute(AttributeManager::MAX_HEALTH)->setValue($amount);
+			//$this->getAttribute()->getAttribute(AttributeManager::MAX_HEALTH)->setValue($amount);
 		}else{
 			$this->health = $this->getMaxHealth();
-			$this->getAttribute()->getAttribute(AttributeManager::MAX_HEALTH)->setValue($this->getMaxHealth());
+			//$this->getAttribute()->getAttribute(AttributeManager::MAX_HEALTH)->setValue($this->getMaxHealth());
 		}
 	}
 
@@ -696,7 +696,7 @@ abstract class Entity extends Location implements Metadatable{
 	 */
 	public function setMaxHealth($amount){
 		$this->maxHealth = (int) $amount;
-		$this->getAttribute()->getAttribute(AttributeManager::MAX_HEALTH)->setMaxValue($amount);
+		//$this->getAttribute()->getAttribute(AttributeManager::MAX_HEALTH)->setMaxValue($amount);
 	}
 
 	public function canCollideWith(Entity $entity){
