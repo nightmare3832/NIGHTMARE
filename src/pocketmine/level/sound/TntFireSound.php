@@ -19,10 +19,13 @@
  *
 */
 
-namespace pocketmine\item;
+namespace pocketmine\level\sound;
 
-class ClownFish extends Item{
-	public function __construct($meta = 0, $count = 1){
-		parent::__construct(self::CLOWN_FISH, $meta, $count, "ClownFish");
+use pocketmine\math\Vector3;
+use pocketmine\network\protocol\LevelEventPacket;
+
+class TntFireSound extends GenericSound{
+	public function __construct(Vector3 $pos, $pitch = 0){
+		parent::__construct($pos, LevelEventPacket::EVENT_SOUND_TNT_FIRE, $pitch);
 	}
 }
