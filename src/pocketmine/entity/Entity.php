@@ -229,7 +229,6 @@ abstract class Entity extends Location implements Metadatable{
 		$this->chunk = $chunk;
 		$this->setLevel($chunk->getProvider()->getLevel());
 		$this->server = $chunk->getProvider()->getLevel()->getServer();
-		$this->attribute = new AttributeManager($this);
 
 		$this->boundingBox = new AxisAlignedBB(0, 0, 0, 0, 0, 0);
 		$this->setPositionAndRotation(
@@ -276,10 +275,6 @@ abstract class Entity extends Location implements Metadatable{
 
 		$this->scheduleUpdate();
 
-	}
-
-	public function getAttribute() {
-		return $this->attribute;
 	}
 
 	/**
