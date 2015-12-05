@@ -3435,28 +3435,28 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 	}
 
 	public function addPlayerExp($amount, $NEXT){
-		$xp = $this->getExp() + $amount;
-		$exp = $this->getExp() + round(($xp / $NEXT), 2);
+		$xp = $this->getPlayerExp() + $amount;
+		$exp = $this->getPlayerExp() + round(($xp / $NEXT), 2);
 			if($exp >= 1){
 				$nlevel = floor($exp);
 				$lxp = $exp - $nlevel;
-				$this->setExp($lxp);
-				$this->addLevel($nlevel);
+				$this->setPlayerExp($lxp);
+				$this->addPlayerLevel($nlevel);
 			}else{
-				$this->setExp($exp);
+				$this->setPlayerExp($exp);
 			}
 	}
 
 	public function removePlayerExp($amount, $NEXT){
-		$xp = $this->getExp() + $amount;
-		$exp = $this->getExp() - round(($xp / $NEXT), 2);
+		$xp = $this->getPlayerExp() + $amount;
+		$exp = $this->getPlayerExp() - round(($xp / $NEXT), 2);
 			if($exp <= 0){
-				$nlevel = $this->getLevel() - 1;
+				$nlevel = $this->getPlayerLevel() - 1;
 				$lxp = $nlevel - $exp;
-				$this->setExp($lxp);
-				$this->removeLevel($nlevel);
+				$this->setPlayerExp($lxp);
+				$this->removePlayerLevel($nlevel);
 			}else{
-				$this->setExp($exp);
+				$this->setPlayerExp($exp);
 			}
 	}
 
@@ -3471,13 +3471,13 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 	}
 
 	public function addPlayerLevel($amount){
-		$level = $this->getLevel() + $amount;
-		$this->setLevel($level);
+		$level = $this->getPlayerLevel() + $amount;
+		$this->setPlayerLevel($level);
 	}
 
 	public function removePlayerLevel($amount){
-		$level = $this->getLevel() - $amount;
-		$this->setLevel($level);
+		$level = $this->getPlayerLevel() - $amount;
+		$this->setPlayerLevel($level);
 	}
 
 	public function getPlayerSpeed(){
