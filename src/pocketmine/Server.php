@@ -360,6 +360,10 @@ class Server{
 		return $this->getConfigString("server-ip", "0.0.0.0");
 	}
 
+	public function getHunger(){
+		return $this->getConfigString("hunger", true);
+	}
+
 	/**
 	 * @deprecated
 	 */
@@ -1508,6 +1512,7 @@ class Server{
 			"enable-rcon" => \false,
 			"rcon.password" => \substr(\base64_encode(@Utils::getRandomBytes(20, \false)), 3, 10),
 			"auto-save" => \true,
+			"hunger" => \true,
 		]);
 
 		$this->forceLanguage = $this->getProperty("settings.force-language", \false);

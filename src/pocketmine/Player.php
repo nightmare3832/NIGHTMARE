@@ -1522,144 +1522,153 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 
 	public function onUpdate($currentTick){
 		if(!$this->loggedIn){
-			return false;
+			return \false;
 		}
-		
 		$tickDiff = $currentTick - $this->lastUpdate;
-		
 		if($tickDiff <= 0){
-			return true;
+			return \true;
 		}
-		
 		$this->messageCounter = 2;
-		
 		$this->lastUpdate = $currentTick;
-		
 		if(!$this->isAlive() and $this->spawned){
 			++$this->deadTicks;
 			if($this->deadTicks >= 10){
 				$this->despawnFromAll();
 			}
-			return true;
+			return \true;
 		}
-		
 		$this->timings->startTiming();
-		
 		if($this->spawned){
 			$this->processMovement($tickDiff);
-			
 			$this->entityBaseTick($tickDiff);
-			
-			if(!$this->isSpectator() and $this->speed !== null){
+			if(!$this->isSpectator() and $this->speed !== \null){
 				if($this->onGround){
 					if($this->inAirTicks !== 0){
 						$this->startAirTicks = 5;
 					}
 					$this->inAirTicks = 0;
-				}
-				else{
+				}else{
 					if(!$this->allowFlight and $this->inAirTicks > 10 and !$this->isSleeping() and $this->getDataProperty(self::DATA_NO_AI) !== 1){
-						$expectedVelocity = (-$this->gravity) / $this->drag - ((-$this->gravity) / $this->drag) * exp(-$this->drag * ($this->inAirTicks - $this->startAirTicks));
+						$expectedVelocity = (-$this->gravity) / $this->drag - ((-$this->gravity) / $this->drag) * \exp(-$this->drag * ($this->inAirTicks - $this->startAirTicks));
 						$diff = ($this->speed->y - $expectedVelocity) ** 2;
-						
 						if(!$this->hasEffect(Effect::JUMP) and $diff > 0.6 and $expectedVelocity < $this->speed->y and !$this->server->getAllowFlight()){
 							if($this->inAirTicks < 100){
 								$this->setMotion(new Vector3(0, $expectedVelocity, 0));
-							}
-							elseif($this->kick("Flying is not enabled on this server")){
+							}elseif($this->kick("Flying is not enabled on this server")){
 								$this->timings->stopTiming();
-								return false;
+								return \false;
 							}
 						}
 					}
-					
 					++$this->inAirTicks;
 				}
 			}
 		}
-		
-		$this->checkTeleportPosition();
-		
-		$this->timings->stopTiming();
-		
-		if($this->isSurvival() || $this->isAdventure()){
-			if($this->starvationTick >= 20){
+		if($this->server->getHunger()){
+			if($this->starvationTick >= 20) {
 				$ev = new EntityDamageEvent($this, EntityDamageEvent::CAUSE_CUSTOM, 1);
 				$this->attack(1, $ev);
 				$this->starvationTick = 0;
 			}
-			if($this->getFood() <= 0){
+			if($this->getFood() <= 0) {
 				$this->starvationTick++;
 			}
-			if($this->isSprinting()){
-				$this->foodUsageTime += 300;
+			if($this->isMoving() && $this->isSurvival()) {
+	                	if($this->isSprinting()) {
+					$this->foodUsageTime += 500;
+				}else{
+					$this->foodUsageTime += 250;
+				}
 			}
-			else{
-				$this->foodUsageTime += 150;
-			}
-			if($this->foodUsageTime >= 100000){
+			if($this->foodUsageTime >= 100000 && $this->foodEnabled) {
 				$this->foodUsageTime -= 100000;
 				$this->subtractFood(1);
 			}
-			if($this->foodTick >= 80){
-				if($this->getHealth() < $this->getMaxHealth() && $this->getFood() >= 18){
+			if($this->foodTick >= 80) {
+				if($this->getHealth() < $this->getMaxHealth() && $this->getFood() >= 18) {
 					$ev = new EntityRegainHealthEvent($this, 1, EntityRegainHealthEvent::CAUSE_EATING);
 					$this->heal(1, $ev);
-					if($this->foodDepletion >= 2){
-						$this->subtractFood(1);
-						$this->foodDepletion = 0;
-					}
-					else{
-						$this->foodDepletion++;
-					}
+						if($this->foodDepletion >=2) {
+							$this->subtractFood(1);
+							$this->foodDepletion = 0;
+						}else{
+							$this->foodDepletion++;
+						}
 				}
 				$this->foodTick = 0;
 			}
-			if($this->getHealth() < $this->getMaxHealth()){
+			if($this->getHealth() < $this->getMaxHealth()) {
 				$this->foodTick++;
 			}
-			return true;
 		}
+		$this->checkTeleportPosition();
+		$this->timings->stopTiming();
+		return \true;
 	}
 	protected $eatCoolDown = 0;
 
-	public function eatFoodInHand(){
-		if($this->eatCoolDown + 2000 >= time()){
+	public function eatFoodInHand() {
+		if($this->eatCoolDown + 2000 >= time() || !$this->spawned) {
 			return;
 		}
-		$items = [ // TODO: move this to item classes
-Item::APPLE => 4,Item::MUSHROOM_STEW => 6,Item::BEETROOT_SOUP => 5,Item::BREAD => 5,Item::RAW_PORKCHOP => 2,Item::COOKED_PORKCHOP => 8,Item::RAW_BEEF => 3,Item::STEAK => 8,Item::COOKED_CHICKEN => 6,Item::RAW_CHICKEN => 2,Item::MELON_SLICE => 2,Item::GOLDEN_APPLE => 4,Item::PUMPKIN_PIE => 8,
-				Item::CARROT => 3,Item::POTATO => 1,Item::BAKED_POTATO => 5,Item::COOKIE => 2,Item::COOKED_FISH => [0 => 5,1 => 6],Item::RAW_FISH => [0 => 2,1 => 2,2 => 1,3 => 1]];
+		$items = [
+			Item::APPLE => 4,
+			Item::MUSHROOM_STEW => 6,
+			Item::BEETROOT_SOUP => 5,
+			Item::BREAD => 5,
+			Item::RAW_PORKCHOP => 2,
+			Item::COOKED_PORKCHOP => 8,
+			Item::RAW_BEEF => 3,
+			Item::STEAK => 8,
+			Item::COOKED_CHICKEN => 6,
+			Item::RAW_CHICKEN => 2,
+			Item::MELON_SLICE => 2,
+			Item::GOLDEN_APPLE => 4,
+			Item::PUMPKIN_PIE => 8,
+			Item::CARROT => 3,
+			Item::POTATO => 1,
+			Item::BAKED_POTATO => 5,
+			Item::COOKIE => 2,
+			Item::COOKED_FISH => [
+				0 => 5,
+				1 => 6
+			],
+			Item::RAW_FISH => [
+				0 => 2,
+				1 => 2,
+				2 => 1,
+				3 => 1
+			],
+		];
 		$slot = $this->inventory->getItemInHand();
-		if(isset($items[$slot->getId()])){
-			if($this->getFood() < 20 and isset($items[$slot->getId()])){
-				$this->server->getPluginManager()->callEvent($ev = new PlayerItemConsumeEvent($this, $slot));
-				if($ev->isCancelled()){
-					$this->inventory->sendContents($this);
-					return;
-				}
-				$pk = new EntityEventPacket();
-				$pk->eid = $this->getId();
-				$pk->event = EntityEventPacket::USE_ITEM;
-				$this->dataPacket($pk);
-				Server::broadcastPacket($this->getViewers(), $pk);
-				$amount = $items[$slot->getId()];
-				if(is_array($amount)){
-					$amount = isset($amount[$slot->getDamage()])?$amount[$slot->getDamage()]:0;
-				}
-				$this->setFood($this->getFood() + $amount);
-				--$slot->count;
-				$this->inventory->setItemInHand($slot);
-				if($slot->getId() === Item::MUSHROOM_STEW or $slot->getId() === Item::BEETROOT_SOUP){
-					$this->inventory->addItem(Item::get(Item::BOWL, 0, 1));
-				}
-				elseif($slot->getId() === Item::RAW_FISH and $slot->getDamage() === 3){ // Pufferfish
-					$this->addEffect(Effect::getEffect(Effect::HUNGER)->setAmplifier(2)->setDuration(15 * 20));
-					// $this->addEffect(Effect::getEffect(Effect::NAUSEA)->setAmplifier(1)->setDuration(15 * 20));
-					$this->addEffect(Effect::getEffect(Effect::POISON)->setAmplifier(3)->setDuration(60 * 20));
+			if(isset($items[$slot->getId()]) && $this->isAlive()) {
+				if($this->getFood() < 20 and isset($items[$slot->getId()])){
+					$this->server->getPluginManager()->callEvent($ev = new PlayerItemConsumeEvent($this, $slot));
+					if($ev->isCancelled()){
+						$this->inventory->sendContents($this);
+						return;
+					}
+					$pk = new EntityEventPacket();
+					$pk->eid = $this->getId();
+					$pk->event = EntityEventPacket::USE_ITEM;
+					$this->dataPacket($pk);
+					Server::broadcastPacket($this->getViewers(), $pk);
+					$amount = $items[$slot->getId()];
+					if(is_array($amount)){
+						$amount = isset($amount[$slot->getDamage()]) ? $amount[$slot->getDamage()] : 0;
+					}
+					$this->setFood($this->getFood() + $amount);
+					--$slot->count;
+					$this->inventory->setItemInHand($slot);
+					if($slot->getId() === Item::MUSHROOM_STEW or $slot->getId() === Item::BEETROOT_SOUP){
+						$this->inventory->addItem(Item::get(Item::BOWL, 0, 1));
+					}elseif($slot->getId() === Item::RAW_FISH and $slot->getDamage() === 3){ //Pufferfish
+						$this->addEffect(Effect::getEffect(Effect::HUNGER)->setAmplifier(2)->setDuration(15 * 20));
+						//$this->addEffect(Effect::getEffect(Effect::NAUSEA)->setAmplifier(1)->setDuration(15 * 20));
+						$this->addEffect(Effect::getEffect(Effect::POISON)->setAmplifier(3)->setDuration(60 * 20));
+					}
 				}
 			}
-		}
 	}
 
 	public function checkNetwork(){
