@@ -228,6 +228,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 	protected $foodTick = 0;
 	protected $starvationTick = 0;
 	protected $foodUsageTime = 0;
+	protected $moving = false;
 	protected $exp = 0;
 	protected $explevels = 0;
 
@@ -1519,6 +1520,14 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 	}
 
 	protected function updateMovement(){}
+
+	public function setMoving($moving) {
+		$this->moving = $moving;
+	}
+
+	public function isMoving(){
+		return $this->moving;
+	}
 
 	public function onUpdate($currentTick){
 		if(!$this->loggedIn){
@@ -3300,18 +3309,18 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 
 	public function setHealth($amount){
 		parent::setHealth($amount);
-		if($this->spawned === true){
+		if($this->spawned === \true){
 			$this->foodTick = 0;
 			$this->getAttribute()->getAttribute(AttributeManager::MAX_HEALTH)->setValue($amount);
- 			if($amount <= 0){		 	
-			        $pk = new RespawnPacket();	
-				$pos = $this->getSpawn();		
-				$pk->x = $pos->x;		
-				$pk->y = $pos->y;		
-				$pk->z = $pos->z;		
-				$this->dataPacket($pk);		
- 			}
 		}
+	}
+
+	public function setFoodEnabled($enabled) {
+		$this->foodEnabled = $enabled;
+	}
+
+	public function getFoodEnabled() {
+		return $this->foodEnabled;
 	}
 
 	public function setFood($amount){
@@ -3350,72 +3359,60 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		$this->setFood($this->getFood() - $amount);
 	}
 
-	public function setExpLevels($amount){
+	public function setPlayerLevel($amount){
+		if($amount > 24791) $amount = 24791;
 		$this->explevels = $amount;
 		$this->getAttribute()->getAttribute(AttributeManager::EXPERIENCE_LEVEL)->setValue($amount);
 	}
 
-	public function getExpLevels(){
+	public function getPlayerLevel(){
 		return $this->explevels;
 	}
 
-	public function giveExpLevels($amount){
-		$this->setExpLevels($this->explevels + $amount);
+	public function addPlayerLevel($amount){
+		$this->setPlayerLevel($this->explevels + $amount);
 	}
 
-	public function removeExpLevels($amount){
-		if($this->explevels - $amount > 0){
-			$this->setExpLevels($this->explevels - $amount);
-		}else{
-			$this->setExpLevels(0);	
-		}
+	public function removePlayerLevel($amount){
+		$level = $this->getPlayerLevel() + $amount;
+		$this->setPlayerLevel($level);
 	}
 
-	public function setExp($amount){
-		$needed = ($this->explevels + 1) * (7 + $this->explevels);
-		if(($this->explevels + 1) * (7 + $this->explevels) < $amount){
-			$leftovers = $amount - $needed;
-                        $this->setExp($leftovers);      
-			$this->giveExpLevels(1);
-			return true;
-		}
-		elseif(($this->explevels + 1) * (7 + $this->explevels) === $amount){
-			$this->exp = 0;
-			$this->getAttribute()->getAttribute(AttributeManager::EXPERIENCE)->setValue(0);
-			$this->giveExpLevels(1);
-			return true;
-		}
-		elseif(($this->explevels + 1) * (7 + $this->explevels) < $amount + $this->exp){
-			$leftovers = ($amount + $this->exp) - $needed;
-                        $this->setExp($leftovers);
-			$this->giveExpLevels(1);
-			return true;			
-		}
-		elseif(($this->explevels + 1) * (7 + $this->explevels) === $amount + $this->exp){
-			$this->exp = 0;
-			$this->getAttribute()->getAttribute(AttributeManager::EXPERIENCE)->setValue(0);
-			$this->giveExpLevels(1);
-			return true;
-		}
+	public function setPlayerExp($amount){
+		if($amount > 1) $amount = 1;
 	        $this->exp = $amount;
 		$this->getAttribute()->getAttribute(AttributeManager::EXPERIENCE)->setValue($amount);
 	}
 
-	public function getExp(){
+	public function getPlayerExp(){
 		return $this->exp;
 	}
 
-	public function giveExp($amount){
-		$this->setExp($this->exp + $amount);
+	public function addPlayerExp($amount,$NEXT){
+		$xp = $this->getPlayerExp() + $amount;
+		$exp = $this->getPlayerExp() + round(($xp / $NEXT),2);
+			if($exp >= 1){
+				$nlevel = floor($exp);
+				$lxp = $exp - $nlevel;
+				$this->setPlayerExp($lxp);
+				$this->addPlayerLevel($nlevel);
+			}else{
+				$this->setPlayerExp($exp);
+			}
 	}
 
 
-	public function removeExp($amount){
-		if($this->exp - $amount > 0){
-			$this->setExp($this->exp - $amount);
-		}else{
-			$this->setExp(0);		
-		}
+	public function removePlayerExp($amount){
+		$xp = $this->getPlayerExp() + $amount;
+		$exp = $this->getPlayerExp() - round(($xp / $NEXT),2);
+			if($exp <= 0){
+				$nlevel = $this->getPlayerLevel() - 1;
+				$lxp = $nlevel - $exp;
+				$this->setPlayerExp($lxp);
+				$this->addPlayerLevel($nlevel);
+			}else{
+				$this->setPlayerExp($exp);
+			}
 	}
 
 	public function attack($damage, EntityDamageEvent $source){
