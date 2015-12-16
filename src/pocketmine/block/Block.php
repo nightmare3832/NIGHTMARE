@@ -267,6 +267,7 @@ class Block extends Position implements Metadatable{
 	const LEVER = 69;
 	const STONE_PRESSURE_PLATE = 70;
 	const WOODEN_PRESSURE_PLATE = 72;
+	const UNLIT_REDSTONE_TORCH = 75;
 	const REDSTONE_TORCH = 76;
 	const STONE_BUTTON = 77;
 	const NETHER_PORTAL = 90;
@@ -274,6 +275,7 @@ class Block extends Position implements Metadatable{
 	const RED_MUSHROOM_BLOCK = 100;
 	const REDSTONE_LAMP = 123;
 	const LIT_REDSTONE_LAMP = 124;
+	const TRIPWIRE_HOOK = 131;
 	const WOODEN_BUTTON = 143;
 	const TRAPPED_CHEST = 146;
 	const LIGHT_WEIGHTED_PRESSURE_PLATE = 147;
@@ -367,6 +369,7 @@ class Block extends Position implements Metadatable{
 			self::$list[self::HEAVY_WEIGHTED_PRESSURE_PLATE] = IronPressurePlate::class;
 			self::$list[self::LEVER] = Lever::class;
 			self::$list[self::TRAPPED_CHEST] = TrappedChest::class;
+			self::$list[self::UNLIT_REDSTONE_TORCH] = UnlitRedstoneTorch::class;
 			self::$list[self::REDSTONE_TORCH] = RedstoneTorch::class;
 			self::$list[self::REDSTONE_WIRE] = RedstoneWire::class;
 			self::$list[self::NETHER_PORTAL] = NetherPortal::class;
@@ -377,9 +380,8 @@ class Block extends Position implements Metadatable{
 			self::$list[self::ACACIA_DOOR_BLOCK] = AcaciaDoor::class;
 			self::$list[self::DARK_OAK_DOOR_BLOCK] = DarkOakDoor::class;
 			self::$list[self::NOTE_BLOCK] = NoteBlock::class;
+			self::$list[self::TRIPWIRE_HOOK] = TripwireHook::class;
 			//self::$list[self::HEAD] = Head::class;
-
-			//self::$list[self::TRIPWIRE_HOOK] = TripWire::class;/////
 
 ////////////////////////////////////////////////////////////////////////////
 

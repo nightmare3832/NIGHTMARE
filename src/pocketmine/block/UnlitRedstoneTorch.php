@@ -22,28 +22,41 @@
 namespace pocketmine\block;
 
 use pocketmine\item\Item;
-use pocketmine\item\Tool;
-use pocketmine\Player;
 use pocketmine\level\Level;
+use pocketmine\Player;
 
-class Rail extends Solid{
-	protected $id = self::RAIL;
+class UnlitRedstoneTorch extends Flowable{
+
+	protected $id = self::UNLIT_REDSTONE_TORCH;
 
 	public function __construct($meta = 0){
 		$this->meta = $meta;
 	}
 
-	public function getHardness(){
-		return 5;
+	public function getLightLevel(){
+		return 15;
 	}
 
 	public function getName(){
-		return "Rail";
+		return "Redstone Torch";
 	}
+
 
 	public function onUpdate($type){
 		if($type === Level::BLOCK_UPDATE_NORMAL){
-			if($this->getSide(0)->isTransparent() === \true){
+			$below = $this->getSide(0);
+			$side = $this->getDamage();
+			$faces = [
+				1 => 4,
+				2 => 5,
+				3 => 2,
+				4 => 3,
+				5 => 0,
+				6 => 0,
+				0 => 0,
+			];
+
+			if($this->getSide($faces[$side])->isTransparent() === \true and !($side === 0 and ($below->getId() === self::FENCE or $below->getId() === self::COBBLE_WALL))){
 				$this->getLevel()->useBreakOn($this);
 
 				return Level::BLOCK_UPDATE_NORMAL;
@@ -54,27 +67,33 @@ class Rail extends Solid{
 	}
 
 	public function place(Item $item, Block $block, Block $target, $face, $fx, $fy, $fz, Player $player = \null){
-		$faces = [
-			0 => 1,
-			1 => 0,
-			2 => 1,
-			3 => 0,
-		];
-		$this->meta = $faces[$player instanceof Player ? $player->getDirection() : 0];
-		//for($side = 2; $side <= 5; ++$side){}
-		$this->getLevel()->setBlock($block, $this, \true, \true);
-		return \true;
-	}
+		$below = $this->getSide(0);
 
-	public function getToolType(){
-		return Tool::TYPE_PICKAXE;
+		if($target->isTransparent() === \false and $face !== 0){
+			$faces = [
+				1 => 5,
+				2 => 4,
+				3 => 3,
+				4 => 2,
+				5 => 1,
+			];
+			$this->meta = $faces[$face];
+			$this->getLevel()->setBlock($block, $this, \true, \true);
+
+			return \true;
+		}elseif($below->isTransparent() === \false or $below->getId() === self::FENCE or $below->getId() === self::COBBLE_WALL){
+			$this->meta = 0;
+			$this->getLevel()->setBlock($block, $this, \true, \true);
+
+			return \true;
+		}
+
+		return \false;
 	}
 
 	public function getDrops(Item $item){
-		if($item->isPickaxe() >= Tool::TIER_WOODEN){
-			return [$this->id, 0, 1];
-		}else{
-			return [];
-		}
+		return [
+			[$this->id, 0, 1],
+		];
 	}
 }

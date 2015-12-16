@@ -24,6 +24,7 @@ namespace pocketmine\block;
 use pocketmine\item\Item;
 use pocketmine\item\Tool;
 use pocketmine\Player;
+use pocketmine\level\Level;
 
 class PoweredRail extends Solid{
 	protected $id = self::GOLDEN_RAIL;

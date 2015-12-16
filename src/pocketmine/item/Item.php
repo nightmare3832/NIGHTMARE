@@ -167,6 +167,7 @@ class Item{
 	const REDSTONE_ORE = 73;
 	const GLOWING_REDSTONE_ORE = 74;
 	const LIT_REDSTONE_ORE = 74;
+	const UNLIT_REDSTONE_TORCH = 75;
 	const REDSTONE_TORCH = 76;
 	const STONE_BUTTON = 77;
 	const SNOW = 78;
@@ -967,6 +968,7 @@ class Item{
 		self::addCreativeItem(Item::get(Item::REDSTONE_LAMP, 0));
 		self::addCreativeItem(Item::get(Item::LIT_REDSTONE_LAMP, 0));
 		self::addCreativeItem(Item::get(Item::REDSTONE_TORCH, 0));
+		self::addCreativeItem(Item::get(Item::UNLIT_REDSTONE_TORCH, 0));
 		self::addCreativeItem(Item::get(Item::WOODEN_PRESSURE_PLATE, 0));
 		self::addCreativeItem(Item::get(Item::STONE_PRESSURE_PLATE, 0));
 		self::addCreativeItem(Item::get(Item::GOLD_PRESSURE_PLATE, 0));

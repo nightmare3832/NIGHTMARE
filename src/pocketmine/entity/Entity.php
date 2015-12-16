@@ -88,7 +88,7 @@ abstract class Entity extends Location implements Metadatable{
 	const DATA_SILENT = 4;
 	const DATA_POTION_COLOR = 7;
 	const DATA_POTION_AMBIENT = 8;
-    const DATA_NO_AI = 15;
+	const DATA_NO_AI = 15;
 
 
 	const DATA_FLAG_ONFIRE = 0;
@@ -658,8 +658,10 @@ abstract class Entity extends Location implements Metadatable{
 			}
 		}elseif($amount <= $this->getMaxHealth() or $amount < $this->health){
 			$this->health = (int) $amount;
+			//$this->getAttribute()->getAttribute(AttributeManager::MAX_HEALTH)->setValue($amount);
 		}else{
 			$this->health = $this->getMaxHealth();
+			//$this->getAttribute()->getAttribute(AttributeManager::MAX_HEALTH)->setValue($this->getMaxHealth());
 		}
 	}
 
@@ -689,6 +691,7 @@ abstract class Entity extends Location implements Metadatable{
 	 */
 	public function setMaxHealth($amount){
 		$this->maxHealth = (int) $amount;
+		//$this->getAttribute()->getAttribute(AttributeManager::MAX_HEALTH)->setMaxValue($amount);
 	}
 
 	public function canCollideWith(Entity $entity){

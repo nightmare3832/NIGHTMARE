@@ -22,8 +22,10 @@
 namespace pocketmine\block;
 
 use pocketmine\item\Item;
+use pocketmine\level\Level;
+use pocketmine\Player;
 
-class Lever extends Solid{
+class Lever extends Flowable{
 
 	protected $id = self::LEVER;
 
@@ -33,6 +35,19 @@ class Lever extends Solid{
 
 	public function getName(){
 		return "Lever";
+	}
+
+	public function place(Item $item, Block $block, Block $target, $face, $fx, $fy, $fz, Player $player = \null){
+		$faces = [
+			1 => 5,
+			2 => 4,
+			3 => 3,
+			4 => 2,
+			5 => 1,
+		];
+		$this->meta = $faces[$face];
+		$this->getLevel()->setBlock($block, $this, true, true);
+		return true;
 	}
 
 	public function getDrops(Item $item){

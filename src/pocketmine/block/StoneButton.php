@@ -22,8 +22,10 @@
 namespace pocketmine\block;
 
 use pocketmine\item\Item;
+use pocketmine\level\Level;
+use pocketmine\Player;
 
-class StoneButton extends Solid{
+class StoneButton extends Flowable{
 
 	protected $id = self::STONE_BUTTON;
 
@@ -39,17 +41,17 @@ class StoneButton extends Solid{
 		return 0.5;
 	}
 
-/*	public function place(Item $item, Block $block, Block $target, $face, $fx, $fy, $fz, Player $player = \null){
+	public function place(Item $item, Block $block, Block $target, $face, $fx, $fy, $fz, Player $player = \null){
 		$faces = [
-			1 => 0,
-			2 => 3,
-			3 => 4,
-			4 => 1,
-			5 => 2
+			1 => 1,
+			2 => 2,
+			3 => 3,
+			4 => 4,
+			5 => 5
 		];
 		$this->meta = $faces[$player instanceof Player ? $player->getDirection() : 0];
 		$this->getLevel()->setBlock($block, $this, \true, \true);
-	}*/
+	}
 
 	public function getDrops(Item $item){
 		if($item->isPickaxe() >= Tool::TIER_WOODEN){

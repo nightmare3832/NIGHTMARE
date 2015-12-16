@@ -21,40 +21,39 @@
 
 namespace pocketmine\block;
 
-use pocketmine\item\Item;
 use pocketmine\level\Level;
+use pocketmine\item\Item;
 use pocketmine\Player;
 
-class WoodenButton extends Flowable{
+class TripwireHook extends Flowable{
 
-	protected $id = self::WOODEN_BUTTON;
+	protected $id = self::TRIPWIRE_HOOK;
 
 	public function __construct($meta = 0){
 		$this->meta = $meta;
 	}
 
 	public function getName(){
-		return "Wooden Button";
+		return "Tripwire Hook";
+	}
+
+	public function place(Item $item, Block $block, Block $target, $face, $fx, $fy, $fz, Player $player = \null){
+		$faces = [
+			1 => 4,//«
+			2 => 2,
+			3 => 4,
+			4 => 4,
+			5 => 4
+		];
+		$this->meta = $faces[$face];
+		$this->getLevel()->setBlock($block, $this, \true, \true);
 	}
 
 	public function getHardness(){
 		return 0.5;
 	}
 
-	public function place(Item $item, Block $block, Block $target, $face, $fx, $fy, $fz, Player $player = \null){
-		$faces = [
-			1 => 1,
-			2 => 2,
-			3 => 3,
-			4 => 4,
-			5 => 5,
-		];
-		$this->meta = $faces[$face];
-		$this->getLevel()->setBlock($block, $this, true, true);
-		return true;
-	}
-
 	public function getDrops(Item $item){
-		return [143, 0, 1];
+		return [$this->id, 0, 1];
 	}
 }

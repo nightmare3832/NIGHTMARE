@@ -354,13 +354,6 @@ class Server{
 	}
 
 	/**
-	 * @return int
-	 */
-	public function getHunger(){
-		return $this->getConfigInt("hunger", \false);
-	}
-
-	/**
 	 * @return string
 	 */
 	public function getIp(){
@@ -1515,7 +1508,6 @@ class Server{
 			"enable-rcon" => \false,
 			"rcon.password" => \substr(\base64_encode(@Utils::getRandomBytes(20, \false)), 3, 10),
 			"auto-save" => \true,
-			"hunger" => \false,
 		]);
 
 		$this->forceLanguage = $this->getProperty("settings.force-language", \false);
@@ -2257,7 +2249,7 @@ class Server{
 	public function addOnlinePlayer(Player $player){
 		$this->playerList[$player->getRawUniqueId()] = $player;
 
-		$this->updatePlayerListData($player->getUniqueId(), $player->getId(), $player->getDisplayName(), $player->isSkinSlim(), $player->isSkinTransparent(), $player->getSkinData());
+		$this->updatePlayerListData($player->getUniqueId(), $player->getId(), $player->getDisplayName(), $player->getSkinName(), $player->getSkinData());
 	}
 
 	public function removeOnlinePlayer(Player $player){
@@ -2271,10 +2263,10 @@ class Server{
 		}
 	}
 
-	public function updatePlayerListData(UUID $uuid, $entityId, $name, $isSlim, $isTransparent, $skinData, array $players = null){
+	public function updatePlayerListData(UUID $uuid, $entityId, $name, $skinName, $skinData, array $players = null){
 		$pk = new PlayerListPacket();
 		$pk->type = PlayerListPacket::TYPE_ADD;
-		$pk->entries[] = [$uuid, $entityId, $name, $isSlim, $isTransparent, $skinData];
+		$pk->entries[] = [$uuid, $entityId, $name, $skinName, $skinData];
 		Server::broadcastPacket($players === \null ? $this->playerList : $players, $pk);
 	}
 
@@ -2289,7 +2281,7 @@ class Server{
 		$pk = new PlayerListPacket();
 		$pk->type = PlayerListPacket::TYPE_ADD;
 		foreach($this->playerList as $player){
-			$pk->entries[] = [$player->getUniqueId(), $player->getId(), $player->getDisplayName(), $player->isSkinSlim(), $player->isSkinTransparent(), $player->getSkinData()];
+			$pk->entries[] = [$player->getUniqueId(), $player->getId(), $player->getDisplayName(), $player->getSkinName(), $player->getSkinData()];
 		}
 
 		$p->dataPacket($pk);
@@ -2423,14 +2415,14 @@ class Server{
 		$u = Utils::getMemoryUsage(\true);
 		$usage = \round(($u[0] / 1024) / 1024, 2) . "/" . \round(($d[0] / 1024) / 1024, 2) . "/" . \round(($u[1] / 1024) / 1024, 2) . "/".\round(($u[2] / 1024) / 1024, 2)." MB @ " . Utils::getThreadCount() . " threads";
 
-		echo "\x1b]0;" . $this->getName() . " " .
+		/*echo "\x1b]0;" . $this->getName() . " " .
 			$this->getPocketMineVersion() .
 			" | Online " . \count($this->players) . "/" . $this->getMaxPlayers() .
 			" | Memory " . $usage .
 			" | U " . \round($this->network->getUpload() / 1024, 2) .
 			" D " . \round($this->network->getDownload() / 1024, 2) .
 			" kB/s | TPS " . $this->getTicksPerSecond() .
-			" | Load " . $this->getTickUsage() . "%\x07";
+			" | Load " . $this->getTickUsage() . "%\x07";*/
 
 		$this->network->resetStatistics();
 	}
