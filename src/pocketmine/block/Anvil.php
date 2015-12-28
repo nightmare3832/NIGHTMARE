@@ -27,6 +27,9 @@ use pocketmine\item\Tool;
 use pocketmine\Player;
 
 class Anvil extends Fallable{
+	const TYPE_ANVIL = 0;
+	const TYPE_SLIGHTLY_DAMAGED_ANVIL = 4;
+	const TYPE_VERY_DAMAGED_ANVIL = 8;
 
 	protected $id = self::ANVIL;
 

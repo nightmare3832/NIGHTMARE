@@ -23,6 +23,8 @@ namespace pocketmine\block;
 
 use pocketmine\item\Item;
 use pocketmine\level\Level;
+use pocketmine\Player;
+use pocketmine\math\AxisAlignedBB;
 
 class WoodenPressurePlate extends Solid{
 
@@ -32,11 +34,22 @@ class WoodenPressurePlate extends Solid{
 		$this->meta = $meta;
 	}
 
+	protected function recalculateBoundingBox(){
+		return new AxisAlignedBB(
+			$this->x,
+			$this->y + 0.1,
+			$this->z,
+			$this->x + 1,
+			$this->y + 1,
+			$this->z + 1
+		);
+	}
+
 	public function getName(){
 		return "Wooden Pressure Plate";
 	}
 
 	public function getDrops(Item $item){
-		return [72, 0, 1];
+		return [$this->id, $this->meta, 1];
 	}
 }

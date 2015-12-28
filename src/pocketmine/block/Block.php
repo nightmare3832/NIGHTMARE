@@ -257,8 +257,6 @@ class Block extends Position implements Metadatable{
 	const GLOWING_OBSIDIAN = 246;
 	const NETHER_REACTOR = 247;
 
-//////////////////////////NEW/////////////////////////////
-
 	const NOTE_BLOCK = 25;
 	const GOLDEN_RAIL = 27;
 	const DETECTOR_RAIL = 28;
@@ -289,8 +287,10 @@ class Block extends Position implements Metadatable{
 	const ACACIA_DOOR_BLOCK = 196;
 	const DARK_OAK_DOOR_BLOCK = 197;
 	const HEAD = 144;
-
-//////////////////////////////////////////////////////////
+	const SKULL_BLOCK = 144;
+	const HEAD_BLOCK = 144;
+	const MOB_HEAD_BLOCK = 144;
+	const FLOWER_POT_BLOCK = 140;
 
 	/** @var \SplFixedArray */
 	public static $list = null;
@@ -349,9 +349,6 @@ class Block extends Position implements Metadatable{
 			self::$solid = new \SplFixedArray(256);
 			self::$hardness = new \SplFixedArray(256);
 			self::$transparent = new \SplFixedArray(256);
-
-////////////////////////////////NEW////////////////////////////////////////
-
 			self::$list[self::RAIL] = Rail::class;
 			self::$list[self::GOLDEN_RAIL] = PoweredRail::class;
 			self::$list[self::DETECTOR_RAIL] = DetectorRail::class;
@@ -381,10 +378,8 @@ class Block extends Position implements Metadatable{
 			self::$list[self::DARK_OAK_DOOR_BLOCK] = DarkOakDoor::class;
 			self::$list[self::NOTE_BLOCK] = NoteBlock::class;
 			self::$list[self::TRIPWIRE_HOOK] = TripwireHook::class;
-			//self::$list[self::HEAD] = Head::class;
-
-////////////////////////////////////////////////////////////////////////////
-
+			self::$list[self::SKULL_BLOCK] = SkullBlock::class;
+			self::$list[self::FLOWER_POT_BLOCK] = FlowerPot::class;
 			self::$list[self::AIR] = Air::class;
 			self::$list[self::STONE] = Stone::class;
 			self::$list[self::GRASS] = Grass::class;

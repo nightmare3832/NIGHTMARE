@@ -1,9 +1,5 @@
 <?php
 
-/**
- * All the Tile classes and related classes
- * TODO: Add Nether Reactor tile
- */
 namespace pocketmine\tile;
 
 use pocketmine\event\Timings;
@@ -23,7 +19,7 @@ abstract class Tile extends Position{
 	const FLOWER_POT = "FlowerPot";
 	const MOB_SPAWNER = "MobSpawner";
 	const SKULL = "Skull";
-	const BREWING_STAND = "Cauldron";
+	const BREWING_STAND = "BrewingStand";
 	const ENCHANT_TABLE = "EnchantTable";
 
 	public static $tileCount = 1;

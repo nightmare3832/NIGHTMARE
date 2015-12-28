@@ -2,7 +2,7 @@
 
 namespace pocketmine\item;
 
-use pocketmine\block\AnvilBlock;
+use pocketmine\block\Anvil as AnvilBlock;
 use pocketmine\block\Block;
 use pocketmine\block\Fence;
 use pocketmine\block\Flower;
@@ -140,6 +140,7 @@ class Item{
 	const DOOR_BLOCK = 64;
 	const OAK_DOOR_BLOCK = 64;
 	const WOOD_DOOR_BLOCK = 64;
+	const WOODEN_DOOR = 64;
 	const LADDER = 65;
 	const RAIL = 66;
 	const COBBLE_STAIRS = 67;
@@ -440,6 +441,7 @@ class Item{
 	const NETHER_WART = 372;
 	const POTION = 373;
 	const GLASS_BOTTLE = 374;
+	const BOTTLE = 374;
 	const SPIDER_EYE = 375;
 	const FERMENTED_SPIDER_EYE = 376;
 	const BLAZE_POWDER = 377;
@@ -448,6 +450,7 @@ class Item{
 	const GLISTERING_MELON = 382;
 	const SPAWN_EGG = 383;
 	const EXP_BOTTLE = 384;
+	const BOTTLE_OF_ENCHANTING = 384;
 	const EMERALD = 388;
 	const FLOWER_POT = 390;
 	const CARROT = 391;
@@ -476,16 +479,20 @@ class Item{
 	const ACACIA_DOOR = 430;
 	const DARK_OAK_DOOR = 431;
 	const SPLASH_POTION = 438;
-	// const SPRUCE_BOAT = 444;
-	// const BIRCH_BOAT = 445;
-	// const JUNGLE_BOAT = 446;
-	// const ACACIA_BOAT = 447;
-	// const DARK_OAK_BOAT = 448;
+	const SPRUCE_BOAT = 444;
+	const BIRCH_BOAT = 445;
+	const JUNGLE_BOAT = 446;
+	const ACACIA_BOAT = 447;
+	const DARK_OAK_BOAT = 448;
 	const CAMERA = 456;
 	const BEETROOT = 457;
 	const BEETROOT_SEEDS = 458;
 	const BEETROOT_SEED = 458;
 	const BEETROOT_SOUP = 459;
+	const RAW_SALMON = 460;
+	const CLOWN_FISH = 461;
+	const PUFFER_FISH = 462;
+	const COOKED_SALMON = 463;
 
 
 	/** @var \SplFixedArray */
@@ -1029,6 +1036,7 @@ class Item{
 		Item::addCreativeItem(Item::get(Item::GOLD_BOOTS));
 		Item::addCreativeItem(Item::get(Item::LEVER));
 		Item::addCreativeItem(Item::get(Item::REDSTONE_LAMP));
+		Item::addCreativeItem(Item::get(Item::LIT_REDSTONE_LAMP));
 		Item::addCreativeItem(Item::get(Item::REDSTONE_TORCH));
 		Item::addCreativeItem(Item::get(Item::WOODEN_PRESSURE_PLATE));
 		Item::addCreativeItem(Item::get(Item::STONE_PRESSURE_PLATE));
@@ -1048,101 +1056,100 @@ class Item{
 		Item::addCreativeItem(Item::get(Item::POTION, Potion::'EFFECT'));
 		Item::addCreativeItem(Item::get(Item::ENCHANTED_BOOK, EnchantedBook::'ENCHANTMENT'));
 		*/
-		Item::addCreativeItem(Item::get(Item::COAL, 0));
-		Item::addCreativeItem(Item::get(Item::COAL, 1)); // charcoal
-		Item::addCreativeItem(Item::get(Item::DIAMOND, 0)); 
-		Item::addCreativeItem(Item::get(Item::IRON_INGOT, 0));
-		Item::addCreativeItem(Item::get(Item::GOLD_INGOT, 0));
-		Item::addCreativeItem(Item::get(Item::EMERALD, 0));
-		Item::addCreativeItem(Item::get(Item::STICK, 0));
-		Item::addCreativeItem(Item::get(Item::BOWL, 0));
-		Item::addCreativeItem(Item::get(Item::STRING, 0));
-		Item::addCreativeItem(Item::get(Item::FEATHER, 0));
-		Item::addCreativeItem(Item::get(Item::FLINT, 0));
-		Item::addCreativeItem(Item::get(Item::LEATHER, 0));
-		Item::addCreativeItem(Item::get(Item::RABBIT_HIDE, 0));
-		Item::addCreativeItem(Item::get(Item::CLAY, 0));
-		Item::addCreativeItem(Item::get(Item::SUGAR, 0));
-		Item::addCreativeItem(Item::get(Item::NETHER_QUARTZ, 0));
-		Item::addCreativeItem(Item::get(Item::PAPER, 0));
-		Item::addCreativeItem(Item::get(Item::BOOK, 0));
-		Item::addCreativeItem(Item::get(Item::ARROW, 0));
-		Item::addCreativeItem(Item::get(Item::BONE, 0));
-		Item::addCreativeItem(Item::get(Item::SUGARCANE, 0));
-		Item::addCreativeItem(Item::get(Item::WHEAT, 0));
-		Item::addCreativeItem(Item::get(Item::SEEDS, 0));
-		Item::addCreativeItem(Item::get(Item::PUMPKIN_SEEDS, 0));
-		Item::addCreativeItem(Item::get(Item::MELON_SEEDS, 0));
-		Item::addCreativeItem(Item::get(Item::BEETROOT_SEEDS, 0));
-		Item::addCreativeItem(Item::get(Item::EGG, 0));
-		Item::addCreativeItem(Item::get(Item::APPLE, 0));
-		Item::addCreativeItem(Item::get(Item::GOLDEN_APPLE, 0));
-		Item::addCreativeItem(Item::get(Item::GOLDEN_APPLE, 1)); // Enchanted golden apple
-		Item::addCreativeItem(Item::get(Item::RAW_FISH, 0)); 
-		Item::addCreativeItem(Item::get(Item::RAW_FISH, 1)); // Salmon
-		Item::addCreativeItem(Item::get(Item::RAW_FISH, 2)); // Clownfish
-		Item::addCreativeItem(Item::get(Item::RAW_FISH, 3)); // Pufferfish
-		Item::addCreativeItem(Item::get(Item::COOKED_FISH, 0));
-		Item::addCreativeItem(Item::get(Item::COOKED_FISH, 1)); // Salmon
-		Item::addCreativeItem(Item::get(Item::ROTTEN_FLESH, 0));
-		Item::addCreativeItem(Item::get(Item::MUSHROOM_STEW, 0));
-		Item::addCreativeItem(Item::get(Item::BREAD, 0));
-		Item::addCreativeItem(Item::get(Item::RAW_PORKCHOP, 0));
-		Item::addCreativeItem(Item::get(Item::COOKED_PORKCHOP, 0));
-		Item::addCreativeItem(Item::get(Item::RAW_CHICKEN, 0));
-		Item::addCreativeItem(Item::get(Item::COOKED_CHICKEN, 0));
-		Item::addCreativeItem(Item::get(Item::RAW_BEEF, 0));
-		Item::addCreativeItem(Item::get(Item::COOKED_BEEF, 0));
-		Item::addCreativeItem(Item::get(Item::MELON, 0));
-		Item::addCreativeItem(Item::get(Item::CARROT, 0));
-		Item::addCreativeItem(Item::get(Item::POTATO, 0));
-		Item::addCreativeItem(Item::get(Item::BAKED_POTATO, 0));
-		Item::addCreativeItem(Item::get(Item::POISONOUS_POTATO, 0));
-		Item::addCreativeItem(Item::get(Item::BEETROOT, 0));
-		Item::addCreativeItem(Item::get(Item::COOKIE, 0));
-		Item::addCreativeItem(Item::get(Item::PUMPKIN_PIE, 0));
-		Item::addCreativeItem(Item::get(Item::RAW_RABBIT, 0));
-		Item::addCreativeItem(Item::get(Item::COOKED_RABBIT, 0));
-		Item::addCreativeItem(Item::get(Item::RABBIT_STEW, 0));
-		Item::addCreativeItem(Item::get(Item::MAGMA_CREAM, 0));
-		Item::addCreativeItem(Item::get(Item::BLAZE_ROD, 0));
-		Item::addCreativeItem(Item::get(Item::GOLD_NUGGET, 0));
-		Item::addCreativeItem(Item::get(Item::GOLDEN_CARROT, 0));
-		Item::addCreativeItem(Item::get(Item::GLISTERING_MELON, 0));
-		Item::addCreativeItem(Item::get(Item::RABBIT_FOOT, 0));
-		Item::addCreativeItem(Item::get(Item::GHAST_TEAR, 0));
-		Item::addCreativeItem(Item::get(Item::SLIMEBALL, 0));
-		Item::addCreativeItem(Item::get(Item::BLAZE_POWDER, 0));
-		Item::addCreativeItem(Item::get(Item::NETHER_WART, 0));
-		Item::addCreativeItem(Item::get(Item::GUNPOWDER, 0));
-		Item::addCreativeItem(Item::get(Item::GLOWSTONE_DUST, 0));
-		Item::addCreativeItem(Item::get(Item::SPIDER_EYE, 0));
-		Item::addCreativeItem(Item::get(Item::FERMENTED_SPIDER_EYE, 0));
-		
-		// Bottle o' enchanting
-		// enchanted books
-		
-		Item::addCreativeItem(Item::get(Item::DYE, 0));
-		Item::addCreativeItem(Item::get(Item::DYE, 8));
-		Item::addCreativeItem(Item::get(Item::DYE, 7));
-		Item::addCreativeItem(Item::get(Item::DYE, 15));
-		Item::addCreativeItem(Item::get(Item::DYE, 12));
-		Item::addCreativeItem(Item::get(Item::DYE, 14));
-		Item::addCreativeItem(Item::get(Item::DYE, 1));
-		Item::addCreativeItem(Item::get(Item::DYE, 4));
-		Item::addCreativeItem(Item::get(Item::DYE, 5));
-		Item::addCreativeItem(Item::get(Item::DYE, 13));
-		Item::addCreativeItem(Item::get(Item::DYE, 9));
-		Item::addCreativeItem(Item::get(Item::DYE, 3));
-		Item::addCreativeItem(Item::get(Item::DYE, 11));
-		Item::addCreativeItem(Item::get(Item::DYE, 10));
-		Item::addCreativeItem(Item::get(Item::DYE, 2));
-		Item::addCreativeItem(Item::get(Item::DYE, 6));
-		
-		Item::addCreativeItem(Item::get(Item::GLASS_BOTTLE, 0));
-		// Potions
-		
-		// Splash Potions
+		self::addCreativeItem(Item::get(Item::COAL, 0));
+		self::addCreativeItem(Item::get(Item::COAL, 1));
+		self::addCreativeItem(Item::get(Item::DIAMOND, 0));
+		self::addCreativeItem(Item::get(Item::IRON_INGOT, 0));
+		self::addCreativeItem(Item::get(Item::GOLD_INGOT, 0));
+		self::addCreativeItem(Item::get(Item::EMERALD, 0));
+		self::addCreativeItem(Item::get(Item::STICKS, 0));
+		self::addCreativeItem(Item::get(Item::BOWL, 0));
+		self::addCreativeItem(Item::get(Item::STRING, 0));
+		self::addCreativeItem(Item::get(Item::FEATHER, 0));
+		self::addCreativeItem(Item::get(Item::FLINT, 0));
+		self::addCreativeItem(Item::get(Item::LEATHER, 0));
+		self::addCreativeItem(Item::get(Item::RABBIT_HIDE, 0));
+		self::addCreativeItem(Item::get(Item::CLAY, 0));
+		self::addCreativeItem(Item::get(Item::SUGAR, 0));
+		self::addCreativeItem(Item::get(Item::QUARTZ, 0));
+		self::addCreativeItem(Item::get(Item::PAPER, 0));
+		self::addCreativeItem(Item::get(Item::BOOK, 0));
+		self::addCreativeItem(Item::get(Item::ARROW, 0));
+		self::addCreativeItem(Item::get(Item::BONE, 0));
+		self::addCreativeItem(Item::get(Item::SUGAR_CANES, 0));
+		self::addCreativeItem(Item::get(Item::WHEAT, 0));
+		self::addCreativeItem(Item::get(Item::SEEDS, 0));
+		self::addCreativeItem(Item::get(Item::PUMPKIN_SEEDS, 0));
+		self::addCreativeItem(Item::get(Item::MELON_SEEDS, 0)); 
+		self::addCreativeItem(Item::get(Item::BEETROOT_SEEDS, 0));
+		self::addCreativeItem(Item::get(Item::BEETROOT_BLOCK, 0));
+		self::addCreativeItem(Item::get(Item::EGG, 0));
+		self::addCreativeItem(Item::get(Item::APPLE, 0));
+		self::addCreativeItem(Item::get(Item::GOLDEN_APPLE, 0));
+		self::addCreativeItem(Item::get(Item::GOLDEN_APPLE, 1)); 
+		self::addCreativeItem(Item::get(Item::RAW_FISH, 0));
+		self::addCreativeItem(Item::get(Item::RAW_SALMON, 0));
+		self::addCreativeItem(Item::get(Item::CLOWN_FISH, 0));
+		self::addCreativeItem(Item::get(Item::PUFFER_FISH, 0));
+		self::addCreativeItem(Item::get(Item::COOKED_FISH, 0));
+		self::addCreativeItem(Item::get(Item::COOKED_SALMON, 0));
+		self::addCreativeItem(Item::get(Item::ROTTEN_FLESH, 0));
+		self::addCreativeItem(Item::get(Item::MUSHROOM_STEW, 0));
+		self::addCreativeItem(Item::get(Item::BREAD, 0));
+		self::addCreativeItem(Item::get(Item::RAW_PORKCHOP, 0));
+		self::addCreativeItem(Item::get(Item::COOKED_PORKCHOP, 0));
+		self::addCreativeItem(Item::get(Item::RAW_CHICKEN, 0));
+		self::addCreativeItem(Item::get(Item::COOKED_CHICKEN, 0));
+		self::addCreativeItem(Item::get(Item::RAW_BEEF, 0));
+		self::addCreativeItem(Item::get(Item::STEAK, 0));
+		self::addCreativeItem(Item::get(Item::MELON, 0));
+		self::addCreativeItem(Item::get(Item::CARROT, 0)); 
+		self::addCreativeItem(Item::get(Item::POTATO, 0));
+		self::addCreativeItem(Item::get(Item::BAKED_POTATO, 0));
+		self::addCreativeItem(Item::get(Item::POISONOUS_POTATO, 0));
+		self::addCreativeItem(Item::get(Item::COOKIE, 0));
+		self::addCreativeItem(Item::get(Item::PUMPKIN_PIE, 0));
+		self::addCreativeItem(Item::get(Item::RAW_RABBIT, 0));
+		self::addCreativeItem(Item::get(Item::COOKED_RABBIT, 0));
+		self::addCreativeItem(Item::get(Item::RABBIT_STEW, 0));
+		self::addCreativeItem(Item::get(Item::MAGMA_CREAM, 0));
+		self::addCreativeItem(Item::get(Item::BLAZE_ROD, 0));
+		self::addCreativeItem(Item::get(Item::GOLD_NUGGET, 0));
+		self::addCreativeItem(Item::get(Item::GOLDEN_CARROT, 0));
+		self::addCreativeItem(Item::get(Item::GLISTERING_MELON, 0));
+		self::addCreativeItem(Item::get(Item::RABBIT_FOOT, 0));
+		self::addCreativeItem(Item::get(Item::GHAST_TEAR, 0));
+		self::addCreativeItem(Item::get(Item::SLIMEBALL, 0));
+		self::addCreativeItem(Item::get(Item::BLAZE_POWDER, 0));
+		self::addCreativeItem(Item::get(Item::NETHER_WART, 0));
+		self::addCreativeItem(Item::get(Item::GUNPOWDER, 0));
+		self::addCreativeItem(Item::get(Item::GLOWSTONE_DUST, 0));
+		self::addCreativeItem(Item::get(Item::SPIDER_EYE, 0));
+		self::addCreativeItem(Item::get(Item::FERMENTED_SPIDER_EYE, 0));
+		self::addCreativeItem(Item::get(Item::BOTTLE_OF_ENCHANTING, 0));
+		self::addCreativeItem(Item::get(Item::DYE, 0));
+		self::addCreativeItem(Item::get(Item::DYE, 8));
+		self::addCreativeItem(Item::get(Item::DYE, 7));
+		self::addCreativeItem(Item::get(Item::DYE, 15));
+		self::addCreativeItem(Item::get(Item::DYE, 12));
+		self::addCreativeItem(Item::get(Item::DYE, 14));
+		self::addCreativeItem(Item::get(Item::DYE, 1));
+		self::addCreativeItem(Item::get(Item::DYE, 4));
+		self::addCreativeItem(Item::get(Item::DYE, 5));
+		self::addCreativeItem(Item::get(Item::DYE, 13));
+		self::addCreativeItem(Item::get(Item::DYE, 9));
+		self::addCreativeItem(Item::get(Item::DYE, 3));
+		self::addCreativeItem(Item::get(Item::DYE, 11));
+		self::addCreativeItem(Item::get(Item::DYE, 10));
+		self::addCreativeItem(Item::get(Item::DYE, 2));
+		self::addCreativeItem(Item::get(Item::DYE, 6));
+		self::addCreativeItem(Item::get(Item::BOTTLE, 0));
+		for ($i = 0; $i <= 35; $i++){
+			self::addCreativeItem(Item::get(Item::POTION, $i));
+		}
+	 	for ($i = 0; $i <= 35; $i++){
+			self::addCreativeItem(Item::get(Item::SPLASH_POTION, $i));
+		}
 	}
 	
 	public static function clearCreativeItems(){

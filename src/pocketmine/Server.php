@@ -1,9 +1,5 @@
 <?php
 
-/**
- * PocketMine-MP is the Minecraft: PE multiplayer server software
- * Homepage: http://www.pocketmine.net/
- */
 namespace pocketmine;
 
 use pocketmine\block\Block;
@@ -88,6 +84,10 @@ use pocketmine\tile\Chest;
 use pocketmine\tile\EnchantTable;
 use pocketmine\tile\Furnace;
 use pocketmine\tile\Sign;
+use pocketmine\tile\BrewingStand;
+use pocketmine\tile\FlowerPot;
+use pocketmine\tile\TrappedChest;
+use pocketmine\tile\Skull;
 use pocketmine\tile\Tile;
 use pocketmine\updater\AutoUpdater;
 use pocketmine\utils\Binary;
@@ -733,14 +733,14 @@ class Server{
 	public function getOfflinePlayerData($name){
 		$name = \strtolower($name);
 		$path = $this->getDataPath() . "players/";
-		if(\file_exists($path . "$name.dat")){
+		if(file_exists($path . "$name.dat")){
 			try{
 				$nbt = new NBT(NBT::BIG_ENDIAN);
-				$nbt->readCompressed(\file_get_contents($path . "$name.dat"));
+				$nbt->readCompressed(file_get_contents($path . "$name.dat"));
 
 				return $nbt->getData();
 			}catch(\Exception $e){ //zlib decode error / corrupt data
-				\rename($path . "$name.dat", $path . "$name.dat.bak");
+				rename($path . "$name.dat", $path . "$name.dat.bak");
 				$this->logger->notice($this->getLanguage()->translateString("pocketmine.data.playerCorrupted", [$name]));
 			}
 		}else{
@@ -784,8 +784,7 @@ class Server{
 		$nbt->Inventory->setTagType(NBT::TAG_Compound);
 		$nbt->Motion->setTagType(NBT::TAG_Double);
 		$nbt->Rotation->setTagType(NBT::TAG_Float);
-
-		if(\file_exists($path . "$name.yml")){ //Importing old PocketMine-MP files
+		if(file_exists($path . "$name.yml")){ //Importing old ImagicalMine files
 			$data = new Config($path . "$name.yml", Config::YAML, []);
 			$nbt["playerGameType"] = (int) $data->get("gamemode");
 			$nbt["Level"] = $data->get("position")["level"];
@@ -798,7 +797,7 @@ class Server{
 			$nbt["SpawnZ"] = (int) $data->get("spawn")["z"];
 			$this->logger->notice($this->getLanguage()->translateString("pocketmine.data.playerOld", [$name]));
 			foreach($data->get("inventory") as $slot => $item){
-				if(\count($item) === 3){
+				if(count($item) === 3){
 					$nbt->Inventory[$slot + 9] = new Compound("", [
 						new Short("id", $item[0]),
 						new Short("Damage", $item[1]),
@@ -821,7 +820,7 @@ class Server{
 				}
 			}
 			foreach($data->get("armor") as $slot => $item){
-				if(\count($item) === 2){
+				if(count($item) === 2){
 					$nbt->Inventory[$slot + 100] = new Compound("", [
 						new Short("id", $item[0]),
 						new Short("Damage", $item[1]),
@@ -831,9 +830,9 @@ class Server{
 				}
 			}
 			foreach($data->get("achievements") as $achievement => $status){
-				$nbt->Achievements[$achievement] = new Byte($achievement, $status == \true ? 1 : 0);
+				$nbt->Achievements[$achievement] = new Byte($achievement, $status == true ? 1 : 0);
 			}
-			\unlink($path . "$name.yml");
+			unlink($path . "$name.yml");
 		}
 		$this->saveOfflinePlayerData($name, $nbt);
 
@@ -852,9 +851,9 @@ class Server{
 			$nbt->setData($nbtTag);
 
 			if($async){
-				$this->getScheduler()->scheduleAsyncTask(new FileWriteTask($this->getDataPath() . "players/" . \strtolower($name) . ".dat", $nbt->writeCompressed()));
+				$this->getScheduler()->scheduleAsyncTask(new FileWriteTask($this->getDataPath() . "players/" . strtolower($name) . ".dat", $nbt->writeCompressed()));
 			}else{
-				\file_put_contents($this->getDataPath() . "players/" . \strtolower($name) . ".dat", $nbt->writeCompressed());
+				file_put_contents($this->getDataPath() . "players/" . strtolower($name) . ".dat", $nbt->writeCompressed());
 			}
 		}catch(\Exception $e){
 			$this->logger->critical($this->getLanguage()->translateString("pocketmine.data.saveError", [$name, $e->getMessage()]));
@@ -2567,6 +2566,10 @@ class Server{
 		Tile::registerTile(Furnace::class);
 		Tile::registerTile(Sign::class);
 		Tile::registerTile(EnchantTable::class);
+		Tile::registerTile(BrewingStand::class);
+		Tile::registerTile(FlowerPot::class);
+		Tile::registerTile(TrappedChest::class);
+		Tile::registerTile(Skull::class);
 	}
 
 }

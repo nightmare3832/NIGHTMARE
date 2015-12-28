@@ -22,7 +22,8 @@
 namespace pocketmine\block;
 
 use pocketmine\item\Item;
-use pocketmine\block\RedstoneTorch as RT;
+use pocketmine\level\Level;
+use pocketmine\Player;
 
 class RedstoneLamp extends Solid{
 
@@ -36,17 +37,7 @@ class RedstoneLamp extends Solid{
 		return "Redstone Lamp";
 	}
 
-	/*public function onUpdate($type){
-		if($type === Level::BLOCK_UPDATE_NORMAL or $type === Level::BLOCK_UPDATE_TOUCH){
-			$this->getLevel()->setBlock($this, Block::get(124, $this->meta), \false, \true);
-
-			return Level::BLOCK_UPDATE_WEAK;
-		}
-
-		return \false;
-	}*/
-
 	public function getDrops(Item $item){
-		return [$this->id, 0, 1];
+		return [$this->id, $this->meta, 1];
 	}
 }

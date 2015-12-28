@@ -22,39 +22,17 @@
 namespace pocketmine\block;
 
 use pocketmine\item\Item;
-use pocketmine\level\Level;
-use pocketmine\Player;
-use pocketmine\item\Tool;
-use pocketmine\math\AxisAlignedBB;
 
-class StonePressurePlate extends Solid{
+class FlowerPot extends Transparent{
 
-	protected $id = self::STONE_PRESSURE_PLATE;
+	protected $id = self::FLOWER_POT_BLOCK;
 
 	public function __construct($meta = 0){
 		$this->meta = $meta;
 	}
 
-	protected function recalculateBoundingBox(){
-		return new AxisAlignedBB(
-			$this->x,
-			$this->y + 0.1,
-			$this->z,
-			$this->x + 1,
-			$this->y + 1,
-			$this->z + 1
-		);
-	}
-
 	public function getName(){
-		return "Stone Pressure Plate";
+		return "Flower Pot Block";
 	}
 
-	public function getDrops(Item $item){
-		if($item->isPickaxe() >= Tool::TIER_WOODEN){
-			return [$this->id, 0, 1];
-		}else{
-			return [];
-		}
-	}
 }
