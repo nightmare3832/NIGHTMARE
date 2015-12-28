@@ -959,15 +959,15 @@ class Item{
 		Item::addCreativeItem(Item::get(Item::BOAT, 4)); // Acacia
 		Item::addCreativeItem(Item::get(Item::BOAT, 5)); // Dark Oak
 		
-		Item::addCreativeItem(Item::get(Item::SPAWN_EGG, 10)); //Cow
+		/*Item::addCreativeItem(Item::get(Item::SPAWN_EGG, 10)); //Cow
 		Item::addCreativeItem(Item::get(Item::SPAWN_EGG, 11)); //Pig
 		Item::addCreativeItem(Item::get(Item::SPAWN_EGG, 12)); //Sheep
-		Item::addCreativeItem(Item::get(Item::SPAWN_EGG, 13)); //Wolf
+		Item::addCreativeItem(Item::get(Item::SPAWN_EGG, 13)); //Wolf*/
 		Item::addCreativeItem(Item::get(Item::SPAWN_EGG, 15)); //Villager
-		Item::addCreativeItem(Item::get(Item::SPAWN_EGG, 16)); //Mooshroom
+		/*Item::addCreativeItem(Item::get(Item::SPAWN_EGG, 16)); //Mooshroom*/
 		Item::addCreativeItem(Item::get(Item::SPAWN_EGG, 17)); //Squid 
 		Item::addCreativeItem(Item::get(Item::SPAWN_EGG, 32)); //Zombie
-		Item::addCreativeItem(Item::get(Item::SPAWN_EGG, 33)); //Creeper
+		/*Item::addCreativeItem(Item::get(Item::SPAWN_EGG, 33)); //Creeper
 		Item::addCreativeItem(Item::get(Item::SPAWN_EGG, 34)); //Skeleton
 		Item::addCreativeItem(Item::get(Item::SPAWN_EGG, 35)); //Spider
 		Item::addCreativeItem(Item::get(Item::SPAWN_EGG, 36)); //Zombie Pigman
@@ -977,7 +977,7 @@ class Item{
 		Item::addCreativeItem(Item::get(Item::SPAWN_EGG, 40)); //Cave spider
 		Item::addCreativeItem(Item::get(Item::SPAWN_EGG, 41)); //Ghast
 		Item::addCreativeItem(Item::get(Item::SPAWN_EGG, 42)); //Magma Cube
-		Item::addCreativeItem(Item::get(Item::SPAWN_EGG, 43)); //Blaze
+		Item::addCreativeItem(Item::get(Item::SPAWN_EGG, 43)); //Blaze*/
 		
 		//Item::addCreativeItem(Item::get(Item::SPAWN_EGG, 44)); //Zombie Villager 
 		
@@ -1462,24 +1462,11 @@ class Item{
 	}
 
 	public function setCustomName($name){
-		if((string) $name === ""){
-			$this->clearCustomName();
-		}
-
-		if(!$this->hasCompoundTag()){
-			$tag = new Compound("", []);
-		}else{
-			$tag = $this->getNamedTag();
-		}
-
-		if(isset($tag->display) and $tag->display instanceof Compound){
-			$tag->display->Name = new String("Name", $name);
-		}else{
-			$tag->display = new Compound("display", [
-				"Name" => new String("Name", $name)
-			]);
-		}
-
+		$tag = new Compound();
+		$tag->display = new Compound('display', [
+			"Name" => new String('Name',$name)
+		]);
+		$this->setNamedTag($tag);
 		return $this;
 	}
 
