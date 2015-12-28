@@ -1,47 +1,28 @@
 <?php
 
-/*
- *
- *  ____            _        _   __  __ _                  __  __ ____  
- * |  _ \ ___   ___| | _____| |_|  \/  (_)_ __   ___      |  \/  |  _ \ 
- * | |_) / _ \ / __| |/ / _ \ __| |\/| | | '_ \ / _ \_____| |\/| | |_) |
- * |  __/ (_) | (__|   <  __/ |_| |  | | | | | |  __/_____| |  | |  __/ 
- * |_|   \___/ \___|_|\_\___|\__|_|  |_|_|_| |_|\___|     |_|  |_|_| 
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * @author PocketMine Team
- * @link http://www.pocketmine.net/
- * 
- *
-*/
-
 namespace pocketmine\wizard;
 
 
 class InstallerLang{
 	public static $languages = [
 		"en" => "English",
-		"es" => "Español",
+		"es" => "Espanol",
 		"zh" => "中文",
-		"ru" => "Pyccĸий",
+		"ru" => "Pycc?ий",
 		"ja" => "日本語",
 		"de" => "Deutsch",
-		//"vi" => "Tiếng Việt",
-		"ko" => "한국어",
+		//"vi" => "Ti?ng Vi?t",
+		"ko" => "???",
 		"nl" => "Nederlands",
-		"fr" => "Français",
+		"fr" => "Francais",
 		"it" => "Italiano",
-		//"lv" => "Latviešu",
+		//"lv" => "Latvie?u",
 		"ms" => "Melayu",
 		"no" => "Norsk",
-		//"pt" => "Português",
+		//"pt" => "Portugues",
 		"sv" => "Svenska",
 		"fi" => "Suomi",
-		"tr" => "Türkçe",
+		"tr" => "Turkce",
 		//"et" => "Eesti",
 	];
 	private $texts = [];

@@ -69,6 +69,10 @@ class Human extends Creature implements ProjectileSource, InventoryHolder{
 		return $this->skinName;
 	}
 
+	public function getSkinName(){
+		return $this->skinName;
+	}
+
 	public function isSkinTransparent(){
 		return $this->isTransparent;
 	}

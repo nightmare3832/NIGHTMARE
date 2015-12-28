@@ -1,41 +1,15 @@
 <?php
 
-/*
- *
- *  ____            _        _   __  __ _                  __  __ ____  
- * |  _ \ ___   ___| | _____| |_|  \/  (_)_ __   ___      |  \/  |  _ \ 
- * | |_) / _ \ / __| |/ / _ \ __| |\/| | | '_ \ / _ \_____| |\/| | |_) |
- * |  __/ (_) | (__|   <  __/ |_| |  | | | | | |  __/_____| |  | |  __/ 
- * |_|   \___/ \___|_|\_\___|\__|_|  |_|_|_| |_|\___|     |_|  |_|_| 
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * @author PocketMine Team
- * @link http://www.pocketmine.net/
- * 
- *
-*/
-
 namespace pocketmine\item;
 
 use pocketmine\block\Block;
 use pocketmine\level\Level;
 use pocketmine\Player;
-use pocketmine\nbt\tag\Compound;
-use pocketmine\nbt\tag\Double;
-use pocketmine\nbt\tag\Enum;
-use pocketmine\nbt\tag\Float;
-use pocketmine\nbt\tag\String;
-use pocketmine\entity\Entity;
-use pocketmine\level\format\FullChunk;
 
 
 class Painting extends Item{
 	public function __construct($meta = 0, $count = 1){
-		parent::__construct(self::PAINTING, $meta, $count, "Painting");
+		parent::__construct(self::PAINTING, 0, $count, "Painting");
 	}
 
 	public function canBeActivated(){
@@ -44,7 +18,6 @@ class Painting extends Item{
 
 	public function onActivate(Level $level, Player $player, Block $block, Block $target, $face, $fx, $fy, $fz){
 		if($target->isTransparent() === false and $face > 1 and $block->isSolid() === false){
-			$chunk = $level->getChunk($block->getX() >> 4, $block->getZ() >> 4);
 			$faces = [
 				2 => 1,
 				3 => 3,
@@ -81,9 +54,6 @@ class Painting extends Item{
 				["Pigscene", 4, 4],
 				["Flaming Skull", 4, 4],
 			];
-			if($this->hasCustomName()){
-				$nbt->CustomName = new String("CustomName", $this->getCustomName());
-			}
 			$motive = $motives[mt_rand(0, count($motives) - 1)];
 			$data = [
 				"x" => $target->x,
@@ -92,30 +62,12 @@ class Painting extends Item{
 				"yaw" => $faces[$face] * 90,
 				"Motive" => $motive[0],
 			];
-			$nbt = new Compound("", [
-				"Pos" => new Enum("Pos", [
-					new Double("", $target->x),
-					new Double("", $target->y),
-					new Double("", $target->z)
-				]),
-				"Motion" => new Enum("Motion", [
-					new Double("", 0),
-					new Double("", 0),
-					new Double("", 0)
-				]),
-				"Rotation" => new Enum("Rotation", [
-					new Float("", $faces[$face] * 90),
-					new Float("", 0)
-				]),
-			]);
-			$entity = Entity::createEntity($this->meta, $chunk, $nbt, $data);
-			if($entity instanceof Entity){
-				if($player->isSurvival()){
-					--$this->count;
-				}
-				$entity->spawnToAll();
-				return true;
-			}
+			//TODO
+			//$e = $server->api->entity->add($level, ENTITY_OBJECT, OBJECT_PAINTING, $data);
+			//$e->spawnToAll();
+			/*if(($player->gamemode & 0x01) === 0x00){
+				$player->removeItem(Item::get($this->getId(), $this->getDamage(), 1));
+			}*/
 
 			return true;
 		}
