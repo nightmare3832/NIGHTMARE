@@ -54,6 +54,12 @@ class WoodenButton extends Flowable{
 		return true;
 	}
 
+	public function onActivate(Item $item, Player $player = null){
+		if(($player instanceof Player && !$player->isSneaking())||$player===null){
+			$this->getLevel()->scheduleUpdate($this, 15);
+		}
+	}
+
 	public function getDrops(Item $item){
 		return [143, 0, 1];
 	}

@@ -42,7 +42,7 @@ class TrappedChest extends Transparent{
 	}
 
 	public function canBeActivated(){
-		return \true;
+		return true;
 	}
 
 	public function getHardness(){
@@ -68,7 +68,7 @@ class TrappedChest extends Transparent{
 		);
 	}
 
-	public function place(Item $item, Block $block, Block $target, $face, $fx, $fy, $fz, Player $player = \null){
+	public function place(Item $item, Block $block, Block $target, $face, $fx, $fy, $fz, Player $player = null){
 		$faces = [
 			0 => 4,
 			1 => 2,
@@ -76,7 +76,7 @@ class TrappedChest extends Transparent{
 			3 => 3,
 		];
 
-		$chest = \null;
+		$chest = null;
 		$this->meta = $faces[$player instanceof Player ? $player->getDirection() : 0];
 
 		for($side = 2; $side <= 5; ++$side){
@@ -95,10 +95,10 @@ class TrappedChest extends Transparent{
 			}
 		}
 
-		$this->getLevel()->setBlock($block, $this, \true, \true);
+		$this->getLevel()->setBlock($block, $this, true, true);
 		$nbt = new Compound("", [
 			new Enum("Items", []),
-			new String("id", Tile::CHEST),
+			new String("id", Tile::TRAPPED_CHEST),
 			new Int("x", $this->x),
 			new Int("y", $this->y),
 			new Int("z", $this->z)
@@ -122,7 +122,7 @@ class TrappedChest extends Transparent{
 			$tile->pairWith($chest);
 		}
 
-		return \true;
+		return true;
 	}
 
 	public function onBreak(Item $item){
@@ -130,26 +130,26 @@ class TrappedChest extends Transparent{
 		if($t instanceof TileChest){
 			$t->unpair();
 		}
-		$this->getLevel()->setBlock($this, new Air(), \true, \true);
+		$this->getLevel()->setBlock($this, new Air(), true, true);
 
-		return \true;
+		return true;
 	}
 
-	public function onActivate(Item $item, Player $player = \null){
+	public function onActivate(Item $item, Player $player = null){
 		if($player instanceof Player){
 			$top = $this->getSide(1);
-			if($top->isTransparent() !== \true){
-				return \true;
+			if($top->isTransparent() !== true){
+				return true;
 			}
 
 			$t = $this->getLevel()->getTile($this);
-			$chest = \null;
+			$chest = null;
 			if($t instanceof TileChest){
 				$chest = $t;
 			}else{
 				$nbt = new Compound("", [
 					new Enum("Items", []),
-					new String("id", Tile::CHEST),
+					new String("id", Tile::TRAPPED_CHEST),
 					new Int("x", $this->x),
 					new Int("y", $this->y),
 					new Int("z", $this->z)
@@ -160,17 +160,20 @@ class TrappedChest extends Transparent{
 
 			if(isset($chest->namedtag->Lock) and $chest->namedtag->Lock instanceof String){
 				if($chest->namedtag->Lock->getValue() !== $item->getCustomName()){
-					return \true;
+					return true;
 				}
 			}
 
 			if($player->isCreative()){
-				return \true;
+				return true;
 			}
-			$player->addWindow($chest->getInventory());
+			
+			if($chest !== null){
+				$player->addWindow($chest->getInventory());
+			}
 		}
 
-		return \true;
+		return true;
 	}
 
 	public function getDrops(Item $item){

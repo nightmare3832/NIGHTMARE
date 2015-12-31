@@ -50,6 +50,11 @@ class Lever extends Flowable{
 		return true;
 	}
 
+	public function onActivate(Item $item, Player $player = null){
+		$this->meta ^= 0x08;
+		$this->getLevel()->setBlock($this, $this ,true ,true);
+	}
+
 	public function getDrops(Item $item){
 		return [
 			$this->id, 0, 1

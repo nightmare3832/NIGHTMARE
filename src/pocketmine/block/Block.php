@@ -75,7 +75,10 @@ class Block extends Position implements Metadatable{
 
 	const SANDSTONE = 24;
 
+	const NOTE_BLOCK = 25;
 	const BED_BLOCK = 26;
+	const GOLDEN_RAIL = 27;
+	const DETECTOR_RAIL = 28;
 
 
 	const COBWEB = 30;
@@ -110,6 +113,7 @@ class Block extends Position implements Metadatable{
 	const OAK_WOOD_STAIRS = 53;
 	const OAK_WOODEN_STAIRS = 53;
 	const CHEST = 54;
+	const REDSTONE_WIRE = 55;
 
 	const DIAMOND_ORE = 56;
 	const DIAMOND_BLOCK = 57;
@@ -125,16 +129,23 @@ class Block extends Position implements Metadatable{
 	const WOODEN_DOOR_BLOCK = 64;
 	const WOOD_DOOR_BLOCK = 64;
 	const LADDER = 65;
+	const RAIL = 66;
 
 	const COBBLE_STAIRS = 67;
 	const COBBLESTONE_STAIRS = 67;
 	const WALL_SIGN = 68;
+	const LEVER = 69;
+	const STONE_PRESSURE_PLATE = 70;
+	const WOODEN_PRESSURE_PLATE = 72;
 
 	const IRON_DOOR_BLOCK = 71;
 
 	const REDSTONE_ORE = 73;
 	const GLOWING_REDSTONE_ORE = 74;
 	const LIT_REDSTONE_ORE = 74;
+	const UNLIT_REDSTONE_TORCH = 75;
+	const REDSTONE_TORCH = 76;
+	const STONE_BUTTON = 77;
 
 	const SNOW = 78;
 	const SNOW_LAYER = 78;
@@ -151,6 +162,7 @@ class Block extends Position implements Metadatable{
 	const SOUL_SAND = 88;
 	const GLOWSTONE = 89;
 	const GLOWSTONE_BLOCK = 89;
+	const NETHER_PORTAL = 90;
 
 
 	const LIT_PUMPKIN = 91;
@@ -163,7 +175,8 @@ class Block extends Position implements Metadatable{
 
 	const STONE_BRICKS = 98;
 	const STONE_BRICK = 98;
-
+	const BROWN_MUSHROOM_BLOCK = 99;
+	const RED_MUSHROOM_BLOCK = 100;
 	const IRON_BAR = 101;
 	const IRON_BARS = 101;
 	const GLASS_PANE = 102;
@@ -190,9 +203,12 @@ class Block extends Position implements Metadatable{
 
 	const END_PORTAL_FRAME = 120;
 	const END_STONE = 121;
+	const REDSTONE_LAMP = 123;
+	const LIT_REDSTONE_LAMP = 124;
 
 	const SANDSTONE_STAIRS = 128;
 	const EMERALD_ORE = 129;
+	const TRIPWIRE_HOOK = 131;
 
 	const EMERALD_BLOCK = 133;
 	const SPRUCE_WOOD_STAIRS = 134;
@@ -205,16 +221,29 @@ class Block extends Position implements Metadatable{
 	const COBBLE_WALL = 139;
 	const STONE_WALL = 139;
 	const COBBLESTONE_WALL = 139;
+	const FLOWER_POT_BLOCK = 140;
 
 	const CARROT_BLOCK = 141;
 	const POTATO_BLOCK = 142;
+	const WOODEN_BUTTON = 143;
 
 	const ANVIL = 145;
 
 	const REDSTONE_BLOCK = 152;
+	const QUARTZ_ORE = 153;
+	const HEAD = 144;
+	const SKULL_BLOCK = 144;
+	const HEAD_BLOCK = 144;
+	const MOB_HEAD_BLOCK = 144;
+
+	const TRAPPED_CHEST = 146;
+	const LIGHT_WEIGHTED_PRESSURE_PLATE = 147;
+	const HEAVY_WEIGHTED_PRESSURE_PLATE = 148;
+	const DAYLIGHT_DETECTOR = 151;
 
 	const QUARTZ_BLOCK = 155;
 	const QUARTZ_STAIRS = 156;
+	const ACTIVATOR_RAIL = 157;
 	const DOUBLE_WOOD_SLAB = 157;
 	const DOUBLE_WOODEN_SLAB = 157;
 	const DOUBLE_WOOD_SLABS = 157;
@@ -240,6 +269,7 @@ class Block extends Position implements Metadatable{
 	const CARPET = 171;
 	const HARDENED_CLAY = 172;
 	const COAL_BLOCK = 173;
+	const PACKED_ICE = 174;
 
 	const DOUBLE_PLANT = 175;
 
@@ -249,6 +279,12 @@ class Block extends Position implements Metadatable{
 	const FENCE_GATE_DARK_OAK = 186;
 	const FENCE_GATE_ACACIA = 187;
 
+	const SPRUCE_DOOR_BLOCK = 193;
+	const BIRCH_DOOR_BLOCK = 194;
+	const JUNGLE_DOOR_BLOCK = 195;
+	const ACACIA_DOOR_BLOCK = 196;
+	const DARK_OAK_DOOR_BLOCK = 197;
+
 	const GRASS_PATH = 198;
 
 	const PODZOL = 243;
@@ -257,40 +293,6 @@ class Block extends Position implements Metadatable{
 	const GLOWING_OBSIDIAN = 246;
 	const NETHER_REACTOR = 247;
 
-	const NOTE_BLOCK = 25;
-	const GOLDEN_RAIL = 27;
-	const DETECTOR_RAIL = 28;
-	const REDSTONE_WIRE = 55;
-	const RAIL = 66;
-	const LEVER = 69;
-	const STONE_PRESSURE_PLATE = 70;
-	const WOODEN_PRESSURE_PLATE = 72;
-	const UNLIT_REDSTONE_TORCH = 75;
-	const REDSTONE_TORCH = 76;
-	const STONE_BUTTON = 77;
-	const NETHER_PORTAL = 90;
-	const BROWN_MUSHROOM_BLOCK = 99;
-	const RED_MUSHROOM_BLOCK = 100;
-	const REDSTONE_LAMP = 123;
-	const LIT_REDSTONE_LAMP = 124;
-	const TRIPWIRE_HOOK = 131;
-	const WOODEN_BUTTON = 143;
-	const TRAPPED_CHEST = 146;
-	const LIGHT_WEIGHTED_PRESSURE_PLATE = 147;
-	const HEAVY_WEIGHTED_PRESSURE_PLATE = 148;
-	const DAYLIGHT_DETECTOR = 151;
-	const ACTIVATOR_RAIL = 157;
-	const PACKED_ICE = 174;
-	const SPRUCE_DOOR_BLOCK = 193;
-	const BIRCH_DOOR_BLOCK = 194;
-	const JUNGLE_DOOR_BLOCK = 195;
-	const ACACIA_DOOR_BLOCK = 196;
-	const DARK_OAK_DOOR_BLOCK = 197;
-	const HEAD = 144;
-	const SKULL_BLOCK = 144;
-	const HEAD_BLOCK = 144;
-	const MOB_HEAD_BLOCK = 144;
-	const FLOWER_POT_BLOCK = 140;
 
 	/** @var \SplFixedArray */
 	public static $list = null;
@@ -365,6 +367,7 @@ class Block extends Position implements Metadatable{
 			self::$list[self::LIGHT_WEIGHTED_PRESSURE_PLATE] = GoldenPressurePlate::class;
 			self::$list[self::HEAVY_WEIGHTED_PRESSURE_PLATE] = IronPressurePlate::class;
 			self::$list[self::LEVER] = Lever::class;
+			self::$list[self::QUARTZ_ORE] = NetherQuartzOre::class;
 			self::$list[self::TRAPPED_CHEST] = TrappedChest::class;
 			self::$list[self::UNLIT_REDSTONE_TORCH] = UnlitRedstoneTorch::class;
 			self::$list[self::REDSTONE_TORCH] = RedstoneTorch::class;

@@ -98,37 +98,49 @@ class Rail extends Solid{
 	public function getDirection(){
 		switch($this->meta){
 			case 0:
-				return Vector3::SIDE_SOUTH;
+				{
+					return Vector3::SIDE_SOUTH;
+				}
 			case 1:
-				return Vector3::SIDE_EAST;
-			break;
+				{
+					return Vector3::SIDE_EAST;
+				}
 			case 2:
-				return Vector3::SIDE_EAST;
-			break;
+				{
+					return Vector3::SIDE_EAST;
+				}
 			case 3:
-				return Vector3::SIDE_WEST;
-			break;
+				{
+					return Vector3::SIDE_WEST;
+				}
 			case 4:
-				return Vector3::SIDE_NORTH;
-			break;
+				{
+					return Vector3::SIDE_NORTH;
+				}
 			case 5:
-				return Vector3::SIDE_SOUTH;
-			break;
+				{
+					return Vector3::SIDE_SOUTH;
+				}
 			case 6:
-				return self::SIDE_NORTH_WEST;
-			break;
+				{
+					return self::SIDE_NORTH_WEST;
+				}
 			case 7:
-				return self::SIDE_NORTH_EAST;
-			break;
+				{
+					return self::SIDE_NORTH_EAST;
+				}
 			case 8:
-				return self::SIDE_SOUTH_EAST;
-			break;
+				{
+					return self::SIDE_SOUTH_EAST;
+				}
 			case 9:
-				return self::SIDE_SOUTH_WEST;
-			break;
+				{
+					return self::SIDE_SOUTH_WEST;
+				}
 			default:
-				return Vector3::SIDE_SOUTH;
-			break;
+				{
+					return Vector3::SIDE_SOUTH;
+				}
 		}
 	}
 
@@ -139,32 +151,41 @@ class Rail extends Solid{
 	public function setDirection($face, $isOnSlope = false){
 		switch($face){
 			case Vector3::SIDE_EAST:
-				$this->meta = $isOnSlope?2:1;
-			break;
+				{
+					$this->meta = $isOnSlope?2:1;
+				}
 			case Vector3::SIDE_WEST:
-				$this->meta = $isOnSlope?3:1;
-			break;
+				{
+					$this->meta = $isOnSlope?3:1;
+				}
 			case Vector3::SIDE_NORTH:
-				$this->meta = $isOnSlope?4:0;
-			break;
+				{
+					$this->meta = $isOnSlope?4:0;
+				}
 			case Vector3::SIDE_SOUTH:
-				$this->meta = $isOnSlope?5:0;
-			break;
+				{
+					$this->meta = $isOnSlope?5:0;
+				}
 			case self::SIDE_NORTH_WEST:
-				$this->meta = 6;
-			break;
+				{
+					$this->meta = 6;
+				}
 			case self::SIDE_NORTH_EAST:
-				$this->meta = 7;
-			break;
+				{
+					$this->meta = 7;
+				}
 			case self::SIDE_SOUTH_EAST:
-				$this->meta = 8;
-			break;
+				{
+					$this->meta = 8;
+				}
 			case self::SIDE_SOUTH_WEST:
-				$this->meta = 9;
-			break;
+				{
+					$this->meta = 9;
+				}
 			default:
-				$this->meta = 0;
-			break;
+				{
+					$this->meta = 0;
+				}
 		}
 		$this->getLevel()->setBlock($this, Block::get($this->id, $this->meta));
 	}

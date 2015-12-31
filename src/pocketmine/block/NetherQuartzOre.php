@@ -22,46 +22,33 @@
 namespace pocketmine\block;
 
 use pocketmine\item\Item;
-use pocketmine\level\Level;
-use pocketmine\Player;
+use pocketmine\item\Tool;
 
-class StoneButton extends Flowable{
+class NetherQuartzOre extends Solid{
 
-	protected $id = self::STONE_BUTTON;
+	protected $id = self::QUARTZ_ORE;
 
 	public function __construct($meta = 0){
 		$this->meta = $meta;
 	}
 
+	public function getToolType(){
+		return Tool::TYPE_PICKAXE;
+	}
+
 	public function getName(){
-		return "Stone Button";
+		return "Nether Quartz Ore";
 	}
 
 	public function getHardness(){
-		return 0.5;
-	}
-
-	public function place(Item $item, Block $block, Block $target, $face, $fx, $fy, $fz, Player $player = \null){
-		$faces = [
-			1 => 1,
-			2 => 2,
-			3 => 3,
-			4 => 4,
-			5 => 5
-		];
-		$this->meta = $faces[$player instanceof Player ? $player->getDirection() : 0];
-		$this->getLevel()->setBlock($block, $this, \true, \true);
-	}
-
-	public function onActivate(Item $item, Player $player = null){
-		if(($player instanceof Player && !$player->isSneaking())||$player===null){
-			$this->getLevel()->scheduleUpdate($this, 20);
-		}
+		return 2;
 	}
 
 	public function getDrops(Item $item){
-		if($item->isPickaxe() >= Tool::TIER_WOODEN){
-			return [$this->id, 0, 1];
+		if($item->isPickaxe() >= 1){
+			return [
+				[$this->id, $this->meta, 1],
+			];
 		}else{
 			return [];
 		}
