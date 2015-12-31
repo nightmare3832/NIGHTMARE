@@ -731,13 +731,12 @@ class Server{
 	 * @return Compound
 	 */
 	public function getOfflinePlayerData($name){
-		$name = \strtolower($name);
+		$name = strtolower($name);
 		$path = $this->getDataPath() . "players/";
 		if(file_exists($path . "$name.dat")){
 			try{
 				$nbt = new NBT(NBT::BIG_ENDIAN);
 				$nbt->readCompressed(file_get_contents($path . "$name.dat"));
-
 				return $nbt->getData();
 			}catch(\Exception $e){ //zlib decode error / corrupt data
 				rename($path . "$name.dat", $path . "$name.dat.bak");
@@ -748,8 +747,8 @@ class Server{
 		}
 		$spawn = $this->getDefaultLevel()->getSafeSpawn();
 		$nbt = new Compound("", [
-			new Long("firstPlayed", \floor(\microtime(\true) * 1000)),
-			new Long("lastPlayed", \floor(\microtime(\true) * 1000)),
+			new Long("firstPlayed", floor(microtime(true) * 1000)),
+			new Long("lastPlayed", floor(microtime(true) * 1000)),
 			new Enum("Pos", [
 				new Double(0, $spawn->x),
 				new Double(1, $spawn->y),
@@ -784,7 +783,7 @@ class Server{
 		$nbt->Inventory->setTagType(NBT::TAG_Compound);
 		$nbt->Motion->setTagType(NBT::TAG_Double);
 		$nbt->Rotation->setTagType(NBT::TAG_Float);
-		if(file_exists($path . "$name.yml")){ //Importing old ImagicalMine files
+		if(file_exists($path . "$name.yml")){ //Importing old PocketMine-MP files
 			$data = new Config($path . "$name.yml", Config::YAML, []);
 			$nbt["playerGameType"] = (int) $data->get("gamemode");
 			$nbt["Level"] = $data->get("position")["level"];
@@ -835,9 +834,7 @@ class Server{
 			unlink($path . "$name.yml");
 		}
 		$this->saveOfflinePlayerData($name, $nbt);
-
 		return $nbt;
-
 	}
 
 	/**
@@ -849,7 +846,6 @@ class Server{
 		$nbt = new NBT(NBT::BIG_ENDIAN);
 		try{
 			$nbt->setData($nbtTag);
-
 			if($async){
 				$this->getScheduler()->scheduleAsyncTask(new FileWriteTask($this->getDataPath() . "players/" . strtolower($name) . ".dat", $nbt->writeCompressed()));
 			}else{
