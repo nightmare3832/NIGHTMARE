@@ -40,7 +40,6 @@ class LoginPacket extends DataPacket{
 	public $protocol1;
 	public $protocol2;
 	public $clientId;
-
 	public $clientUUID;
 	public $serverAddress;
 	public $clientSecret;
@@ -50,22 +49,20 @@ class LoginPacket extends DataPacket{
 
 	public function decode(){
 		$this->username = $this->getString();
-		$this->protocol1 = (\PHP_INT_SIZE === 8 ? \unpack("N", $this->get(4))[1] << 32 >> 32 : \unpack("N", $this->get(4))[1]);
-		$this->protocol2 = (\PHP_INT_SIZE === 8 ? \unpack("N", $this->get(4))[1] << 32 >> 32 : \unpack("N", $this->get(4))[1]);
-
-		$this->clientId = Binary::readLong($this->get(8));
+		$this->protocol1 = $this->getInt();
+		$this->protocol2 = $this->getInt();
+		if($this->protocol1 < Info::CURRENT_PROTOCOL){ //New fields!
+			$this->setBuffer(null, 0); //Skip batch packet handling
+			return;
+		}
+		$this->clientId = $this->getLong();
 		$this->clientUUID = $this->getUUID();
 		$this->serverAddress = $this->getString();
 		$this->clientSecret = $this->getString();
-
-//		$this->slim = $this->getByte() > 0;
-//		$this->getByte();
 		$this->skinName = $this->getString();
- 		$this->skin = $this->getString();
+		$this->skin = $this->getString();
 	}
-
 	public function encode(){
-
 	}
 
 }

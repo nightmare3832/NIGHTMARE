@@ -54,13 +54,13 @@ class PlayerListPacket extends DataPacket{
 	}
 
 	public function encode(){
-		$this->buffer = \chr(self::NETWORK_ID); $this->offset = 0;;
-		$this->buffer .= \chr($this->type);
-		$this->buffer .= \pack("N", \count($this->entries));
+		$this->reset();
+		$this->putByte($this->type);
+		$this->putInt(count($this->entries));
 		foreach($this->entries as $d){
 			if($this->type === self::TYPE_ADD){
 				$this->putUUID($d[0]);
-				$this->buffer .= Binary::writeLong($d[1]);
+				$this->putLong($d[1]);
 				$this->putString($d[2]);
 				$this->putString($d[3]);
 				$this->putString($d[4]);
