@@ -87,6 +87,8 @@ interface Info{
 	const PLAYER_LIST_PACKET = 0xc3;
 	//const TELEMETRY_EVENT_PACKET = 0xc4;
 	//const SPAWN_EXPERIENCE_ORB_PACKET = 0xc5
+	const TILE_EVENT_PACKET = 0xa3;
+	const TILE_ENTITY_DATA_PACKET = 0xbd;
 }
 
 
