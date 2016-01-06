@@ -264,6 +264,7 @@ class Block extends Position implements Metadatable{
 	const ACACIA_WOODEN_STAIRS = 163;
 	const DARK_OAK_WOOD_STAIRS = 164;
 	const DARK_OAK_WOODEN_STAIRS = 164;
+	const IRON_TRAPDOOR = 167;
 
 	const HAY_BALE = 170;
 	const CARPET = 171;
@@ -466,6 +467,7 @@ class Block extends Position implements Metadatable{
 			self::$list[self::CAKE_BLOCK] = Cake::class;
 
 			self::$list[self::TRAPDOOR] = Trapdoor::class;
+			self::$list[self::IRON_TRAPDOOR] = IronTrapdoor::class;
 
 			self::$list[self::STONE_BRICKS] = StoneBricks::class;
 

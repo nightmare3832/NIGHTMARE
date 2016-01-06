@@ -58,6 +58,7 @@ class Rail extends Solid{
 		return \false;
 	}
 
+
 	public function place(Item $item, Block $block, Block $target, $face, $fx, $fy, $fz, Player $player = null){
 		$down = $block->getSide(Vector3::SIDE_DOWN);
 		if($down->isTransparent() === false){
@@ -205,10 +206,6 @@ class Rail extends Solid{
 	}
 
 	public function getDrops(Item $item){
-		if($item->isPickaxe() >= Tool::TIER_WOODEN){
-			return [$this->id, 0, 1];
-		}else{
-			return [];
-		}
+		return [$this->id, 0, 1];
 	}
 }
