@@ -24,7 +24,6 @@ namespace pocketmine\entity;
 use pocketmine\inventory\InventoryHolder;
 use pocketmine\inventory\PlayerInventory;
 use pocketmine\item\Item as ItemItem;
-use pocketmine\network\protocol\PlayerListPacket;
 use pocketmine\utils\UUID;
 use pocketmine\nbt\NBT;
 use pocketmine\nbt\tag\Byte;
@@ -58,25 +57,17 @@ class Human extends Creature implements ProjectileSource, InventoryHolder{
 	public $height = 1.8;
 	public $eyeHeight = 1.62;
 
-	protected $skin;
 	protected $skinName;
-	
+	protected $skin;
+
 	public function getSkinData(){
 		return $this->skin;
-	}
-
-	public function isSkinName(){
-		return $this->skinName;
 	}
 
 	public function getSkinName(){
 		return $this->skinName;
 	}
 
-	public function isSkinTransparent(){
-		return $this->isTransparent;
-	}
-	
 	/**
 	 * @return UUID|null
 	 */
@@ -93,7 +84,7 @@ class Human extends Creature implements ProjectileSource, InventoryHolder{
 
 	/**
 	 * @param string $str
-	 * @param bool   $skinName
+	 * @param string $skinName
 	 */
 	public function setSkin($str, $skinName){
 		$this->skin = $str;
@@ -106,7 +97,7 @@ class Human extends Creature implements ProjectileSource, InventoryHolder{
 
 	protected function initEntity(){
 
-		$this->setDataFlag(self::DATA_PLAYER_FLAGS, self::DATA_PLAYER_FLAG_SLEEP, \false);
+		$this->setDataFlag(self::DATA_PLAYER_FLAGS, self::DATA_PLAYER_FLAG_SLEEP, false);
 		$this->setDataProperty(self::DATA_PLAYER_BED_POSITION, self::DATA_TYPE_POS, [0, 0, 0]);
 
 		$this->inventory = new PlayerInventory($this);
@@ -121,7 +112,7 @@ class Human extends Creature implements ProjectileSource, InventoryHolder{
 			}
 
 			if(isset($this->namedtag->Skin) and $this->namedtag->Skin instanceof Compound){
-+				$this->setSkin($this->namedtag->Skin["Data"], $this->namedtag->Skin["Name"]);
+				$this->setSkin($this->namedtag->Skin["Data"], $this->namedtag->Skin["Name"]);
 			}
 
 			$this->uuid = UUID::fromData($this->getId(), $this->getSkinData(), $this->getNameTag());
@@ -148,7 +139,7 @@ class Human extends Creature implements ProjectileSource, InventoryHolder{
 
 	public function getDrops(){
 		$drops = [];
-		if($this->inventory !== \null){
+		if($this->inventory !== null){
 			foreach($this->inventory->getContents() as $item){
 				$drops[] = $item;
 			}
@@ -161,7 +152,7 @@ class Human extends Creature implements ProjectileSource, InventoryHolder{
 		parent::saveNBT();
 		$this->namedtag->Inventory = new Enum("Inventory", []);
 		$this->namedtag->Inventory->setTagType(NBT::TAG_Compound);
-		if($this->inventory !== \null){
+		if($this->inventory !== null){
 			for($slot = 0; $slot < 9; ++$slot){
 				$hotbarSlot = $this->inventory->getHotbarSlotIndex($slot);
 				if($hotbarSlot !== -1){
@@ -201,7 +192,7 @@ class Human extends Creature implements ProjectileSource, InventoryHolder{
 			}
 		}
 
-		if(\strlen($this->getSkinData()) > 0){
+		if(strlen($this->getSkinData()) > 0){
 			$this->namedtag->Skin = new Compound("Skin", [
 				"Data" => new String("Data", $this->getSkinData()),
 				"Name" => new String("Name", $this->getSkinName())
@@ -213,20 +204,15 @@ class Human extends Creature implements ProjectileSource, InventoryHolder{
 		if($player !== $this and !isset($this->hasSpawned[$player->getLoaderId()])){
 			$this->hasSpawned[$player->getLoaderId()] = $player;
 
-//			if(\strlen($this->skin) < 64 * 32 * 4){
-//				throw new \InvalidStateException((new \ReflectionClass($this))->getShortName() . " must have a valid skin set");
-//			}
+			if(strlen($this->skin) < 64 * 32 * 4){
+				throw new \InvalidStateException((new \ReflectionClass($this))->getShortName() . " must have a valid skin set");
+			}
 
 
 			if(!($this instanceof Player)){
 				$this->server->updatePlayerListData($this->getUniqueId(), $this->getId(), $this->getName(), $this->skinName, $this->skin, [$player]);
 			}
 
-			$pk = new PlayerListPacket();
-			$pk->type = PlayerListPacket::TYPE_ADD;
-			$pk->entries[] = [$this->getUniqueId(), $this->getId(), $this->getDisplayName(), $this->skinName, $this->skin];
-			$player->dataPacket($pk);
-			
 			$pk = new AddPlayerPacket();
 			$pk->uuid = $this->getUniqueId();
 			$pk->username = $this->getName();
