@@ -581,6 +581,7 @@ class Item{
 			self::$list[self::COOKED_PORKCHOP] = CookedPorkchop::class;
 			self::$list[self::PAINTING] = Painting::class;
 			self::$list[self::GOLDEN_APPLE] = GoldenApple::class;
+			self::$list[self::ENCHANTED_GOLDEN_APPLE] = EnchantedGoldenApple::class;
 			self::$list[self::SIGN] = Sign::class;
 			self::$list[self::OAK_DOOR] = OakDoor::class;
 			self::$list[self::ACACIA_DOOR] = AcaciaDoor::class;

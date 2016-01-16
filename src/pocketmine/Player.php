@@ -3098,7 +3098,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 			}
 			$this->namedtag["Hunger"] = $this->getFood();
 			$this->namedtag["PlayerExp"] = $this->getPlayerExp();
-			$this->namedtag["PlayerLevel"] = $this->PlayerLevel();
+			$this->namedtag["PlayerLevel"] = $this->getPlayerLevel();
 			foreach($this->achievements as $achievement => $status){
 				$this->namedtag->Achievements[$achievement] = new Byte($achievement, $status === true?1:0);
 			}

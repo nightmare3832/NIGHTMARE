@@ -78,6 +78,7 @@ class Block extends Position implements Metadatable{
 	const NOTE_BLOCK = 25;
 	const BED_BLOCK = 26;
 	const GOLDEN_RAIL = 27;
+	const POWERED_RAIL = 27;
 	const DETECTOR_RAIL = 28;
 
 
