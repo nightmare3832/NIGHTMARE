@@ -40,6 +40,57 @@ class NoteBlock extends Transparent{
 		return 0.5;
 	}
 
+	public function getInstrument(){
+		$down = $this->getSide(Vector3::SIDE_DOWN);
+		switch($down->getId()){
+			case self::WOODEN_PLANK:
+			case self::NOTEBLOCK:
+			case self::CRAFTING_TABLE:
+				return NoteblockSound::INSTRUMENT_BASS;
+			break;
+			case self::SAND:
+			case self::SANDSTONE:
+			case self::SOUL_SAND:
+				return NoteblockSound::INSTRUMENT_TABOUR;
+			break;
+			case self::GLASS:
+			case self::GLASS_PANEL:
+			case self::GLOWSTONE_BLOCK:
+				return NoteblockSound::INSTRUMENT_CLICK;
+			break;
+			case self::COAL_ORE:
+			case self::DIAMOND_ORE:
+			case self::EMERALD_ORE:
+			case self::GLOWING_REDSTONE_ORE:
+			case self::GOLD_ORE:
+			case self::IRON_ORE:
+			case self::LAPIS_ORE:
+			case self::LIT_REDSTONE_ORE:
+			case self::NETHER_QUARTZ_ORE:
+			case self::REDSTONE_ORE:
+				return NoteblockSound::INSTRUMENT_BASS_DRUM;
+			break;
+			default:
+				return NoteblockSound::INSTRUMENT_PIANO;
+			break;
+		}
+	}
+
+	public function getPitch(){
+		if($this->meta < 24){
+			$this->meta ++;
+		}else{
+			$this->meta = 0;
+		}
+		$this->getLevel()->setBlock($this, $this);
+		return $this->meta * 1;
+	}
+
+	public function onActivate(Item $item, Player $player = null){
+		$this->getLevel()->addSound(new NoteblockSound($this, $this->getInstrument(), $this->getPitch()));
+		return true;
+	}
+
 	public function getDrops(Item $item){
 		return [];
 	}

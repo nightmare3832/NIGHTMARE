@@ -418,7 +418,7 @@ class CraftingManager{
 		$this->registerRecipe(new FurnaceRecipe(Item::get(Item::HARDENED_CLAY, 0, 1), Item::get(Item::CLAY_BLOCK, 0, 1)));
 	}
 
-	protected function registerStonecutter(){	
+	protected function registerStonecutter(){
 		$shapes = [
 			"slab" => [
 				"   ",
@@ -434,10 +434,10 @@ class CraftingManager{
 				"XXX",
 				"XXX",
 				"   "
-			],                   
+			],
 			"blockrecipe1" => [
 				"XX",
-				"XX"				
+				"XX"
 			],
 			"blockrecipe2X1" => [
 				"   ",
@@ -451,12 +451,12 @@ class CraftingManager{
 			"blockrecipe1X2" => [
 				"  ",
 				"AB"
-			]                          
-		];              
+			]
+		];
 
 		$buildRecipes = [];
 
-		// Single ingedient stone cutter recipes:                
+		// Single ingedient stone cutter recipes:
 			$RESULT_ITEMID = 0;         $RESULT_META = 1;           $INGREDIENT_ITEMID = 2;     $INGREDIENT_META = 3; $RECIPE_SHAPE = 4;$RESULT_AMOUNT = 5;                
 		$recipes = [
 			//RESULT_ITEM_ID            RESULT_META                 INGREDIENT_ITEMID           INGREDIENT_META     RECIPE_SHAPE        RESULT_AMOUNT
@@ -513,11 +513,10 @@ class CraftingManager{
 
 	private function sortAndAddRecipesArray(&$recipes){
 		// Sort the recipes based on the result item name with the bubblesort algoritm.
-		for ($i = 0; $i < \count($recipes); ++$i){
+		for($i = 0; $i < \count($recipes); ++$i){
 			$current = $recipes[$i];
 			$result = $current->getResult();
-			for ($j = \count($recipes)-1; $j > $i; --$j)
-			{
+			for($j = \count($recipes)-1; $j > $i; --$j){
 				if ($this->sort($result, $recipes[$j]->getResult())>0){
 					$swap = $current;
 					$current = $recipes[$j];
@@ -526,7 +525,7 @@ class CraftingManager{
 				}
 			}
 			$this->registerRecipe($current);
-		}            
+		}
 	}
 
 	private function createOneIngedientRecipe($recipeshape, $resultitem, $resultitemmeta, $resultitemamound, $ingedienttype, $ingredientmeta, $ingredientname, $inventoryType = ""){
@@ -545,8 +544,7 @@ class CraftingManager{
 			$recipe = ((new $fullClassName(Item::get($resultitem, $resultitemmeta, $resultitemamound),
 				...$recipeshape
 			))->setIngredient($ingredientname, Item::get($ingedienttype, $ingredientmeta, $ingredientamount)));
-		}
-		else{
+		}else{
 			// Process big recipe
 			$fullClassName = "pocketmine\\inventory\\".$inventoryType."BigShapedRecipe";
 			$recipe = ((new $fullClassName(Item::get($resultitem, $resultitemmeta, $resultitemamound),

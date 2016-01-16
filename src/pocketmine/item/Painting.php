@@ -5,6 +5,12 @@ namespace pocketmine\item;
 use pocketmine\block\Block;
 use pocketmine\level\Level;
 use pocketmine\Player;
+use pocketmine\entity\Painting as PaintingEntity;
+use pocketmine\nbt\tag\CompoundTag;
+use pocketmine\nbt\tag\EnumTag;
+use pocketmine\nbt\tag\StringTag;
+use pocketmine\nbt\tag\DoubleTag;
+use pocketmine\nbt\tag\FloatTag;
 
 
 class Painting extends Item{
@@ -54,6 +60,7 @@ class Painting extends Item{
 				["Pigscene", 4, 4],
 				["Flaming Skull", 4, 4],
 			];
+
 			$motive = $motives[mt_rand(0, count($motives) - 1)];
 			$data = [
 				"x" => $target->x,
@@ -62,13 +69,38 @@ class Painting extends Item{
 				"yaw" => $faces[$face] * 90,
 				"Motive" => $motive[0],
 			];
-			//TODO
-			//$e = $server->api->entity->add($level, ENTITY_OBJECT, OBJECT_PAINTING, $data);
-			//$e->spawnToAll();
-			/*if(($player->gamemode & 0x01) === 0x00){
-				$player->removeItem(Item::get($this->getId(), $this->getDamage(), 1));
-			}*/
-
+			
+			$nbt = new CompoundTag("", [
+				"Motive" => new StringTag("Motive", $data["Motive"]),
+				"Pos" => new EnumTag("Pos", [
+					new DoubleTag("", $data["x"]),
+					new DoubleTag("", $data["y"]),
+					new DoubleTag("", $data["z"])
+				]),
+				"Motion" => new EnumTag("Motion", [
+					new DoubleTag("", 0),
+					new DoubleTag("", 0),
+					new DoubleTag("", 0)
+				]),
+				"Rotation" => new EnumTag("Rotation", [
+					new FloatTag("", $data["yaw"]),
+					new FloatTag("", 0)
+				]),
+			]);
+			
+			$painting = new PaintingEntity($player->getLevel()->getChunk($block->getX() >> 4, $block->getZ() >> 4), $nbt);
+			$painting->spawnToAll();
+			
+			if($player->isSurvival()){
+				$item = $player->getInventory()->getItemInHand();
+				$count = $item->getCount();
+				if(--$count <= 0){
+					$player->getInventory()->setItemInHand(Item::get(Item::AIR));
+					return;
+				}
+				$item->setCount($count);
+				$player->getInventory()->setItemInHand($item);
+			}
 			return true;
 		}
 

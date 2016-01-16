@@ -1737,6 +1737,14 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		}else{
 			$nbt["NameTag"] = $this->username;
 		}
+		if(empty($nbt->Hunger) or empty($nbt->PlayerExp) or empty($nbt->PlayerLevel)){
+			$nbt->Hunger = new Short("Hunger", 20);
+			$nbt->PlayerExp = new Long("PlayerLevel", 0);
+			$nbt->PlayerLevel = new Long("PlayerLevel", 0);
+		}
+		$this->setFood($nbt["Hunger"]);
+		$this->setPlayerExp($nbt["PlayerExp"] > 0) ? $nbt["PlayerExp"] : 0;
+		$this->setPlayerLevel($nbt["PlayerLevel"] >= 0) ? $nbt["PlayerLevel"] : 0;
 		$this->gamemode = $nbt["playerGameType"] & 0x03;
 		if($this->server->getForceGamemode()){
 			$this->gamemode = $this->server->getGamemode();
@@ -2122,8 +2130,22 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 					if($item->getId() === Item::SNOWBALL){
 						$dir = $this->getDirectionVector();
 						$frontPos = $this->add($this->getDirectionVector()->multiply(1.1));
-						$nbt = new Compound("", ["Pos" => new Enum("Pos", [new Double("", $frontPos->x),new Double("", $frontPos->y + $this->getEyeHeight()),new Double("", $frontPos->z)]),
-								"Motion" => new Enum("Motion", [new Double("", $dir->x),new Double("", $dir->y),new Double("", $dir->z)]),"Rotation" => new Enum("Rotation", [new Float("", 0),new Float("", 0)])]);
+						$nbt = new Compound("", [
+							"Pos" => new Enum("Pos", [
+								new Double("", $this->x),
+								new Double("", $this->y + $this->getEyeHeight()),
+								new Double("", $this->z)
+							]),
+							"Motion" => new Enum("Motion", [
+								new Double("", $aimPos->x),
+								new Double("", $aimPos->y),
+								new Double("", $aimPos->z)
+							]),
+							"Rotation" => new Enum("Rotation", [
+								new Float("", $this->yaw),
+								new Float("", $this->pitch)
+							])
+						]);
 						$snowball = Entity::createEntity("Snowball", $this->chunk, $nbt);
 						$f = 1.5;
 						$snowball->setMotion($snowball->getMotion()->multiply($f));
@@ -2141,6 +2163,44 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 							}
 						}else{
 							$snowball->spawnToAll();
+						}
+					}
+					if($item->getId() === Item::EGG){
+						$dir = $this->getDirectionVector();
+						$frontPos = $this->add($this->getDirectionVector()->multiply(1.1));
+						$nbt = new Compound("", [
+							"Pos" => new Enum("Pos", [
+								new Double("", $this->x),
+								new Double("", $this->y + $this->getEyeHeight()),
+								new Double("", $this->z)
+							]),
+							"Motion" => new Enum("Motion", [
+								new Double("", $aimPos->x),
+								new Double("", $aimPos->y),
+								new Double("", $aimPos->z)
+							]),
+							"Rotation" => new Enum("Rotation", [
+								new Float("", $this->yaw),
+								new Float("", $this->pitch)
+							])
+						]);
+						$egg = Entity::createEntity("Egg", $this->chunk, $nbt);
+						$f = 1.5;
+						$snowball->setMotion($egg->getMotion()->multiply($f));
+						if($this->isSurvival()){
+							$item->setCount($item->getCount() - 1);
+							$this->inventory->setItemInHand($item->getCount() > 0?$item:Item::get(Item::AIR));
+						}
+						if($egg instanceof Projectile){
+							$this->server->getPluginManager()->callEvent($projectileEv = new ProjectileLaunchEvent($egg));
+							if($projectileEv->isCancelled()){
+								$egg->kill();
+							}else{
+								$egg->spawnToAll();
+								$this->level->addSound(new LaunchSound($this), $this->getViewers());
+							}
+						}else{
+							$egg->spawnToAll();
 						}
 					}
 					
@@ -3036,7 +3096,9 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 				$this->namedtag["SpawnY"] = (int) $this->spawnPosition->y;
 				$this->namedtag["SpawnZ"] = (int) $this->spawnPosition->z;
 			}
-			
+			$this->namedtag["Hunger"] = $this->getFood();
+			$this->namedtag["PlayerExp"] = $this->getPlayerExp();
+			$this->namedtag["PlayerLevel"] = $this->PlayerLevel();
 			foreach($this->achievements as $achievement => $status){
 				$this->namedtag->Achievements[$achievement] = new Byte($achievement, $status === true?1:0);
 			}
