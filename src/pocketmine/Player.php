@@ -2108,7 +2108,6 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 					break;
 				}elseif($packet->face === 0xff){
 					$aimPos = (new Vector3($packet->x / 32768, $packet->y / 32768, $packet->z / 32768))->normalize();
-					
 					if($this->isCreative()){
 						$item = $this->inventory->getItemInHand();
 					}elseif(!$this->inventory->getItemInHand()->deepEquals($packet->item)){
@@ -2117,19 +2116,15 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 					}else{
 						$item = $this->inventory->getItemInHand();
 					}
-					
 					$ev = new PlayerInteractEvent($this, $item, $aimPos, $packet->face, PlayerInteractEvent::RIGHT_CLICK_AIR);
-					
 					$this->server->getPluginManager()->callEvent($ev);
-					
 					if($ev->isCancelled()){
 						$this->inventory->sendHeldItem($this);
 						break;
 					}
 					
-					if($item->getId() === Item::SNOWBALL){
-						$dir = $this->getDirectionVector();
-						$frontPos = $this->add($this->getDirectionVector()->multiply(1.1));
+
+					if($item->getId() === Item::SNOWBALL || $item->getId() === Item::EGG){
 						$nbt = new Compound("", [
 							"Pos" => new Enum("Pos", [
 								new Double("", $this->x),
@@ -2146,61 +2141,27 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 								new Float("", $this->pitch)
 							])
 						]);
-						$snowball = Entity::createEntity("Snowball", $this->chunk, $nbt);
+						if($item->getId() === Item::SNOWBALL) {
+							$e = Entity::createEntity("Snowball", $this->chunk, $nbt, $this);
+						}else{
+							$e = Entity::createEntity("Egg", $this->chunk, $nbt, $this);
+						}
 						$f = 1.5;
-						$snowball->setMotion($snowball->getMotion()->multiply($f));
+						$e->setMotion($this->getDirectionVector()->multiply($f));
 						if($this->isSurvival()){
 							$item->setCount($item->getCount() - 1);
-							$this->inventory->setItemInHand($item->getCount() > 0?$item:Item::get(Item::AIR));
+							$this->inventory->setItemInHand($item->getCount() > 0 ? $item : Item::get(Item::AIR));
 						}
-						if($snowball instanceof Projectile){
-							$this->server->getPluginManager()->callEvent($projectileEv = new ProjectileLaunchEvent($snowball));
+						if($e instanceof Projectile){
+							$this->server->getPluginManager()->callEvent($projectileEv = new ProjectileLaunchEvent($e));
 							if($projectileEv->isCancelled()){
-								$snowball->kill();
+								$e->kill();
 							}else{
-								$snowball->spawnToAll();
+								$e->spawnToAll();
 								$this->level->addSound(new LaunchSound($this), $this->getViewers());
 							}
 						}else{
-							$snowball->spawnToAll();
-						}
-					}
-					if($item->getId() === Item::EGG){
-						$dir = $this->getDirectionVector();
-						$frontPos = $this->add($this->getDirectionVector()->multiply(1.1));
-						$nbt = new Compound("", [
-							"Pos" => new Enum("Pos", [
-								new Double("", $this->x),
-								new Double("", $this->y + $this->getEyeHeight()),
-								new Double("", $this->z)
-							]),
-							"Motion" => new Enum("Motion", [
-								new Double("", $aimPos->x),
-								new Double("", $aimPos->y),
-								new Double("", $aimPos->z)
-							]),
-							"Rotation" => new Enum("Rotation", [
-								new Float("", $this->yaw),
-								new Float("", $this->pitch)
-							])
-						]);
-						$egg = Entity::createEntity("Egg", $this->chunk, $nbt);
-						$f = 1.5;
-						$snowball->setMotion($egg->getMotion()->multiply($f));
-						if($this->isSurvival()){
-							$item->setCount($item->getCount() - 1);
-							$this->inventory->setItemInHand($item->getCount() > 0?$item:Item::get(Item::AIR));
-						}
-						if($egg instanceof Projectile){
-							$this->server->getPluginManager()->callEvent($projectileEv = new ProjectileLaunchEvent($egg));
-							if($projectileEv->isCancelled()){
-								$egg->kill();
-							}else{
-								$egg->spawnToAll();
-								$this->level->addSound(new LaunchSound($this), $this->getViewers());
-							}
-						}else{
-							$egg->spawnToAll();
+							$e->spawnToAll();
 						}
 					}
 					
