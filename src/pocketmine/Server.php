@@ -1450,6 +1450,13 @@ class Server{
 
 		$this->console = new CommandReader();
 
+		echo(" _   _ ___ ____ _   _ _____  __  __    _    ____  _____ \n");
+		echo("| \ | |_ _/ ___| | | |_   _||  \/  |  / \  |  _ \| ____|\n");
+		echo("|  \| || | |  _| |_| | | |  | |\/| | / _ \ | |_) |  _|  \n");
+		echo("| |\  || | |_| |  _  | | |  | |  | |/ ___ \|  _ <| |___ \n");
+		echo("|_| \_|___\____|_| |_| |_|  |_|  |_/_/   \_\_| \_\_____|\n");
+
+
 		$version = new VersionString($this->getPocketMineVersion());
 
 		$this->logger->info("Loading pocketmine.yml...");
