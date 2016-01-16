@@ -140,7 +140,6 @@ class Item{
 	const DOOR_BLOCK = 64;
 	const OAK_DOOR_BLOCK = 64;
 	const WOOD_DOOR_BLOCK = 64;
-	const WOODEN_DOOR = 64;
 	const LADDER = 65;
 	const RAIL = 66;
 	const COBBLE_STAIRS = 67;
@@ -392,6 +391,7 @@ class Item{
 	const PAINTING = 321;
 	const GOLDEN_APPLE = 322;
 	const SIGN = 323;
+	const WOODEN_DOOR = 324;
 	const OAK_DOOR = 324;
 	const BUCKET = 325;
 	const MINECART = 328;
@@ -582,7 +582,7 @@ class Item{
 			self::$list[self::COOKED_PORKCHOP] = CookedPorkchop::class;
 			self::$list[self::PAINTING] = Painting::class;
 			self::$list[self::GOLDEN_APPLE] = GoldenApple::class;
-			self::$list[self::ENCHANTED_GOLDEN_APPLE] = EnchantedGoldenApple::class;
+			//self::$list[self::ENCHANTED_GOLDEN_APPLE] = EnchantedGoldenApple::class;
 			self::$list[self::SIGN] = Sign::class;
 			self::$list[self::OAK_DOOR] = OakDoor::class;
 			self::$list[self::ACACIA_DOOR] = AcaciaDoor::class;
@@ -1589,6 +1589,10 @@ class Item{
 	 * @return bool
 	 */
 	public function isTool(){
+		return false;
+	}
+
+	public function canPlant(){
 		return false;
 	}
 
