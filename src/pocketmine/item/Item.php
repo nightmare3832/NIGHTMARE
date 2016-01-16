@@ -493,6 +493,7 @@ class Item{
 	const CLOWN_FISH = 461;
 	const PUFFER_FISH = 462;
 	const COOKED_SALMON = 463;
+	const ENCHANTED_GOLDEN_APPLE = 466;
 
 
 	/** @var \SplFixedArray */
@@ -856,9 +857,9 @@ class Item{
 		
 		Item::addCreativeItem(Item::get(Item::BROWN_MUSHROOM, 0));
 		Item::addCreativeItem(Item::get(Item::RED_MUSHROOM, 0));
+		Item::addCreativeItem(Item::get(Item::BROWN_MUSHROOM_BLOCK, 14));
+		Item::addCreativeItem(Item::get(Item::RED_MUSHROOM_BLOCK, 14));
 		Item::addCreativeItem(Item::get(Item::BROWN_MUSHROOM_BLOCK, 0));
-		Item::addCreativeItem(Item::get(Item::RED_MUSHROOM_BLOCK, 0));
-		Item::addCreativeItem(Item::get(Item::BROWN_MUSHROOM_BLOCK, 15));
 		Item::addCreativeItem(Item::get(Item::RED_MUSHROOM_BLOCK, 15));
 		Item::addCreativeItem(Item::get(Item::CACTUS, 0));
 		Item::addCreativeItem(Item::get(Item::MELON_BLOCK, 0));
@@ -1083,11 +1084,10 @@ class Item{
 		self::addCreativeItem(Item::get(Item::PUMPKIN_SEEDS, 0));
 		self::addCreativeItem(Item::get(Item::MELON_SEEDS, 0)); 
 		self::addCreativeItem(Item::get(Item::BEETROOT_SEEDS, 0));
-		self::addCreativeItem(Item::get(Item::BEETROOT_BLOCK, 0));
 		self::addCreativeItem(Item::get(Item::EGG, 0));
 		self::addCreativeItem(Item::get(Item::APPLE, 0));
 		self::addCreativeItem(Item::get(Item::GOLDEN_APPLE, 0));
-		self::addCreativeItem(Item::get(Item::GOLDEN_APPLE, 1)); 
+		self::addCreativeItem(Item::get(Item::ENCHANTED_GOLDEN_APPLE, 1)); 
 		self::addCreativeItem(Item::get(Item::RAW_FISH, 0));
 		self::addCreativeItem(Item::get(Item::RAW_SALMON, 0));
 		self::addCreativeItem(Item::get(Item::CLOWN_FISH, 0));
@@ -1150,6 +1150,9 @@ class Item{
 		}
 	 	for ($i = 0; $i <= 35; $i++){
 			self::addCreativeItem(Item::get(Item::SPLASH_POTION, $i));
+		}
+	 	for ($i = 0; $i <= 35; $i++){
+			self::addCreativeItem(Item::get(Item::ENCHANTED_BOOK, $i));
 		}
 	}
 	
