@@ -35,6 +35,10 @@ class LitRedstoneLamp extends Solid{
 		return "Lit Redstone Lamp";
 	}
 
+	public function getLightLevel(){
+		return 15;
+	}
+
 	public function onUpdate($type){
 		if($type === Level::BLOCK_UPDATE_NORMAL or $type === Level::BLOCK_UPDATE_TOUCH){
 			$this->getLevel()->setBlock($this, Block::get(123, $this->meta), \false, \true);
