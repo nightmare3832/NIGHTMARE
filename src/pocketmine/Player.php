@@ -2567,6 +2567,19 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 					}
 				}
 				break;
+			case ProtocolInfo::CONTAINER_SET_CONTENT_PACKET:
+				$inventory = $this->getInventory();
+				if($this->isCreative() and $this->spawned and $inventory != null){
+					for($count=0;$count < 9;$count++){
+						$item = $inventory->getItem($count);
+							if($item->getID() != Item::getCreativeItem($count)->getID()){
+								$packet->slots[$count] = $item;
+							}
+					}
+					$inventory->sendContents($this);
+					$inventory->sendArmorContents($this);
+				}
+				break;
 			case ProtocolInfo::CONTAINER_CLOSE_PACKET:
 				if($this->spawned === false or $packet->windowid === 0){
 					break;

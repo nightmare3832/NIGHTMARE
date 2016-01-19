@@ -14,6 +14,7 @@ use pocketmine\entity\Effect;
 use pocketmine\entity\Entity;
 use pocketmine\entity\Egg;
 use pocketmine\entity\FallingSand;
+use pocketmine\entity\Painting;
 use pocketmine\entity\Human;
 use pocketmine\entity\Item as DroppedItem;
 use pocketmine\entity\PrimedTNT;
@@ -2555,6 +2556,7 @@ class Server{
 		Entity::registerEntity(DroppedItem::class);
 		Entity::registerEntity(Egg::class);
 		Entity::registerEntity(FallingSand::class);
+		Entity::registerEntity(Painting::class);
 		Entity::registerEntity(PrimedTNT::class);
 		Entity::registerEntity(Snowball::class);
 		Entity::registerEntity(Villager::class);
