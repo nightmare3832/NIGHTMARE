@@ -43,14 +43,14 @@ class LitRedstoneLamp extends Solid{
 		return true;
 	}
 
-	public function onUpdate($type){
-		if($type === Level::BLOCK_UPDATE_NORMAL or $type === Level::BLOCK_UPDATE_TOUCH){
-			$this->getLevel()->setBlock($this, Block::get(123, $this->meta), \false, \true);
-
-			return Level::BLOCK_UPDATE_WEAK;
+	public function onRedstoneUpdate($type, $power){
+		switch($type){
+			case 2:
+				$this->id = 123;
+				$this->getLevel()->setBlock($this, $this, true, false);
+				return true;
+			break;
 		}
-
-		return \false;
 	}
 
 	public function getDrops(Item $item){

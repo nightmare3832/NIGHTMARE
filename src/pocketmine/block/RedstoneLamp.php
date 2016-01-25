@@ -41,6 +41,16 @@ class RedstoneLamp extends Solid{
 		return true;
 	}
 
+	public function onRedstoneUpdate($type, $power){
+		switch($type){
+			case 1:
+				$this->id = 124;
+				$this->getLevel()->setBlock($this, $this, true, false);
+				return true;
+			break;
+		}
+	}
+
 	public function getDrops(Item $item){
 		return [$this->id, $this->meta, 1];
 	}

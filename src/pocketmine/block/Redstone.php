@@ -23,6 +23,7 @@ namespace pocketmine\block;
 
 use pocketmine\item\Item;
 use pocketmine\item\Tool;
+use pocketmine\Player;
 
 class Redstone extends Solid{
 
@@ -49,7 +50,7 @@ class Redstone extends Solid{
 	}
 
 	public function place(Item $item, Block $block, Block $target, $face, $fx, $fy, $fz, Player $player = null){
-		$this->onRedstoneUpdate(1,16);
+		$this->RedstoneUpdate(1,16);
 	}
 
 	public function getDrops(Item $item){

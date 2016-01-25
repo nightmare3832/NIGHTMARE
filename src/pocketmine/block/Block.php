@@ -666,13 +666,43 @@ class Block extends Position implements Metadatable{
 
 	}
 
-	public function onRedstoneUpdate($type,$power){
-		for($side = 0; $side <= 5; $side++){
-			$sideblock = $this->getSide($side);
-				if($sideblock->isRedstone){
-					
+	public function RedstoneUpdate($type,$power){
+		switch($type){
+			case 1://Place
+				for($side = 0; $side <= 5; $side++){
+					$sideblock = $this->getSide($side);
+						if($sideblock->isRedstone){
+							if($power > 1){
+								$sideblock->onRedstoneUpdate(1,$power--);
+							}
+						}
 				}
+			break;
+			case 2://Break
+				for($side = 0; $side <= 5; $side++){
+					$sideblock = $this->getSide($side);
+						if($sideblock->isRedstone){
+							if($power > 1){
+								$sideblock->onRedstoneUpdate(2,$power--);
+							}
+						}
+				}
+			break;
+			case 3://Chenge
+				for($side = 0; $side <= 5; $side++){
+					$sideblock = $this->getSide($side);
+						if($sideblock->isRedstone){
+							if($power > 1){
+								$sideblock->onRedstoneUpdate(3,$power--);
+							}
+						}
+				}
+			break;
 		}
+	}
+
+	public function onRedstoneUpdate($type,$power){
+
 	}
 
 	public function isRedstone(){
