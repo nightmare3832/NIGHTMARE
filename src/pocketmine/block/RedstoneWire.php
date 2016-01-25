@@ -41,6 +41,10 @@ class RedstoneWire extends Solid{
 		return "Redstone Dast";
 	}
 
+	public function isRedstone(){
+		return true;
+	}
+
 	public function getDrops(Item $item){
 		return [
 			[$this->id, 0, 1],

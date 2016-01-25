@@ -41,6 +41,9 @@ class RedstoneTorch extends Flowable{
 		return "Redstone Torch";
 	}
 
+	public function isRedstone(){
+		return true;
+	}
 
 	public function onUpdate($type){
 		if($type === Level::BLOCK_UPDATE_NORMAL){

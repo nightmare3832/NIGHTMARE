@@ -37,6 +37,10 @@ class RedstoneLamp extends Solid{
 		return "Redstone Lamp";
 	}
 
+	public function isRedstone(){
+		return true;
+	}
+
 	public function getDrops(Item $item){
 		return [$this->id, $this->meta, 1];
 	}
