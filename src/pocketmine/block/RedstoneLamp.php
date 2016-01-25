@@ -48,6 +48,11 @@ class RedstoneLamp extends Solid{
 				$this->getLevel()->setBlock($this, $this, true, false);
 				return true;
 			break;
+			case 2:
+				$this->id = 123;
+				$this->getLevel()->setBlock($this, $this, true, false);
+				return true;
+			break;
 		}
 	}
 

@@ -666,15 +666,13 @@ class Block extends Position implements Metadatable{
 
 	}
 
-	public function RedstoneUpdate($type,$power){
+	public function RedstoneUpdate($type,$power = 0){
 		switch($type){
 			case 1://Place
 				for($side = 0; $side <= 5; $side++){
 					$sideblock = $this->getSide($side);
 						if($sideblock->isRedstone){
-							if($power > 1){
-								$sideblock->onRedstoneUpdate(1,$power--);
-							}
+							$sideblock->onRedstoneUpdate(1,$power);
 						}
 				}
 			break;
@@ -682,9 +680,7 @@ class Block extends Position implements Metadatable{
 				for($side = 0; $side <= 5; $side++){
 					$sideblock = $this->getSide($side);
 						if($sideblock->isRedstone){
-							if($power > 1){
-								$sideblock->onRedstoneUpdate(2,$power--);
-							}
+							$sideblock->onRedstoneUpdate(2,$power);
 						}
 				}
 			break;
@@ -692,9 +688,7 @@ class Block extends Position implements Metadatable{
 				for($side = 0; $side <= 5; $side++){
 					$sideblock = $this->getSide($side);
 						if($sideblock->isRedstone){
-							if($power > 1){
-								$sideblock->onRedstoneUpdate(3,$power--);
-							}
+							$sideblock->onRedstoneUpdate(3,$power);
 						}
 				}
 			break;

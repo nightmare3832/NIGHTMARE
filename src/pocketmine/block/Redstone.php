@@ -53,6 +53,11 @@ class Redstone extends Solid{
 		$this->RedstoneUpdate(1,16);
 	}
 
+	public function onBreak(Item $item){
+		$this->getLevel()->setBlock($this, new Air(), true, true);
+		$this->RedstoneUpdate(2);
+	}
+
 	public function getDrops(Item $item){
 		if($item->isPickaxe() >= 1){
 			return [

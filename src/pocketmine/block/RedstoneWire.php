@@ -45,6 +45,21 @@ class RedstoneWire extends Solid{
 		return true;
 	}
 
+	public function onRedstoneUpdate($type, $power){
+		switch($type){
+			case 1:
+				$this->meta = $power;
+				$this->getLevel()->setBlock($this, $this, true, false);
+				return true;
+			break;
+			case 2:
+				$this->meta = $power;
+				$this->getLevel()->setBlock($this, $this, true, false);
+				return true;
+			break;
+		}
+	}
+
 	public function getDrops(Item $item){
 		return [
 			[$this->id, 0, 1],

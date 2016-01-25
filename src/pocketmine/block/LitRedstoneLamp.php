@@ -45,6 +45,11 @@ class LitRedstoneLamp extends Solid{
 
 	public function onRedstoneUpdate($type, $power){
 		switch($type){
+			case 1:
+				$this->id = 124;
+				$this->getLevel()->setBlock($this, $this, true, false);
+				return true;
+			break;
 			case 2:
 				$this->id = 123;
 				$this->getLevel()->setBlock($this, $this, true, false);
