@@ -44,6 +44,10 @@ class Redstone extends Solid{
 		return "Redstone Block";
 	}
 
+	public function place(Item $item, Block $block, Block $target, $face, $fx, $fy, $fz, Player $player = null){
+		$this->onRedstoneUpdate(1,16);
+	}
+
 	public function getDrops(Item $item){
 		if($item->isPickaxe() >= 1){
 			return [

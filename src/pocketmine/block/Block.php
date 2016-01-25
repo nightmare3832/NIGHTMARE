@@ -336,6 +336,7 @@ class Block extends Position implements Metadatable{
 			"isPlaceable" => "canBePlaced",
 			"isReplaceable" => "canBeReplaced",
 			"isTransparent" => "isTransparent",
+			"isRedstone" => "isRedstone",
 			"isSolid" => "isSolid",
 			"isFlowable" => "canBeFlowedInto",
 			"isActivable" => "canBeActivated",
@@ -663,6 +664,19 @@ class Block extends Position implements Metadatable{
 	 */
 	public function onUpdate($type){
 
+	}
+
+	public function onRedstoneUpdate($type,$power){
+		for($side = 0; $side <= 5; $side++){
+			$sideblock = $this->getSide($side);
+				if($sideblock->isRedstone){
+					
+				}
+		}
+	}
+
+	public function isRedstone(){
+		return false;
 	}
 
 	/**
