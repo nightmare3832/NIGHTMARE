@@ -280,6 +280,10 @@ class Block extends Position implements Metadatable{
 
 	const DOUBLE_PLANT = 175;
 
+	const RED_SANDSTONE = 179;
+	const RED_SANDSTONE_STAIRS = 180;
+	const RED_SANDSTONE_SLAB = 182;
+
 	const FENCE_GATE_SPRUCE = 183;
 	const FENCE_GATE_BIRCH = 184;
 	const FENCE_GATE_JUNGLE = 185;
@@ -418,6 +422,7 @@ class Block extends Position implements Metadatable{
 			self::$list[self::LAPIS_ORE] = LapisOre::class;
 			self::$list[self::LAPIS_BLOCK] = Lapis::class;
 			self::$list[self::SANDSTONE] = Sandstone::class;
+			self::$list[self::RED_SANDSTONE] = RedSandstone::class;
 			self::$list[self::BED_BLOCK] = Bed::class;
 			self::$list[self::COBWEB] = Cobweb::class;
 			self::$list[self::TALL_GRASS] = TallGrass::class;
@@ -502,6 +507,7 @@ class Block extends Position implements Metadatable{
 			self::$list[self::END_PORTAL_FRAME] = EndPortalFrame::class;
 			self::$list[self::END_STONE] = EndStone::class;
 			self::$list[self::SANDSTONE_STAIRS] = SandstoneStairs::class;
+			self::$list[self::RED_SANDSTONE_STAIRS] = SandstoneStairs::class;
 			self::$list[self::EMERALD_ORE] = EmeraldOre::class;
 
 			self::$list[self::EMERALD_BLOCK] = Emerald::class;
