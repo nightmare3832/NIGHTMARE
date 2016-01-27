@@ -72,6 +72,7 @@ class Block extends Position implements Metadatable{
 	const GLASS = 20;
 	const LAPIS_ORE = 21;
 	const LAPIS_BLOCK = 22;
+	const DISPENSER = 23;
 
 	const SANDSTONE = 24;
 
@@ -372,6 +373,7 @@ class Block extends Position implements Metadatable{
 			self::$list[self::UNPOWERED_COMPARATOR] = UnpoweredRedstoneComparator::class;
 			self::$list[self::POWERED_COMPARATOR] = PoweredRedstoneComparator::class;
 			self::$list[self::DROPPER] = Dropper::class;
+			self::$list[self::DISPENSER] = Dispenser::class;
 			self::$list[self::HOPPER] = Hopper::class;
 			self::$list[self::SLIME_BLOCK] = SlimeBlock::class;
 			self::$list[self::UNPOWERED_REPEATER] = UnpoweredRedstoneRepeater::class;
