@@ -664,6 +664,7 @@ class Item{
 			self::$list[self::BEETROOT_SEEDS] = BeetrootSeeds::class;
 			self::$list[self::BEETROOT_SOUP] = BeetrootSoup::class;
 			self::$list[self::CAULDRON] = Cauldron::class;
+			self::$list[self::REDSTONE_REPEATER] = RedstoneRepeater::class;
 
 			for($i = 0; $i < 256; ++$i){
 				if(Block::$list[$i] !== null){

@@ -169,6 +169,9 @@ class Block extends Position implements Metadatable{
 	const JACK_O_LANTERN = 91;
 	const CAKE_BLOCK = 92;
 
+	const UNPOWERED_REPEATER = 93;
+	const POWERED_REPEATER = 94;
+
 	const TRAPDOOR = 96;
 	const WOODEN_TRAPDOOR = 96;
 	const WOOD_TRAPDOOR = 96;
@@ -354,6 +357,8 @@ class Block extends Position implements Metadatable{
 			self::$solid = new \SplFixedArray(256);
 			self::$hardness = new \SplFixedArray(256);
 			self::$transparent = new \SplFixedArray(256);
+			self::$list[self::UNPOWERED_REPEATER] = UnpoweredRedstoneRepeater::class;
+			self::$list[self::POWERED_REPEATER] = PoweredRedstoneRepeater::class;
 			self::$list[self::CAULDRON] = Cauldron::class;
 			self::$list[self::RAIL] = Rail::class;
 			self::$list[self::GOLDEN_RAIL] = PoweredRail::class;
