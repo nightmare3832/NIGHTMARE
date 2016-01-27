@@ -474,7 +474,7 @@ class Item{
 	const QUARTZ = 406;
 	const NETHER_QUARTZ = 406;
 	const MINECART_WITH_TNT = 407;////
-	const MINECART_WITH_FOPPER = 408;////
+	const MINECART_WITH_HOPPER = 408;////
 	const RAW_RABBIT = 411;
 	const COOKED_RABBIT = 412;
 	const RABBIT_STEW = 413;
@@ -665,6 +665,7 @@ class Item{
 			self::$list[self::BEETROOT_SOUP] = BeetrootSoup::class;
 			self::$list[self::CAULDRON] = Cauldron::class;
 			self::$list[self::REDSTONE_REPEATER] = RedstoneRepeater::class;
+			self::$list[self::REDSTONE_REPEATER] = RedstoneComparator::class;
 
 			for($i = 0; $i < 256; ++$i){
 				if(Block::$list[$i] !== null){
@@ -971,6 +972,9 @@ class Item{
 		Item::addCreativeItem(Item::get(Item::CLOCK, 0));
 		Item::addCreativeItem(Item::get(Item::COMPASS, 0));
 		Item::addCreativeItem(Item::get(Item::MINECART, 0));
+		Item::addCreativeItem(Item::get(Item::MINECART_WITH_CHEST, 0));
+		Item::addCreativeItem(Item::get(Item::MINECART_WITH_HOPPER, 0));
+		Item::addCreativeItem(Item::get(Item::MINECART_WITH_TNT, 0));
 		Item::addCreativeItem(Item::get(Item::BOAT, 0)); // Oak
 		Item::addCreativeItem(Item::get(Item::BOAT, 1)); // Spruce
 		Item::addCreativeItem(Item::get(Item::BOAT, 2)); // Birch
@@ -1067,9 +1071,9 @@ class Item{
 		Item::addCreativeItem(Item::get(Item::TRIPWIRE_HOOK));
 		Item::addCreativeItem(Item::get(Item::REDSTONE_REPEATER));
 		Item::addCreativeItem(Item::get(Item::REDSTONE_COMPARATOR));
-		//Item::addCreativeItem(Item::get(Item::DISPENSER));
-		//Item::addCreativeItem(Item::get(Item::DROPPER));
-		//Item::addCreativeItem(Item::get(Item::HOPPER));
+		Item::addCreativeItem(Item::get(Item::DISPENSER, 2));
+		Item::addCreativeItem(Item::get(Item::DROPPER, 2));
+		Item::addCreativeItem(Item::get(Item::HOPPER));
 		Item::addCreativeItem(Item::get(Item::SNOWBALL));
 	}
 	
