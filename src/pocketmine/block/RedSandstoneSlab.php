@@ -68,32 +68,32 @@ class RedSandstoneSlab extends Transparent{
 	public function place(Item $item, Block $block, Block $target, $face, $fx, $fy, $fz, Player $player = null){
 		$this->meta &= 0x07;
 		if($face === 0){
-			if($target->getId() === self::SLAB and ($target->getDamage() & 0x08) === 0x08 and ($target->getDamage() & 0x07) === ($this->meta & 0x07)){
-				$this->getLevel()->setBlock($target, Block::get(Item::DOUBLE_SLAB, $this->meta), true);
+			if($target->getId() === self::RED_SANDSTONE_SLAB and ($target->getDamage() & 0x08) === 0x08 and ($target->getDamage() & 0x07) === ($this->meta & 0x07)){
+				$this->getLevel()->setBlock($target, Block::get(Item::RED_SANDSTONE_DOUBLE_SLAB, $this->meta), true);
 
 				return true;
-			}elseif($block->getId() === self::SLAB and ($block->getDamage() & 0x07) === ($this->meta & 0x07)){
-				$this->getLevel()->setBlock($block, Block::get(Item::DOUBLE_SLAB, $this->meta), true);
+			}elseif($block->getId() === self::RED_SANDSTONE_SLAB and ($block->getDamage() & 0x07) === ($this->meta & 0x07)){
+				$this->getLevel()->setBlock($block, Block::get(Item::RED_SANDSTONE_DOUBLE_SLAB, $this->meta), true);
 
 				return true;
 			}else{
 				$this->meta |= 0x08;
 			}
 		}elseif($face === 1){
-			if($target->getId() === self::SLAB and ($target->getDamage() & 0x08) === 0 and ($target->getDamage() & 0x07) === ($this->meta & 0x07)){
-				$this->getLevel()->setBlock($target, Block::get(Item::DOUBLE_SLAB, $this->meta), true);
+			if($target->getId() === self::RED_SANDSTONE_SLAB and ($target->getDamage() & 0x08) === 0 and ($target->getDamage() & 0x07) === ($this->meta & 0x07)){
+				$this->getLevel()->setBlock($target, Block::get(Item::RED_SANDSTONE_DOUBLE_SLAB, $this->meta), true);
 
 				return true;
-			}elseif($block->getId() === self::SLAB and ($block->getDamage() & 0x07) === ($this->meta & 0x07)){
-				$this->getLevel()->setBlock($block, Block::get(Item::DOUBLE_SLAB, $this->meta), true);
+			}elseif($block->getId() === self::RED_SANDSTONE_SLAB and ($block->getDamage() & 0x07) === ($this->meta & 0x07)){
+				$this->getLevel()->setBlock($block, Block::get(Item::RED_SANDSTONE_DOUBLE_SLAB, $this->meta), true);
 
 				return true;
 			}
 			//TODO: check for collision
 		}else{
-			if($block->getId() === self::SLAB){
+			if($block->getId() === self::RED_SANDSTONE_SLAB){
 				if(($block->getDamage() & 0x07) === ($this->meta & 0x07)){
-					$this->getLevel()->setBlock($block, Block::get(Item::DOUBLE_SLAB, $this->meta), true);
+					$this->getLevel()->setBlock($block, Block::get(Item::RED_SANDSTONE_DOUBLE_SLAB, $this->meta), true);
 
 					return true;
 				}
@@ -106,7 +106,7 @@ class RedSandstoneSlab extends Transparent{
 			}
 		}
 
-		if($block->getId() === self::SLAB and ($target->getDamage() & 0x07) !== ($this->meta & 0x07)){
+		if($block->getId() === self::RED_SANDSTONE_SLAB and ($target->getDamage() & 0x07) !== ($this->meta & 0x07)){
 			return false;
 		}
 		$this->getLevel()->setBlock($block, $this, true, true);

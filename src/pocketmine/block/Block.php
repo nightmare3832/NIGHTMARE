@@ -282,6 +282,7 @@ class Block extends Position implements Metadatable{
 
 	const RED_SANDSTONE = 179;
 	const RED_SANDSTONE_STAIRS = 180;
+	const RED_SANDSTONE_DOUBLE_SLAB = 181;
 	const RED_SANDSTONE_SLAB = 182;
 
 	const FENCE_GATE_SPRUCE = 183;
