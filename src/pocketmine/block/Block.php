@@ -234,6 +234,9 @@ class Block extends Position implements Metadatable{
 
 	const ANVIL = 145;
 
+	const UNPOWERED_COMPARATOR = 149;
+	const POWERED_COMPARATOR = 150;
+
 	const REDSTONE_BLOCK = 152;
 	const QUARTZ_ORE = 153;
 	const HEAD = 144;
@@ -366,6 +369,8 @@ class Block extends Position implements Metadatable{
 			self::$solid = new \SplFixedArray(256);
 			self::$hardness = new \SplFixedArray(256);
 			self::$transparent = new \SplFixedArray(256);
+			self::$list[self::UNPOWERED_COMPARATOR] = UnpoweredRedstoneComparator::class;
+			self::$list[self::POWERED_COMPARATOR] = PoweredRedstoneComparator::class;
 			self::$list[self::DROPPER] = Dropper::class;
 			self::$list[self::HOPPER] = Hopper::class;
 			self::$list[self::SLIME_BLOCK] = SlimeBlock::class;
