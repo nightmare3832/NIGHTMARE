@@ -213,6 +213,7 @@ class Item{
 	const DRAGON_EGG = 122;
 	const REDSTONE_LAMP = 123;
 	const LIT_REDSTONE_LAMP = 124;
+	const DROPPER = 125;////
 	const ACTIVATOR_RAIL = 126;
 	const COCOA_POD = 127;
 	const COCOA_BEANS = 127;
@@ -262,8 +263,6 @@ class Item{
 	const WOODEN_SLAB = 158;
 	const WOOD_SLABS = 158;
 	const WOODEN_SLABS = 158;
-
-	const DROPPER = 158;////
 	const STAINED_CLAY = 159;
 	const STAINED_HARDENED_CLAY = 159;
 	const STAINED_GLASS_PANE = 160;
@@ -1071,9 +1070,9 @@ class Item{
 		Item::addCreativeItem(Item::get(Item::TRIPWIRE_HOOK));
 		Item::addCreativeItem(Item::get(Item::REDSTONE_REPEATER));
 		Item::addCreativeItem(Item::get(Item::REDSTONE_COMPARATOR));
-		Item::addCreativeItem(Item::get(Item::DISPENSER, 2));
-		Item::addCreativeItem(Item::get(Item::DROPPER, 2));
-		Item::addCreativeItem(Item::get(Item::HOPPER));
+		Item::addCreativeItem(Item::get(Item::DISPENSER, 3));
+		Item::addCreativeItem(Item::get(Item::DROPPER, 3));
+		Item::addCreativeItem(Item::get(Item::HOPPER, 3));
 		Item::addCreativeItem(Item::get(Item::SNOWBALL));
 	}
 	

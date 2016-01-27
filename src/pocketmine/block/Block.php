@@ -210,6 +210,7 @@ class Block extends Position implements Metadatable{
 	const END_STONE = 121;
 	const REDSTONE_LAMP = 123;
 	const LIT_REDSTONE_LAMP = 124;
+	const DROPPER = 125;
 
 	const SANDSTONE_STAIRS = 128;
 	const EMERALD_ORE = 129;
@@ -262,7 +263,6 @@ class Block extends Position implements Metadatable{
 	const WOODEN_SLAB = 158;
 	const WOOD_SLABS = 158;
 	const WOODEN_SLABS = 158;
-	const DROPPER = 158;
 	const STAINED_CLAY = 159;
 	const STAINED_HARDENED_CLAY = 159;
 
