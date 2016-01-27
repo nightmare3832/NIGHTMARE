@@ -78,7 +78,6 @@ class Block extends Position implements Metadatable{
 	const NOTE_BLOCK = 25;
 	const BED_BLOCK = 26;
 	const GOLDEN_RAIL = 27;
-	const POWERED_RAIL = 27;
 	const DETECTOR_RAIL = 28;
 
 
@@ -201,6 +200,8 @@ class Block extends Position implements Metadatable{
 	const ENCHANTING_TABLE = 116;
 	const ENCHANT_TABLE = 116;
 	const ENCHANTMENT_TABLE = 116;
+
+	const CAULDRON = 118;
 
 	const END_PORTAL_FRAME = 120;
 	const END_STONE = 121;
@@ -353,6 +354,7 @@ class Block extends Position implements Metadatable{
 			self::$solid = new \SplFixedArray(256);
 			self::$hardness = new \SplFixedArray(256);
 			self::$transparent = new \SplFixedArray(256);
+			self::$list[self::CAULDRON] = Cauldron::class;
 			self::$list[self::RAIL] = Rail::class;
 			self::$list[self::GOLDEN_RAIL] = PoweredRail::class;
 			self::$list[self::DETECTOR_RAIL] = DetectorRail::class;
@@ -869,7 +871,11 @@ class Block extends Position implements Metadatable{
 		}
 
 		if($item->isSword()){
-			$base *= 0.5;
+			if($this->getId() == 30){
+				$base = 0.5;
+			}else{
+				$base *= 0.5;
+			}
 		}
 
 		return $base;
