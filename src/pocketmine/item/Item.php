@@ -84,13 +84,12 @@ class Item{
 	const GLASS = 20;
 	const LAPIS_ORE = 21;
 	const LAPIS_BLOCK = 22;
-	const DISPENSER = 23;
+	const DISPENSER = 23;////
 	const SANDSTONE = 24;
 	const NOTEBLOCK = 25;
 	const BED_BLOCK = 26;
 	const POWERED_RAIL = 27;
 	const DETECTOR_RAIL = 28;
-	// const STICKY_PISTON = 27;
 	const COBWEB = 30;
 	const TALL_GRASS = 31;
 	const BUSH = 32;
@@ -207,15 +206,13 @@ class Item{
 	const ENCHANT_TABLE = 116;
 	const ENCHANTMENT_TABLE = 116;
 	const BREWING_STAND_BLOCK = 117;
-	const CAULDRON = 118;
+	const CAULDRON_BLOCK = 118;
 	const END_PORTAL = 119;
 	const END_PORTAL_FRAME = 120;
 	const END_STONE = 121;
 	const DRAGON_EGG = 122;
 	const REDSTONE_LAMP = 123;
 	const LIT_REDSTONE_LAMP = 124;
-	// const DOUBLE_WOODEN_SLAB = 125;
-	// const WOODEN_SLAB = 126;
 	const ACTIVATOR_RAIL = 126;
 	const COCOA_POD = 127;
 	const COCOA_BEANS = 127;
@@ -260,10 +257,13 @@ class Item{
 	const DOUBLE_WOODEN_SLAB = 157;
 	const DOUBLE_WOOD_SLABS = 157;
 	const DOUBLE_WOODEN_SLABS = 157;
+
 	const WOOD_SLAB = 158;
 	const WOODEN_SLAB = 158;
 	const WOOD_SLABS = 158;
 	const WOODEN_SLABS = 158;
+
+	const DROPPER = 158;////
 	const STAINED_CLAY = 159;
 	const STAINED_HARDENED_CLAY = 159;
 	const STAINED_GLASS_PANE = 160;
@@ -410,6 +410,7 @@ class Item{
 	const PAPER = 339;
 	const BOOK = 340;
 	const SLIMEBALL = 341;
+	const MINECART_WITH_CHEST = 342;////
 	const EGG = 344;
 	const COMPASS = 345;
 	const FISHING_ROD = 346;
@@ -422,6 +423,7 @@ class Item{
 	const SUGAR = 353;
 	const CAKE = 354;
 	const BED = 355;
+	const REDSTONE_REPEATER = 356;////
 	const COOKIE = 357;
 	const SHEARS = 359;
 	const MELON = 360;
@@ -447,11 +449,13 @@ class Item{
 	const BLAZE_POWDER = 377;
 	const MAGMA_CREAM = 378;
 	const BREWING_STAND = 379;
+	const CAULDRON = 380;////
 	const GLISTERING_MELON = 382;
 	const SPAWN_EGG = 383;
 	const EXP_BOTTLE = 384;
 	const BOTTLE_OF_ENCHANTING = 384;
 	const EMERALD = 388;
+	const ITEM_FRAME = 389;////
 	const FLOWER_POT = 390;
 	const CARROT = 391;
 	const CARROTS = 391;
@@ -465,9 +469,12 @@ class Item{
 	const SKULL = 397;
 	const PUMPKIN_PIE = 400;
 	const ENCHANTED_BOOK = 403;
+	const REDSTONE_COMPARATOR = 404;////
 	const NETHER_BRICK = 405;
 	const QUARTZ = 406;
 	const NETHER_QUARTZ = 406;
+	const MINECART_WITH_TNT = 407;////
+	const MINECART_WITH_FOPPER = 408;////
 	const RAW_RABBIT = 411;
 	const COOKED_RABBIT = 412;
 	const RABBIT_STEW = 413;
@@ -656,6 +663,7 @@ class Item{
 			self::$list[self::BEETROOT] = Beetroot::class;
 			self::$list[self::BEETROOT_SEEDS] = BeetrootSeeds::class;
 			self::$list[self::BEETROOT_SOUP] = BeetrootSoup::class;
+			self::$list[self::CAULDRON] = Cauldron::class;
 
 			for($i = 0; $i < 256; ++$i){
 				if(Block::$list[$i] !== null){
@@ -826,12 +834,14 @@ class Item{
 		Item::addCreativeItem(Item::get(Item::BED, 0));
 		Item::addCreativeItem(Item::get(Item::BOOKSHELF, 0));
 		Item::addCreativeItem(Item::get(Item::PAINTING, 0));
+		Item::addCreativeItem(Item::get(Item::ITEM_FRAME, 0));
 		Item::addCreativeItem(Item::get(Item::WORKBENCH, 0));
 		Item::addCreativeItem(Item::get(Item::STONECUTTER, 0));
 		Item::addCreativeItem(Item::get(Item::CHEST, 0));
 		Item::addCreativeItem(Item::get(Item::TRAPPED_CHEST, 0));
 		Item::addCreativeItem(Item::get(Item::FURNACE, 0));
 		Item::addCreativeItem(Item::get(Item::BREWING_STAND, 0));
+		Item::addCreativeItem(Item::get(Item::CAULDRON, 0));
 		Item::addCreativeItem(Item::get(Item::NOTEBLOCK, 0));
 		Item::addCreativeItem(Item::get(Item::END_PORTAL_FRAME, 0));
 		Item::addCreativeItem(Item::get(Item::ANVIL_BLOCK, AnvilBlock::TYPE_ANVIL));
@@ -1048,16 +1058,15 @@ class Item{
 		Item::addCreativeItem(Item::get(Item::STONE_BUTTON, 5));
 		Item::addCreativeItem(Item::get(Item::DAYLIGHT_DETECTOR));
 		Item::addCreativeItem(Item::get(Item::TRIPWIRE_HOOK));
+		Item::addCreativeItem(Item::get(Item::REDSTONE_REPEATER));
+		Item::addCreativeItem(Item::get(Item::REDSTONE_COMPARATOR));
+		//Item::addCreativeItem(Item::get(Item::DISPENSER));
+		//Item::addCreativeItem(Item::get(Item::DROPPER));
+		//Item::addCreativeItem(Item::get(Item::HOPPER));
 		Item::addCreativeItem(Item::get(Item::SNOWBALL));
 	}
 	
 	private static function seedsTab(){
-		//Seeds
-		/* 
-		Im gonna make it so you can do:
-		Item::addCreativeItem(Item::get(Item::POTION, Potion::'EFFECT'));
-		Item::addCreativeItem(Item::get(Item::ENCHANTED_BOOK, EnchantedBook::'ENCHANTMENT'));
-		*/
 		self::addCreativeItem(Item::get(Item::COAL, 0));
 		self::addCreativeItem(Item::get(Item::COAL, 1));
 		self::addCreativeItem(Item::get(Item::DIAMOND, 0));
