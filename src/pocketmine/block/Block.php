@@ -246,6 +246,8 @@ class Block extends Position implements Metadatable{
 	const HEAVY_WEIGHTED_PRESSURE_PLATE = 148;
 	const DAYLIGHT_DETECTOR = 151;
 
+	const HOPPER = 154;
+
 	const QUARTZ_BLOCK = 155;
 	const QUARTZ_STAIRS = 156;
 	const ACTIVATOR_RAIL = 157;
@@ -257,6 +259,7 @@ class Block extends Position implements Metadatable{
 	const WOODEN_SLAB = 158;
 	const WOOD_SLABS = 158;
 	const WOODEN_SLABS = 158;
+	const DROPPER = 158;
 	const STAINED_CLAY = 159;
 	const STAINED_HARDENED_CLAY = 159;
 
@@ -363,6 +366,8 @@ class Block extends Position implements Metadatable{
 			self::$solid = new \SplFixedArray(256);
 			self::$hardness = new \SplFixedArray(256);
 			self::$transparent = new \SplFixedArray(256);
+			self::$list[self::DROPPER] = Dropper::class;
+			self::$list[self::HOPPER] = Hopper::class;
 			self::$list[self::SLIME_BLOCK] = SlimeBlock::class;
 			self::$list[self::UNPOWERED_REPEATER] = UnpoweredRedstoneRepeater::class;
 			self::$list[self::POWERED_REPEATER] = PoweredRedstoneRepeater::class;
@@ -508,7 +513,7 @@ class Block extends Position implements Metadatable{
 			self::$list[self::END_PORTAL_FRAME] = EndPortalFrame::class;
 			self::$list[self::END_STONE] = EndStone::class;
 			self::$list[self::SANDSTONE_STAIRS] = SandstoneStairs::class;
-			self::$list[self::RED_SANDSTONE_STAIRS] = SandstoneStairs::class;
+			self::$list[self::RED_SANDSTONE_STAIRS] = RedSandstoneStairs::class;
 			self::$list[self::EMERALD_ORE] = EmeraldOre::class;
 
 			self::$list[self::EMERALD_BLOCK] = Emerald::class;
