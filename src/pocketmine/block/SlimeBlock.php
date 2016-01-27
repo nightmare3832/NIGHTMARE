@@ -22,34 +22,29 @@
 namespace pocketmine\block;
 
 use pocketmine\item\Item;
-use pocketmine\level\Level;
-use pocketmine\Player;
+use pocketmine\item\Tool;
 
-class UnpoweredRedstoneRepeater extends Solid{
+class SlimeBlock extends Solid{
 
-	protected $id = self::UNPOWERED_REPEATER;
+	protected $id = self::SLIME_BLOCK;
 
 	public function __construct($meta = 0){
 		$this->meta = $meta;
+
+	}
+
+	public function getHardness(){
+		return 1.5;
 	}
 
 	public function getName(){
-		return "Redstone Repeater";
-	}
-
-	public function place(Item $item, Block $block, Block $target, $face, $fx, $fy, $fz, Player $player = \null){
-		$faces = [
-			1 => 4,
-			2 => 3,
-			3 => 2,
-			4 => 1,
-		];
-		$this->meta = $faces[$face];
-		$this->getLevel()->setBlock($block, $this, \true, \true);
-		return \true;
+		return "Slime Block";
 	}
 
 	public function getDrops(Item $item){
-		return [$this->id, $this->meta, 1];
+		return [
+			[$this->id, $this->meta, 1],
+		];
 	}
+
 }

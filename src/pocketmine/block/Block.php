@@ -269,6 +269,7 @@ class Block extends Position implements Metadatable{
 	const ACACIA_WOODEN_STAIRS = 163;
 	const DARK_OAK_WOOD_STAIRS = 164;
 	const DARK_OAK_WOODEN_STAIRS = 164;
+	const SLIME_BLOCK = 165;
 	const IRON_TRAPDOOR = 167;
 
 	const HAY_BALE = 170;
@@ -357,6 +358,7 @@ class Block extends Position implements Metadatable{
 			self::$solid = new \SplFixedArray(256);
 			self::$hardness = new \SplFixedArray(256);
 			self::$transparent = new \SplFixedArray(256);
+			self::$list[self::SLIME_BLOCK] = SlimeBlock::class;
 			self::$list[self::UNPOWERED_REPEATER] = UnpoweredRedstoneRepeater::class;
 			self::$list[self::POWERED_REPEATER] = PoweredRedstoneRepeater::class;
 			self::$list[self::CAULDRON] = Cauldron::class;

@@ -908,6 +908,7 @@ class Item{
 		Item::addCreativeItem(Item::get(Item::FLOWER_POT, 0));
 		Item::addCreativeItem(Item::get(Item::MONSTER_SPAWNER, 0));
 		Item::addCreativeItem(Item::get(Item::ENCHANTING_TABLE, 0));
+		Item::addCreativeItem(Item::get(Item::SLIME_BLOCK, 0));
 		
 		Item::addCreativeItem(Item::get(Item::WOOL, 0));
 		Item::addCreativeItem(Item::get(Item::WOOL, 8));
