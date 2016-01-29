@@ -251,7 +251,6 @@ class Item{
 	const REDSTONE_BLOCK = 152;
 	const NETHER_QUARTZ_ORE = 153;
 	const QUARTZ_ORE = 153;
-	const HOPPER = 154;
 	const QUARTZ_BLOCK = 155;
 	const QUARTZ_STAIRS = 156;
 	const DOUBLE_WOOD_SLAB = 157;
@@ -474,6 +473,7 @@ class Item{
 	const NETHER_QUARTZ = 406;
 	const MINECART_WITH_TNT = 407;////
 	const MINECART_WITH_HOPPER = 408;////
+	const HOPPER = 410;////
 	const RAW_RABBIT = 411;
 	const COOKED_RABBIT = 412;
 	const RABBIT_STEW = 413;
@@ -665,6 +665,7 @@ class Item{
 			self::$list[self::CAULDRON] = Cauldron::class;
 			self::$list[self::REDSTONE_REPEATER] = RedstoneRepeater::class;
 			self::$list[self::REDSTONE_COMPARATOR] = RedstoneComparator::class;
+			self::$list[self::HOPPER] = Hopper::class;
 
 			for($i = 0; $i < 256; ++$i){
 				if(Block::$list[$i] !== null){
@@ -981,15 +982,15 @@ class Item{
 		Item::addCreativeItem(Item::get(Item::BOAT, 4)); // Acacia
 		Item::addCreativeItem(Item::get(Item::BOAT, 5)); // Dark Oak
 		
-		/*Item::addCreativeItem(Item::get(Item::SPAWN_EGG, 10)); //Cow
+		Item::addCreativeItem(Item::get(Item::SPAWN_EGG, 10)); //Cow
 		Item::addCreativeItem(Item::get(Item::SPAWN_EGG, 11)); //Pig
 		Item::addCreativeItem(Item::get(Item::SPAWN_EGG, 12)); //Sheep
 		Item::addCreativeItem(Item::get(Item::SPAWN_EGG, 13)); //Wolf*/
 		Item::addCreativeItem(Item::get(Item::SPAWN_EGG, 15)); //Villager
-		/*Item::addCreativeItem(Item::get(Item::SPAWN_EGG, 16)); //Mooshroom*/
+		Item::addCreativeItem(Item::get(Item::SPAWN_EGG, 16)); //Mooshroom
 		Item::addCreativeItem(Item::get(Item::SPAWN_EGG, 17)); //Squid 
 		Item::addCreativeItem(Item::get(Item::SPAWN_EGG, 32)); //Zombie
-		/*Item::addCreativeItem(Item::get(Item::SPAWN_EGG, 33)); //Creeper
+		Item::addCreativeItem(Item::get(Item::SPAWN_EGG, 33)); //Creeper
 		Item::addCreativeItem(Item::get(Item::SPAWN_EGG, 34)); //Skeleton
 		Item::addCreativeItem(Item::get(Item::SPAWN_EGG, 35)); //Spider
 		Item::addCreativeItem(Item::get(Item::SPAWN_EGG, 36)); //Zombie Pigman
@@ -999,9 +1000,9 @@ class Item{
 		Item::addCreativeItem(Item::get(Item::SPAWN_EGG, 40)); //Cave spider
 		Item::addCreativeItem(Item::get(Item::SPAWN_EGG, 41)); //Ghast
 		Item::addCreativeItem(Item::get(Item::SPAWN_EGG, 42)); //Magma Cube
-		Item::addCreativeItem(Item::get(Item::SPAWN_EGG, 43)); //Blaze*/
+		Item::addCreativeItem(Item::get(Item::SPAWN_EGG, 43)); //Blaze
 		
-		//Item::addCreativeItem(Item::get(Item::SPAWN_EGG, 44)); //Zombie Villager 
+		Item::addCreativeItem(Item::get(Item::SPAWN_EGG, 44)); //Zombie Villager 
 		
 		Item::addCreativeItem(Item::get(Item::WOODEN_SWORD));
 		Item::addCreativeItem(Item::get(Item::WOODEN_HOE));
@@ -1072,7 +1073,7 @@ class Item{
 		Item::addCreativeItem(Item::get(Item::REDSTONE_COMPARATOR));
 		Item::addCreativeItem(Item::get(Item::DISPENSER, 3));
 		Item::addCreativeItem(Item::get(Item::DROPPER, 3));
-		Item::addCreativeItem(Item::get(Item::HOPPER, 3));
+		Item::addCreativeItem(Item::get(Item::HOPPER));
 		Item::addCreativeItem(Item::get(Item::SNOWBALL));
 	}
 	
