@@ -20,11 +20,12 @@ class UnpoweredRedstoneComparator extends Solid{
 
 	public function place(Item $item, Block $block, Block $target, $face, $fx, $fy, $fz, Player $player = \null){
 		$faces = [
-			0 => 0,
-			1 => 1,
-			2 => 2,
-			3 => 3,
+			0 => 1,
+			1 => 2,
+			2 => 3,
+			3 => 0,
 		];
+		echo $player->getDirection();
 		$this->meta = $faces[$player instanceof Player ? $player->getDirection() : 0];
 		$this->getLevel()->setBlock($block, $this, \true, \true);
 		return \true;
