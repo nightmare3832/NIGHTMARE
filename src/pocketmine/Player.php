@@ -1386,14 +1386,14 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 			
 			$diff = ($diffX ** 2 + $diffY ** 2 + $diffZ ** 2) / ($tickDiff ** 2);
 			
-			if($this->isSurvival()){
+/*			if($this->isSurvival()){
 				if(!$revert and !$this->isSleeping()){
 					if($diff > 0.0625){
 						$revert = true;
 						$this->server->getLogger()->warning($this->getServer()->getLanguage()->translateString("pocketmine.player.invalidMove", [$this->getName()]));
 					}
 				}
-			}
+			}*/
 			
 			if($diff > 0){
 				$this->x = $newPos->x;
