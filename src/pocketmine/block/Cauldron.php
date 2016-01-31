@@ -40,5 +40,25 @@ class Cauldron extends Solid{
 	public function getDrops(Item $item){
 		return [$this->id, $this->meta, 1];
 	}
+
+	public function onActivate(Item $item, Player $player = null){
+		$tile = $this->getLevel()->getTile($this);
+			if(this->meta == 0){
+				switch($item->getId()){
+					case Item::BUCKET:
+						if($item->getDamage() === 8){
+							$this->setDamage(6);
+							$this->getLevel()->setBlock($this, $this, true, false);
+								if($player->isSurvival()){
+									$item->setDamage(0);
+									$player->getInventory()->setItemInHand($item(), $player);
+								}
+						}
+					break;
+				}
+			}
+		}
+		return false;
+	}
 }
 

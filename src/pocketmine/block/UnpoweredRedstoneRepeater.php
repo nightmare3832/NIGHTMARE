@@ -25,7 +25,6 @@ class UnpoweredRedstoneRepeater extends Solid{
 			2 => 3,
 			3 => 0,
 		];
-		echo $player->getDirection();
 		$this->meta = $faces[$player instanceof Player ? $player->getDirection() : 0];
 		$this->getLevel()->setBlock($block, $this, \true, \true);
 		return \true;
