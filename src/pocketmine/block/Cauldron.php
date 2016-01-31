@@ -42,7 +42,7 @@ class Cauldron extends Solid{
 	}
 
 	public function onActivate(Item $item, Player $player = null){
-		$tile = $this->getLevel()->getTile($this);
+		//$tile = $this->getLevel()->getTile($this);
 			if($this->meta == 0){
 				switch($item->getId()){
 					case Item::BUCKET:
@@ -57,8 +57,6 @@ class Cauldron extends Solid{
 					break;
 				}
 			}
-		}
-		return false;
 	}
 }
 
