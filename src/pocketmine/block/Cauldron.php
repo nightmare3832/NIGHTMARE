@@ -43,7 +43,7 @@ class Cauldron extends Solid{
 
 	public function onActivate(Item $item, Player $player = null){
 		$tile = $this->getLevel()->getTile($this);
-			if(this->meta == 0){
+			if($this->meta == 0){
 				switch($item->getId()){
 					case Item::BUCKET:
 						if($item->getDamage() === 8){
