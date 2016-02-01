@@ -8,6 +8,7 @@ use pocketmine\command\CommandSender;
 use pocketmine\command\ConsoleCommandSender;
 use pocketmine\command\PluginIdentifiableCommand;
 use pocketmine\command\SimpleCommandMap;
+/*
 use pocketmine\entity\Bat;
 use pocketmine\entity\Blaze;
 use pocketmine\entity\Boat;
@@ -30,6 +31,7 @@ use pocketmine\entity\Slime;
 use pocketmine\entity\Spider;
 use pocketmine\entity\Wolf;
 use pocketmine\entity\ZombieVillager;
+*/
 use pocketmine\entity\Arrow;
 use pocketmine\entity\Attribute;
 use pocketmine\entity\Effect;
@@ -2575,36 +2577,36 @@ class Server{
 
 	private function registerEntities(){
 		Entity::registerEntity(Arrow::class);
-		Entity::registerEntity(Bat::class);
+		/*Entity::registerEntity(Bat::class);
 		Entity::registerEntity(Blaze::class);
 		Entity::registerEntity(Boat::class);
 		Entity::registerEntity(CavernSpider::class);
 		Entity::registerEntity(Chicken::class);
 		Entity::registerEntity(Cow::class);
-		Entity::registerEntity(Creeper::class);
+		Entity::registerEntity(Creeper::class);*/
 		Entity::registerEntity(DroppedItem::class);
-		Entity::registerEntity(Egg::class);
-		Entity::registerEntity(Enderman::class);
+		/*Entity::registerEntity(Egg::class);
+		Entity::registerEntity(Enderman::class);*/
 		Entity::registerEntity(FallingSand::class);
-		Entity::registerEntity(Ghast::class);
+		/*Entity::registerEntity(Ghast::class);
 		Entity::registerEntity(MagmaCube::class);
 		Entity::registerEntity(Minecart::class);
 		Entity::registerEntity(Mooshroom::class);
 		Entity::registerEntity(Ozelot::class);
 		Entity::registerEntity(Pig::class);
-		Entity::registerEntity(PigZombie::class);
+		Entity::registerEntity(PigZombie::class);*/
 		Entity::registerEntity(PrimedTNT::class);
-		Entity::registerEntity(Sheep::class);
+		/*Entity::registerEntity(Sheep::class);
 		Entity::registerEntity(Silverfish::class);
 		Entity::registerEntity(Skeleton::class);
-		Entity::registerEntity(Slime::class);
+		Entity::registerEntity(Slime::class);*/
 		Entity::registerEntity(Snowball::class);
-		Entity::registerEntity(Spider::class);
+		/*Entity::registerEntity(Spider::class);
 		Entity::registerEntity(Squid::class);
 		Entity::registerEntity(Villager::class);
-		Entity::registerEntity(Wolf::class);
+		Entity::registerEntity(Wolf::class);*/
 		Entity::registerEntity(Zombie::class);
-		Entity::registerEntity(ZombieVillager::class);
+		/*Entity::registerEntity(ZombieVillager::class);*/
 		Entity::registerEntity(Human::class, true);
 	}
 
